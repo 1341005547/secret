@@ -1,7 +1,11 @@
 package com.entity;
 
 import java.util.Date;
-
+/**
+ * 考勤
+ * @author Administrator
+ *
+ */
 public class Oa_manual_sign {
     private Integer omsId;
 

@@ -1,41 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
-<%String path=request.getContextPath(); %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%String path=request.getContextPath();%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; utf-8">
-<title>Insert title here</title>
-</head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- ===============更改标题=============== -->
-  <title>第二组OA 2 | Dashboard</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>考勤记录</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<%=path %>/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="<%=path %>/static/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="<%=path %>/static/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/Ionicons/css/ionicons.min.css"> 
+  <!-- 主题，风格 -->
   <link rel="stylesheet" href="<%=path %>/static/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<%=path %>/static/dist/css/skins/_all-skins.min.css">
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="static/bower_components/morris.js/morris.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="static/bower_components/jvectormap/jquery-jvectormap.css">
-  <!-- Date Picker -->
-  <link rel="stylesheet" href="static/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="static/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  <!-- 管理模块样式 -->
-   <link rel="stylesheet" href="static/bower_components/manage/css/manage.css">
-  <!-- Google Font -->
+	<script type="text/javascript" src="<%=path %>/static/plugins/My97DatePicker/WdatePicker.js">
+	</script>
+<!--时间日期插件  -->	
+	<script type="text/javascript" src="<%=path %>/static/plugins/laydate/laydate.js">
+	</script>
+	<script>
+//执行一个laydate实例
+laydate.render({
+  elem: '#title'
+  ,type: 'year'
+});
+</script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -43,17 +35,20 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../../index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>第二组</b>OA</span>
+      <span class="logo-lg"><b>Admin</b>LTE</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </a>
 
       <div class="navbar-custom-menu">
@@ -65,14 +60,14 @@
               <span class="label label-success">4</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header">你有 4 条消息</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -85,7 +80,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -97,7 +92,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -109,7 +104,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -121,7 +116,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -162,6 +157,7 @@
                       <i class="fa fa-users text-red"></i> 5 new members joined
                     </a>
                   </li>
+
                   <li>
                     <a href="#">
                       <i class="fa fa-shopping-cart text-green"></i> 25 sales made
@@ -195,8 +191,7 @@
                         <small class="pull-right">20%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">20% Complete</span>
                         </div>
                       </div>
@@ -210,8 +205,7 @@
                         <small class="pull-right">40%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">40% Complete</span>
                         </div>
                       </div>
@@ -225,8 +219,7 @@
                         <small class="pull-right">60%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">60% Complete</span>
                         </div>
                       </div>
@@ -240,8 +233,7 @@
                         <small class="pull-right">80%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">80% Complete</span>
                         </div>
                       </div>
@@ -256,16 +248,15 @@
             </ul>
           </li>
           <!-- User Account: style can be found in dropdown.less -->
-          <!--  -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   Alexander Pierce - Web Developer
@@ -306,15 +297,15 @@
       </div>
     </nav>
   </header>
-  <!-- ===========================================================侧栏=========================================================== -->
-  <!-- Left side column. contains the logo and sidebar -->
+   <!-- ===========================================================侧栏=========================================================== -->
+  <!-- 左侧边栏 -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<%=path %>/static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Alexander Pierce</p>
@@ -325,7 +316,7 @@
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
+              <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
@@ -335,7 +326,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">首页</li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>人事管理</span>
             <span class="pull-right-container">
@@ -343,10 +334,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> 部门管理</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> 员工管理</a></li>
-            <li><a href="index3.html"><i class="fa fa-circle-o"></i> 调动管理</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> 通讯录管理</a></li>
+            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> 人事管理 v1</a></li>
+            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> 人事管理 v2</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -358,21 +347,21 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+            <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+            <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
+            <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
+            <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
           </ul>
         </li>
         <li>
-          <a href="pages/widgets.html">
+          <a href="../widgets.html">
             <i class="fa fa-th"></i> <span>申报管理</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>
             </span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="treeview active">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>考勤管理</span>
@@ -381,10 +370,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="toinline.html"><i class="fa fa-circle-o"></i> 考勤记录</a></li>
+            <li><a href="chartjs.html"><i class="fa fa-circle-o"></i> 我要请假</a></li>
+            <li><a href="morris.html"><i class="fa fa-circle-o"></i>假期管理</a></li>
+            <li><a href="flot.html"><i class="fa fa-circle-o"></i> 考勤统计</a></li>
+            <li class="active"><a href="inline.html"><i class="fa fa-circle-o"></i>考勤记录</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -396,12 +385,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+            <li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
+            <li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
+            <li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
+            <li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
+            <li><a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
+            <li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -412,9 +401,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+            <li><a href="../forms/general.html"><i class="fa fa-circle-o"></i> 我的权限</a></li>
+            <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> 角色设定</a></li>
+            <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> 权限分配</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -425,40 +414,49 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+            <li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
+            <li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
           </ul>
         </li>
         <li>
-          <a href="pages/calendar.html">
-            <i class="fa fa-calendar"></i> <span>关于</span>
+          <a href="../calendar.html">
+            <i class="fa fa-calendar"></i> <span>Calendar</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-red">3</small>
               <small class="label pull-right bg-blue">17</small>
             </span>
           </a>
         </li>
-       
-        <!-- <li class="treeview">
+        <li>
+          <a href="../mailbox/mailbox.html">
+            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-yellow">12</small>
+              <small class="label pull-right bg-green">16</small>
+              <small class="label pull-right bg-red">5</small>
+            </span>
+          </a>
+        </li>
+        <li class="treeview">
           <a href="#">
-            <i class="fa fa-folder"></i> <span>Examples</span>
+            <i class="fa fa-folder"></i> <span>关于</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-            <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-            <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-            <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-            <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-            <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-            <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+            <li><a href="../examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
+            <li><a href="../examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
+            <li><a href="../examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
+            <li><a href="../examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
+            <li><a href="../examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+            <li><a href="../examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+            <li><a href="../examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+            <li><a href="../examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+            <li><a href="../examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
           </ul>
-        </li> -->
-       <!--  <li class="treeview">
+        </li>
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -467,7 +465,6 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-
             <li class="treeview">
               <a href="#"><i class="fa fa-circle-o"></i> Level One
                 <span class="pull-right-container">
@@ -491,197 +488,164 @@
             </li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
           </ul>
-        </li> -->
-       <!--  <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+        </li>
+        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
+        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ====================================================主显示区==================================================================== -->
+  <!-- 主体内容 -->
   <div class="content-wrapper">
-  
-<!-- /.col --><!-- 功能显示开始 -->
-        <div id="content">
-          <h2>部门管理</h2>
-           <h5><strong>操作说明</strong></h5>
-             <div class="accordion">
+	<!-- 导航标题-->
+   <section class="content-header">
+    <h1>
+      出勤记录
+      <small>Version 2.0</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Dashboard</li>
+    </ol>
+  </section>
+  <!-- 主体开始 -->
+  <section class="content">
+	<div class="callout callout-info">
+      <h4>Reminder!</h4>
+      Instructions for how to use modals are available on the
+      <a href="http://getbootstrap.com/javascript/#modals">Bootstrap documentation</a>
+    </div>
 
-                <h3>模块说明</h3>
-                <div>
-                  <p>人事管理模块-部门管理-该页面用来添加新的部门</p>
-                </div>
-                
-                <h3>操作介绍</h3>
-                <div>
-                  <p>[我要提交] -该方案用来提交用户的表单信息</p>
-                    <p>[重置] -该方案用来重置用户的表单信息</p>
-                    <p>[修改] -该方案用来修改部门信息</p>
-                    <p>[删除] -该方案用来删除部门信息</p>
-                </div>                           
+	
+		 <div class="box-header with-border">
+            <h3 class="box-title">搜索</h3>
+          </div>
+          <!-- /.box-header -->
+          <!-- form start -->
+          <form class="form-horizontal">
+            <div class="box-body">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">输入年份</label>
 
-      </div>
-             <div class="cleaner"></div>
-         <br/> <br/> <br/>
-        
-        
-    
-        
-        <h5><strong>部门操作</strong></h5>
-        <div id="contact_form">
-               <form method="post" name="contact" action="#">
-            
-                    <label for="email">我的部门名  ?</label> 
-                    <input type="text" id="email" name="email" class="validate-email required input_field" /><em style="color:#F00">&nbsp;*</em>
-                    <div class="cleaner h10"></div>
-                        
-                    <label for="subject">所属机构 ?</label> 
-                    <select class="input_field">
-                      <option>-这还是默认的(旭阳科技)</option>
-                      <option>北大青鸟集团</option>
-                        <option>中国科学院声学研究所</option>
-                    </select>
-                    <div class="cleaner h10"></div>
-                    <label for="email">部门负责人  ?</label> 
-                    <select class="input_field">
-                      <option>-这还是默认的(未指定)</option>
-                      <option>张三</option>
-                        <option>李四</option>
-                    </select>
-                    <div class="cleaner h10"></div>
-                    <label for="email">我的联系电话  ?</label> 
-                    <input type="text" id="email" name="email" class="validate-email required input_field" /><em style="color:#F00">&nbsp;*</em>
-                    <div class="cleaner h10"></div>
-                    <label for="email">我的移动电话  ?</label>
-                     <input type="text" id="email" name="email" class="validate-email required input_field" /><em style="color:#F00">&nbsp;*</em>
-                    <div class="cleaner h10"></div>
-                    <label for="email">我的传真  ?</label>
-                     <input type="text" id="email" name="email" class="validate-email required input_field" /><em style="color:#F00">&nbsp;*</em>
-                    <div class="cleaner h10"></div>
-                    
-                      
-          <input type="submit" value="我要提交" id="submit" name="submit" class="submit_btn float_l" />
-          <input type="reset" value="重置" id="reset" name="reset" class="submit_btn float_r" />
-          
-                </form>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="title" placeholder="输入年份">
                 </div>
-                <div class="cleaner"></div>
-            <br/> <br/> <br/>
-        
-        <h5><strong>部门列表</strong></h5>
-        <table width="700px" cellspacing="0" cellpadding="5">
-                      <tr bgcolor="#CCCCCC">
-                        <th width="60" align="left"><input id="chk_SelectALL" type="checkbox"  />全选</th> 
+              </div>
+             
+            </div>
+			 <div align="center">
+              <input type="submit" value="提交" id="submit" name="submit" class="submit_btn float_l" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="reset" value="重置" id="reset" name="reset" class="submit_btn float_r" />
+            </div>
+	 </form>
+           <br />
+           	<h5><strong>出勤详情</strong></h5>
+               
+    <table id="example1" class="table table-bordered table-striped">
+                   	  
+					  <thead>
+					  <tr bgcolor="#CCCCCC">
+                     		<th width="60" align="left"><input id="chk_SelectALL" type="checkbox"  />全选</th> 
                             <th width="30" align="left">编号</th> 
-                          <th width="100" align="left">部门名称</th> 
-                          <th width="137" align="left">机构</th> 
-                            <th width="115" align="left">负责人</th>
+                            <th width="120" align="left">月份</th> 
+                        	<th width="120" align="left">姓名</th> 
+                        	<th width="120" align="left">出勤率</th> 
                             <th width="150" align="left">操作</th>
                       </tr>
-                      <tr>
-                          <td><input name="selectSub"   type="checkbox" /></td> 
-                          <td><a href="#">1</a></td> 
-                            <td>财务部</td>
-                            <td>北大青鸟集团</td>
-                            <td>系统管理员</td>
-                            <td><a href="#" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-            </tr>
+					  </thead>
+					  <tbody>
+					  <tr>
+                        	<td><input name="selectSub"  type="checkbox" /></td> 
+                            <td>1</td>
+                            <td>1</td>
+                        	<td>狐小仙</td>
+                            <td>98%</td>
+                            
+                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+						</tr>
                         <tr>
-                          <td><input name="selectSub"   type="checkbox" /></td> 
-                          <td><a href="#">2</a></td> 
-                            <td>财务部</td>
-                            <td>北大青鸟集团</td>
-                            <td>系统管理员</td>
-                            <td><a href="#" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-            </tr>
-                        <tr>
-                          <td><input name="selectSub"   type="checkbox" /></td> 
-                          <td><a href="#">3</a></td> 
-                            <td>财务部</td>
-                            <td>北大青鸟集团</td>
-                            <td>系统管理员</td>
-                            <td><a href="#" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-            </tr>
-                        <tr>
-                          <td><input name="selectSub"   type="checkbox" /></td> 
-                          <td><a href="#">4</a></td> 
-                            <td>财务部</td>
-                            <td>北大青鸟集团</td>
-                            <td>系统管理员</td>
-                            <td><a href="#" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-            </tr>
-                        <tr>
-                          <td><input name="selectSub"   type="checkbox" /></td> 
-                          <td><a href="#">5</a></td> 
-                            <td>财务部</td>
-                            <td>北大青鸟集团</td>
-                            <td>系统管理员</td>
-                            <td><a href="#" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-            </tr>
-
-                        <tr>
-                          <td colspan="6" align="right"  height="40px">
-                              &nbsp;<a href="#" class="more float_l">删除选中</a>
-                              <a href="#" class="more">首页</a>&nbsp;<a href="#" class="more">上一页</a>&nbsp;【1/15】&nbsp;<a href="#" class="more">下一页</a>&nbsp;<a href="#" class="more">末页</a>
+                        	<td><input name="selectSub"  type="checkbox" /></td> 
+                            <td>2</td>
+                            <td>1</td>
+                        	<td>狐小仙</td>
+                            <td>98%</td>
+                            
+                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+						</tr>
+                       <tr>
+                        	<td><input name="selectSub"  type="checkbox" /></td> 
+                            <td>3</td>
+                            <td>1</td>
+                        	<td>狐小仙</td>
+                            <td>98%</td>
+                            
+                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+						</tr>
+                       <tr>
+                        	<td><input name="selectSub"  type="checkbox" /></td> 
+                            <td>4</td>
+                            <td>1</td>
+                        	<td>狐小仙</td>
+                            <td>98%</td>
+                            
+                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+						</tr>
+						<tr>
+                        	<td><input name="selectSub"  type="checkbox" /></td> 
+                            <td>2</td>
+                            <td>1</td>
+                        	<td>狐小仙</td>
+                            <td>98%</td>
+                            
+                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+						</tr>
+                       <tr>
+                        	<td><input name="selectSub"  type="checkbox" /></td> 
+                            <td>3</td>
+                            <td>1</td>
+                        	<td>狐小仙</td>
+                            <td>98%</td>
+                            
+                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+						</tr>
+                       <tr>
+                        	<td><input name="selectSub"  type="checkbox" /></td> 
+                            <td>4</td>
+                            <td>1</td>
+                        	<td>狐小仙</td>
+                            <td>98%</td>
+                            
+                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+						</tr>
+						
+						
+						
+						
+						
+					  </tbody>
+					  <tfoot>
+					  <tr>
+                        	<td colspan="8" align="right"  height="40px">
+                            	<a href="#" class="more float_l">删除选中</a>
+                            	<a href="#" class="more">首页</a>&nbsp;<a href="#" class="more">上一页</a>&nbsp;【1/15】&nbsp;<a href="#" class="more">下一页</a>&nbsp;<a href="#" class="more">末页</a>
                             </td>
     
-            </tr>
-          </table>
-                
-    </div>
-   <!-- 功能结束 -->
-
-
-
-
-<!-- ==============================================搜索区======================================================== -->
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
+						</tr>
+                    </tfoot>
+                        
+			
+			</table>
+<!-- 主体结束-->
+			</section>
+   
+		
+  
+   
   </div>
-
-
-
-
-
-
-
-
-
-
-  <!-- ============================================================底部内容================================================== -->
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -888,41 +852,30 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="static/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="static/bower_components/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
+<script src="<%=path %>/static/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Morris.js charts -->
-<script src="static/bower_components/raphael/raphael.min.js"></script>
-<script src="static/bower_components/morris.js/morris.min.js"></script>
-<!-- Sparkline -->
-<script src="static/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-<!-- jvectormap -->
-<script src="static/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="static/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="static/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="static/bower_components/moment/min/moment.min.js"></script>
-<script src="static/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- datepicker -->
-<script src="static/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- Slimscroll -->
-<script src="static/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="<%=path %>/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="<%=path %>/static/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="static/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="<%=path %>/static/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="static/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="static/dist/js/pages/dashboard.js"></script>
+<script src="<%=path %>/static/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="static/dist/js/demo.js"></script>
+<script src="<%=path %>/static/dist/js/demo.js"></script>
+<!-- jQuery Knob -->
+<script src="<%=path %>/static/bower_components/jquery-knob/js/jquery.knob.js"></script>
+<!-- Sparkline -->
+<script src="<%=path %>/static/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- 条形图 -->
+<script src="<%=path %>/static/bower_components/Flot/jquery.flot.categories.js"></script>
+
+<script>
+ $(function () {
+    $('#example1').DataTable()
+  })
+    
+</script>
+
 </body>
 </html>
