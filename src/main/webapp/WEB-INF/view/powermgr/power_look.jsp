@@ -1,59 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
-<%String path=request.getContextPath(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; utf-8">
-<title>Insert title here</title>
-</head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- ================================================更改标题=================================================== -->
-  <title>第二组OA 2 | Dashboard</title>
-  <!-- Tell the browser to be responsive to screen width -->
+  <title>AdminLTE 2 | Simple Tables</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<%=path %>/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="<%=path %>/static/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="<%=path %>/static/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<%=path %>/static/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<%=path %>/static/dist/css/skins/_all-skins.min.css">
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="static/bower_components/morris.js/morris.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="static/bower_components/jvectormap/jquery-jvectormap.css">
-  <!-- Date Picker -->
-  <link rel="stylesheet" href="static/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="static/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  <!-- 管理模块样式 -->
-   <link rel="stylesheet" href="static/bower_components/manage/css/manage.css">
-  <!-- Google Font -->
+  <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
+   <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.3/css/bootstrap-grid.css" rel="stylesheet"> 
+
+		<link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.3/css/bootstrap-grid.css" rel="stylesheet">
+		<link href="../../css/templatemo_style.css" rel="stylesheet" type="text/css" />
+   
+   </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../../index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>第二组</b>OA</span>
+      <span class="logo-lg"><b>Admin</b>LTE</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </a>
 
       <div class="navbar-custom-menu">
@@ -72,7 +55,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -85,7 +68,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -97,7 +80,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -109,7 +92,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="../../dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -121,7 +104,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="../../dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -194,9 +177,8 @@
                         Design some buttons
                         <small class="pull-right">20%</small>
                       </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress progress-xs">
+                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">20% Complete</span>
                         </div>
                       </div>
@@ -209,9 +191,8 @@
                         Create a nice theme
                         <small class="pull-right">40%</small>
                       </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress progress-xs">
+                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">40% Complete</span>
                         </div>
                       </div>
@@ -224,9 +205,8 @@
                         Some task I need to do
                         <small class="pull-right">60%</small>
                       </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress progress-xs">
+                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">60% Complete</span>
                         </div>
                       </div>
@@ -239,9 +219,8 @@
                         Make beautiful transitions
                         <small class="pull-right">80%</small>
                       </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                      <div class="progress progress-xs">
+                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">80% Complete</span>
                         </div>
                       </div>
@@ -256,16 +235,15 @@
             </ul>
           </li>
           <!-- User Account: style can be found in dropdown.less -->
-          <!--  -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">拿破仑.波拿巴</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
                   Alexander Pierce - Web Developer
@@ -306,7 +284,6 @@
       </div>
     </nav>
   </header>
-  <!-- ===========================================================侧栏=========================================================== -->
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -314,10 +291,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<%=path %>/static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>拿破仑.波拿巴</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -325,7 +302,7 @@
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
+              <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
@@ -333,7 +310,7 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
+     <ul class="sidebar-menu" data-widget="tree">
         <li class="header">首页</li>
         <li class="active treeview">
           <a href="#">
@@ -343,10 +320,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> 部门管理</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> 员工管理</a></li>
-            <li><a href="index3.html"><i class="fa fa-circle-o"></i> 调动管理</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> 通讯录管理</a></li>
+            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -412,9 +387,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="power_look.html"><i class="fa fa-circle-o"></i>我的权限</a></li>
-            <li><a href="power_set.html"><i class="fa fa-circle-o"></i>角色设定</a></li>
-            <li><a href="power_give.html"><i class="fa fa-circle-o"></i>权限分配</a></li>
+            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> 我的权限</a></li>
+            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> 角色设定</a></li>
+            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> 权限分配</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -425,8 +400,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> 公告管理</a></li>
+            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> 登陆日志</a></li>
+            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> 操作日志</a></li>
+            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> 守则管理</a></li>
           </ul>
         </li>
         <li>
@@ -438,190 +415,159 @@
             </span>
           </a>
         </li>
+       
       </ul>
     </section>
+    <!-- /.sidebar -->
   </aside>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ====================================================主显示区==================================================================== -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-  
-<!-- /.col --><!-- 功能显示开始 -->
-        <div id="content">
-          <h2>部门管理</h2>
-           <h5><strong>操作说明</strong></h5>
-             <div class="accordion">
-
-                <h3>模块说明</h3>
-                <div>
-                  <p>人事管理模块-部门管理-该页面用来添加新的部门</p>
-                </div>
-                
-                <h3>操作介绍</h3>
-                <div>
-                  <p>[我要提交] -该方案用来提交用户的表单信息</p>
-                    <p>[重置] -该方案用来重置用户的表单信息</p>
-                    <p>[修改] -该方案用来修改部门信息</p>
-                    <p>[删除] -该方案用来删除部门信息</p>
-                </div>                           
-
-      </div>
-             <div class="cleaner"></div>
-         <br/> <br/> <br/>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+	
+	
+	
+	
+	<div id = "content">
+	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="panel-group" id="panel-614238">
+				<div class="panel panel-default">
+				 <h2>&nbsp;&nbsp;&nbsp;&nbsp;权限查看</h2>
+             <h5><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;操作说明</strong></h5>
+					<div class="panel-heading">
+						 <a class="panel-title" data-toggle="collapse" data-parent="#panel-614238" href="#panel-element-288445">模块说明</a>
+					</div>
+					<div id="panel-element-288445" class="panel-collapse in">
+						<div class="panel-body">
+							授权管理模块-权限查看-该页面查看用户的权限角色
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						 <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-614238" href="#panel-element-862650">操作介绍</a>
+					</div>
+					<div id="panel-element-862650" class="panel-collapse collapse">
+						<div class="panel-body">
+							<p>[我要提交] -该方案用来提交用户的表单信息</p>
+							<p>[重置] -该方案用来重新清空用户的表单信息</p>
+							<p>[禁用] -该方案用来禁用该角色的权限</p>
+							<p>[删除选中] -该方案用来删除被选中的角色</p>
+							<p>[删除] -该方案用来删除角色</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+	
+	
+	
+	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+    </section>
+	
+    <!-- Main content -->
+    <section class="content">
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="accordion" id="accordion-354281">
         
         
+      
+
+
+
+           
+              <div id="contact_form" style="width:400px;">
+			  <h5><strong>授权信息</strong></h5>
+   	    	<table width="720" >
+              <tr>
+                <td width="152" height="40">授权编号：</td>
+                <td width="234">1</td>
+              </tr>
+              <tr>
+                <td height="40">授权人信息：</td>
+                <td>201300001  张三</td>
+              </tr>
+              <tr>
+                <td height="40">授权角色：</td>
+                <td>部门经理</td>
+              </tr>
+              <tr>
+                <td height="40">隶属上级角色：</td>
+                <td>管理员</td>
+              </tr>
+              <tr>
+                <td height="40">授权时间：</td>
+                <td>2013-09-22 8:00</td>
+              </tr>  
+              <tr>
+                <td height="40">角色描述：</td>
+                <td>这是一个部门经理所拥有的权限</td>
+              </tr> 
+               <tr>
+                <td height="40">内容：</td>
+                <td>内容信息</td>
+              </tr>  
+            </table>
+            <br/>
+		
+            </div>
+			
+			
+			
+			<div class="data " style="position:fixed; bottom:10px; left:20px; z-index:10;" >
+         <button class="btn tip" title="当前时间: 2013-02-20 14:24 星期五">当前时间</button> 
+         <button class="btn tip" title="该方案用于快速查看通讯录" id="jDialog_default_button">通讯录</button> 
+     </div>
     
-        
-        <h5><strong>部门操作</strong></h5>
-        <div id="contact_form">
-               <form method="post" name="contact" action="#">
-            
-                    <label for="email">我的部门名  ?</label> 
-                    <input type="text" id="email" name="email" class="validate-email required input_field" /><em style="color:#F00">&nbsp;*</em>
-                    <div class="cleaner h10"></div>
-                        
-                    <label for="subject">所属机构 ?</label> 
-                    <select class="input_field">
-                      <option>-这还是默认的(旭阳科技)</option>
-                      <option>北大青鸟集团</option>
-                        <option>中国科学院声学研究所</option>
-                    </select>
-                    <div class="cleaner h10"></div>
-                    <label for="email">部门负责人  ?</label> 
-                    <select class="input_field">
-                      <option>-这还是默认的(未指定)</option>
-                      <option>张三</option>
-                        <option>李四</option>
-                    </select>
-                    <div class="cleaner h10"></div>
-                    <label for="email">我的联系电话  ?</label> 
-                    <input type="text" id="email" name="email" class="validate-email required input_field" /><em style="color:#F00">&nbsp;*</em>
-                    <div class="cleaner h10"></div>
-                    <label for="email">我的移动电话  ?</label>
-                     <input type="text" id="email" name="email" class="validate-email required input_field" /><em style="color:#F00">&nbsp;*</em>
-                    <div class="cleaner h10"></div>
-                    <label for="email">我的传真  ?</label>
-                     <input type="text" id="email" name="email" class="validate-email required input_field" /><em style="color:#F00">&nbsp;*</em>
-                    <div class="cleaner h10"></div>
-                    
-                      
-          <input type="submit" value="我要提交" id="submit" name="submit" class="submit_btn float_l" />
-          <input type="reset" value="重置" id="reset" name="reset" class="submit_btn float_r" />
-          
-                </form>
-                </div>
-                <div class="cleaner"></div>
-            <br/> <br/> <br/>
-        
-        <h5><strong>部门列表</strong></h5>
-        <table width="700px" cellspacing="0" cellpadding="5">
-                      <tr bgcolor="#CCCCCC">
-                        <th width="60" align="left"><input id="chk_SelectALL" type="checkbox"  />全选</th> 
-                            <th width="30" align="left">编号</th> 
-                          <th width="100" align="left">部门名称</th> 
-                          <th width="137" align="left">机构</th> 
-                            <th width="115" align="left">负责人</th>
-                            <th width="150" align="left">操作</th>
-                      </tr>
-                      <tr>
-                          <td><input name="selectSub"   type="checkbox" /></td> 
-                          <td><a href="#">1</a></td> 
-                            <td>财务部</td>
-                            <td>北大青鸟集团</td>
-                            <td>系统管理员</td>
-                            <td><a href="#" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-            </tr>
-                        <tr>
-                          <td><input name="selectSub"   type="checkbox" /></td> 
-                          <td><a href="#">2</a></td> 
-                            <td>财务部</td>
-                            <td>北大青鸟集团</td>
-                            <td>系统管理员</td>
-                            <td><a href="#" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-            </tr>
-                        <tr>
-                          <td><input name="selectSub"   type="checkbox" /></td> 
-                          <td><a href="#">3</a></td> 
-                            <td>财务部</td>
-                            <td>北大青鸟集团</td>
-                            <td>系统管理员</td>
-                            <td><a href="#" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-            </tr>
-                        <tr>
-                          <td><input name="selectSub"   type="checkbox" /></td> 
-                          <td><a href="#">4</a></td> 
-                            <td>财务部</td>
-                            <td>北大青鸟集团</td>
-                            <td>系统管理员</td>
-                            <td><a href="#" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-            </tr>
-                        <tr>
-                          <td><input name="selectSub"   type="checkbox" /></td> 
-                          <td><a href="#">5</a></td> 
-                            <td>财务部</td>
-                            <td>北大青鸟集团</td>
-                            <td>系统管理员</td>
-                            <td><a href="#" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-            </tr>
-
-                        <tr>
-                          <td colspan="6" align="right"  height="40px">
-                              &nbsp;<a href="#" class="more float_l">删除选中</a>
-                              <a href="#" class="more">首页</a>&nbsp;<a href="#" class="more">上一页</a>&nbsp;【1/15】&nbsp;<a href="#" class="more">下一页</a>&nbsp;<a href="#" class="more">末页</a>
-                            </td>
-    
-            </tr>
-          </table>
-                
+     <div class="dialog" id="jDialog_default" style="display: none; z-index:5;" title="公司通讯录">
+     		<p><em>*&nbsp; [部门] 职位-姓名-联系电话</em></p>
+            <ul class="sidebar_menu">
+			    <li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
+                <li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
+                <li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
+                <li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
+                <li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
+                <li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
+                <li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
+                <li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
+                <li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
+                <li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>  
+			</ul>
+        </div>
+			
+			
+			
+			
+			
+			
+            <!-- /.box-body -->
+          </div>
+        </div>
     </div>
-   <!-- 功能结束 -->
-
-
-
-
-<!-- ==============================================搜索区======================================================== -->
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
   </div>
-
-
-
-
-
-
-
-
-
-
-  <!-- ============================================================底部内容================================================== -->
+</div>
+    </section>
+    <!-- /.content -->
+  </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -828,41 +774,16 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="static/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="static/bower_components/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Morris.js charts -->
-<script src="static/bower_components/raphael/raphael.min.js"></script>
-<script src="static/bower_components/morris.js/morris.min.js"></script>
-<!-- Sparkline -->
-<script src="static/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-<!-- jvectormap -->
-<script src="static/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="static/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="static/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="static/bower_components/moment/min/moment.min.js"></script>
-<script src="static/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- datepicker -->
-<script src="static/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Slimscroll -->
-<script src="static/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="static/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="../../bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="static/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="static/dist/js/pages/dashboard.js"></script>
+<script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="static/dist/js/demo.js"></script>
+<script src="../../dist/js/demo.js"></script>
 </body>
 </html>

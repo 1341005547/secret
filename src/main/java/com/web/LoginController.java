@@ -40,7 +40,7 @@ public class LoginController {
 		}
 	    return "index";
 	}
-	
+
 	/**
 	 * 用户角色查询
 	 */
