@@ -6,7 +6,7 @@
   <meta charset="utf-8">
 <!--   <meta http-equiv="X-UA-Compatible" content="IE=edge" > -->
   <!-- ===============更改标题=============== -->
-  <title>第一组OA 2 | Dashboard</title>
+  <title>第二组OA 2 | Dashboard</title>
   <jsp:include page="head.jsp"></jsp:include>
 </head>
 
