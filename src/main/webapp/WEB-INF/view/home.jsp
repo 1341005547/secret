@@ -9,10 +9,10 @@
   <title>第二组OA 2 | Dashboard</title>
   <jsp:include page="head.jsp"></jsp:include>
 </head>
-
+<h3>你好</h3>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="content-wrapper">
-  
+  <h3>asdfasf</h3>
 <!-- /.col --><!-- 功能显示开始 -->
         <div id="content">
           <h2>部门管理</h2>
