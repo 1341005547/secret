@@ -1,15 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%String path=request.getContextPath(); %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
-</head>
-<body>
 <!-- ============================================================底部内容================================================== -->
 <footer class="main-footer">
-    <div class="pull-right hidden-xs">
+    <div class="pull-right hidden-xs" style="padding-bottom:0px;">
       <b>Version</b> 2.4.0
     </div>
     <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
@@ -246,5 +238,3 @@
 <script src="<%=path %>/static/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<%=path %>/static/dist/js/demo.js"></script>
-</body>
-</html>
