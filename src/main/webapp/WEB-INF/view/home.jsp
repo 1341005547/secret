@@ -36,7 +36,8 @@
              <div class="cleaner"></div>
          <br/> <br/> <br/>
         
-  
+        
+    
         
         <h5><strong>部门操作</strong></h5>
         <div id="contact_form">
@@ -138,7 +139,8 @@
     
             </tr>
           </table>
+                
     </div>
-    <jsp:include page="foot.jsp"></jsp:include>
+    <%-- <jsp:include page="foot.jsp"/> --%>
 </body>
 </html>

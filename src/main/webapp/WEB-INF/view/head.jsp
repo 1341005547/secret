@@ -4,33 +4,18 @@
 <html>
 <head>
 <meta charset="utf-8">
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<%=path %>/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="<%=path %>/static/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="<%=path %>/static/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<%=path %>/static/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<%=path %>/static/dist/css/skins/_all-skins.min.css">
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="static/bower_components/morris.js/morris.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="static/bower_components/jvectormap/jquery-jvectormap.css">
-  <!-- Date Picker -->
-  <link rel="stylesheet" href="static/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="static/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  <!-- 管理模块样式 -->
-   <link rel="stylesheet" href="static/bower_components/manage/css/manage.css">
-  <!-- Google Font -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/morris.js/morris.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/jvectormap/jquery-jvectormap.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/manage/css/manage.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
   <body class="hold-transition skin-blue sidebar-mini">
@@ -67,7 +52,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="${pageContext.request.contextPath}/static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -80,7 +65,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="${pageContext.request.contextPath}/static/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -92,7 +77,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="${pageContext.request.contextPath}/static/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -104,7 +89,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="${pageContext.request.contextPath}/static/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -116,7 +101,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                        <img src="${pageContext.request.contextPath}/static/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -420,8 +405,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+             <li><a href="adver.html">公告管理</a></li>
+             <li><a href="loglogin.html">登录日志</a></li>
+             <li><a href="operate.html">操作日志</a></li>
+             <li><a href="rules.html">守则管理</a></li>
+          </ul>
           </ul>
         </li>
         <li>
