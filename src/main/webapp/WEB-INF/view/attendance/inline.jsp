@@ -82,7 +82,7 @@ laydate.render({
                         	<td>狐小仙</td>
                             <td>98%</td>
                             
-                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+                            <td><a href="toinline-info.html" class="more">查看</a></td>
 						</tr>
                         <tr>
                         	<td><input name="selectSub"  type="checkbox" /></td> 
@@ -91,7 +91,7 @@ laydate.render({
                         	<td>狐小仙</td>
                             <td>98%</td>
                             
-                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+                            <td><a href="toinline-info.html" class="more">查看</a></td>
 						</tr>
                        <tr>
                         	<td><input name="selectSub"  type="checkbox" /></td> 
@@ -100,7 +100,7 @@ laydate.render({
                         	<td>狐小仙</td>
                             <td>98%</td>
                             
-                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+                            <td><a href="toinline-info.html" class="more">查看</a></td>
 						</tr>
                        <tr>
                         	<td><input name="selectSub"  type="checkbox" /></td> 
@@ -109,7 +109,7 @@ laydate.render({
                         	<td>狐小仙</td>
                             <td>98%</td>
                             
-                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+                            <td><a href="toinline-info.html" class="more">查看</a></td>
 						</tr>
 						<tr>
                         	<td><input name="selectSub"  type="checkbox" /></td> 
@@ -118,7 +118,7 @@ laydate.render({
                         	<td>狐小仙</td>
                             <td>98%</td>
                             
-                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+                            <td><a href="toinline-info.html" class="more">查看</a></td>
 						</tr>
                        <tr>
                         	<td><input name="selectSub"  type="checkbox" /></td> 
@@ -127,7 +127,7 @@ laydate.render({
                         	<td>狐小仙</td>
                             <td>98%</td>
                             
-                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+                            <td><a href="toinline-info.html" class="more">查看</a></td>
 						</tr>
                        <tr>
                         	<td><input name="selectSub"  type="checkbox" /></td> 
@@ -136,13 +136,13 @@ laydate.render({
                         	<td>狐小仙</td>
                             <td>98%</td>
                             
-                            <td><a href="toinline-info.html" class="more">查看</a>&nbsp;<a href="#" class="more">删除</a> </td>
+                            <td><a href="toinline-info.html" class="more">查看</a> </td>
 						</tr>		
 					  </tbody>
 					  <tfoot>
 					  <tr>
                         	<td colspan="8" align="right"  height="40px">
-                            	<a href="#" class="more float_l">删除选中</a>
+                            	
                             	<a href="#" class="more">首页</a>&nbsp;<a href="#" class="more">上一页</a>&nbsp;【1/15】&nbsp;<a href="#" class="more">下一页</a>&nbsp;<a href="#" class="more">末页</a>
                             </td>
     
