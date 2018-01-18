@@ -424,7 +424,7 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
+         <ul class="treeview-menu">
              <li><a href="adver.html">公告管理</a></li>
              <li><a href="loglogin.html">登录日志</a></li>
              <li><a href="operate.html">操作日志</a></li>
@@ -626,13 +626,13 @@
 
   <!-- ============================================================底部内容================================================== -->
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
+ <!--  <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
     <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
     reserved.
-  </footer>
+  </footer> -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
