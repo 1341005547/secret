@@ -182,21 +182,21 @@
 					<div class="span9" style="width:200px; margin-left:0px;">
 						<table width="700px" cellspacing="0" cellpadding="5">
 							<tr>
-								<td><input name="selectSub"  type="checkbox" />11111</td> 
-								<td><input name="selectSub"  type="checkbox" />2222</td> 
-								<td><input name="selectSub"  type="checkbox" />3333333</td> 
-								<td><input name="selectSub"  type="checkbox" />444444</td> 
-								<td><input name="selectSub"  type="checkbox" />55555555</td> 
-								<td><input name="selectSub"  type="checkbox" />666666</td>
+								<td><input name="selectSub"  type="checkbox" />人事部部长</td> 
+								<td><input name="selectSub"  type="checkbox" />人事部副部长</td> 
+								<td><input name="selectSub"  type="checkbox" />CEO</td> 
+								<td><input name="selectSub"  type="checkbox" />总经理</td> 
+								<td><input name="selectSub"  type="checkbox" />总经理秘书</td> 
+								<td><input name="selectSub"  type="checkbox" />财务部部长</td>
 							</tr>
 							
 							<tr>
-								<td><input name="selectSub"  type="checkbox" />7777777</td> 
-								<td><input name="selectSub"  type="checkbox" />888888</td> 
-								<td><input name="selectSub"  type="checkbox" />9999999</td> 
-								<td><input name="selectSub"  type="checkbox" />000</td> 
-								<td><input name="selectSub"  type="checkbox" />8989</td> 
-								<td><input name="selectSub"  type="checkbox" />667867</td> 
+								<td><input name="selectSub"  type="checkbox" />财务部副部长</td> 
+								<td><input name="selectSub"  type="checkbox" />超级管理员</td> 
+								<td><input name="selectSub"  type="checkbox" />工程部部长</td> 
+								<td><input name="selectSub"  type="checkbox" />工程部副部长</td> 
+								<td><input name="selectSub"  type="checkbox" />员工</td> 
+								<td><input name="selectSub"  type="checkbox" />小组组长</td> 
 							</tr>
 						</table>
 						
