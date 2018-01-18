@@ -21,7 +21,7 @@ import org.apache.shiro.realm.Realm;
  * @author Administrator
  *
  */
-@Configuration
+/*@Configuration*/
 public class ShiroConfig {
     
 	/**
@@ -36,14 +36,13 @@ public class ShiroConfig {
 		//创建过滤器练的map参数对象
 		LinkedHashMap<String, String> filterChainDefinitionMap=new LinkedHashMap<>();
 	    filterChainDefinitionMap.put("/login.html", "anon"); //表示可以匿名访问
-        filterChainDefinitionMap.put("/tologin", "anon");
-        filterChainDefinitionMap.put("/statics/**", "anon");
-        filterChainDefinitionMap.put("/logout","logout");
+        filterChainDefinitionMap.put("/loginUser", "anon"); 
+        filterChainDefinitionMap.put("/logout","anon");
         /*filterChainDefinitionMap.put("/jsp/error.jsp*","anon");
         filterChainDefinitionMap.put("/jsp/index.jsp*","authc");*/
         filterChainDefinitionMap.put("/*", "authc");//表示需要认证才可以访问
         filterChainDefinitionMap.put("/**", "authc");//表示需要认证才可以访问
-        filterChainDefinitionMap.put("/*.*", "authc");
+        //filterChainDefinitionMap.put("/*.*", "authc");
 		//配置访问权限，过滤器练设置
 		sff.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return sff;	
@@ -52,22 +51,17 @@ public class ShiroConfig {
 	 *配置安全管理器
 	 */
 	@Bean
-	public SecurityManager securityManager(Realm realm,CacheManager cacheManager){
+	public SecurityManager securityManager(Realm realm){
 		DefaultWebSecurityManager defaultWebSecurityManager=new DefaultWebSecurityManager();
 		defaultWebSecurityManager.setRealm(realm);//设置域，桥梁属性
-		defaultWebSecurityManager.setCacheManager(cacheManager);//缓存设置
-		return defaultWebSecurityManager;
+		//defaultWebSecurityManager.setCacheManager(cacheManager);//缓存设置
+		return defaultWebSecurityManager;	
 	}
 	/**
 	 * 缓存设置
 	 * @return
 	 */
-   	@Bean
-    public CacheManager cacheManager(){
-        EhCacheManager cacheManager = new EhCacheManager();
-        return cacheManager;
-    }
-     
+
 	/**
 	 * realm設置
 	 */

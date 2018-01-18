@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <jsp:include page="../../head.jsp"></jsp:include> 
+  <jsp:include page="../head.jsp"></jsp:include>
 
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -69,7 +69,7 @@
     </div>
 
 
- <jsp:include page="../../foot.jsp"></jsp:include> 
+ <jsp:include page="../foot.jsp"></jsp:include>
 
 </body>
 </html>

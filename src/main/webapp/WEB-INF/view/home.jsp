@@ -9,13 +9,13 @@
   <title>第二组OA 2 | Dashboard</title>
   <jsp:include page="head.jsp"></jsp:include>
 </head>
-<h3>你好</h3>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="content-wrapper">
-  <h3>asdfasf</h3>
+  
 <!-- /.col --><!-- 功能显示开始 -->
         <div id="content">
-          <h2>git的222</h2>
+          <h2>部门管理</h2>
            <h5><strong>操作说明</strong></h5>
              <div class="accordion">
 
@@ -36,8 +36,7 @@
              <div class="cleaner"></div>
          <br/> <br/> <br/>
         
-        
-    
+  
         
         <h5><strong>部门操作</strong></h5>
         <div id="contact_form">
@@ -139,8 +138,7 @@
     
             </tr>
           </table>
-                
     </div>
-    <%-- <jsp:include page="foot.jsp"/> --%>
+    <jsp:include page="foot.jsp"></jsp:include>
 </body>
 </html>

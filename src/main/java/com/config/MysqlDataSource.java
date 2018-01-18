@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 
-import com.alibaba.druid.pool.DruidDataSource;
+
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 

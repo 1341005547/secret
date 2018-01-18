@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-  <%String path=request.getContextPath(); %>
+  <%String path=request.getContextPath();%>
 <!DOCTYPE html>
 <html>
 <head>
-   <jsp:include page="../../head.jsp"></jsp:include> 
+  <jsp:include page="../head.jsp"></jsp:include>
 
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -180,7 +180,7 @@
 
 
 
- <jsp:include page="../../foot.jsp"></jsp:include> 
+ <jsp:include page="../foot.jsp"></jsp:include>
 
 </body>
 </html>

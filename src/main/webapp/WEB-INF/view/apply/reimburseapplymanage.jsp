@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
- 
- <jsp:include page="../../head.jsp"></jsp:include> 
+
+    <jsp:include page="../head.jsp"></jsp:include>
 
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -215,7 +215,7 @@
     <!-- /.content -->
 
   </div>
-   <jsp:include page="../../foot.jsp"></jsp:include> 
+   <jsp:include page="../foot.jsp"></jsp:include>
 <script type="text/javascript">
         $(function () {
 //表单提交校验
