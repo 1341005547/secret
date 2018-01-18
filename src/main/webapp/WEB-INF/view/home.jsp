@@ -15,7 +15,7 @@
   
 <!-- /.col --><!-- 功能显示开始 -->
         <div id="content">
-          <h2>git测试</h2>
+          <h2>git的222</h2>
            <h5><strong>操作说明</strong></h5>
              <div class="accordion">
 
