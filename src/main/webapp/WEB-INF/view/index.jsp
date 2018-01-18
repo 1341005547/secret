@@ -384,7 +384,7 @@
             <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
             <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
             <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="toinline.html"><i class="fa fa-circle-o"></i> 考勤记录</a></li>
+            <li><a href="attendance/inline.jsp"><i class="fa fa-circle-o"></i> 考勤记录</a></li>
           </ul>
         </li>
         <li class="treeview">

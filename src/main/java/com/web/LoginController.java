@@ -28,6 +28,7 @@ public class LoginController {
 	@Autowired
 	private User_roleService userRoleService;
 	
+	
 	/**
 	 * 用户登陆
 	 */
