@@ -6,13 +6,13 @@
   <meta charset="utf-8">
 <!--   <meta http-equiv="X-UA-Compatible" content="IE=edge" > -->
   <!-- ===============更改标题=============== -->
-  <title>第一组OA 2 | Dashboard</title>
+  <title>第二组OA 2 | Dashboard</title>
   <jsp:include page="head.jsp"></jsp:include>
 </head>
 <h3>你好</h3>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="content-wrapper">
-  
+  <h3>asdfasf</h3>
 <!-- /.col --><!-- 功能显示开始 -->
         <div id="content">
           <h2>git的222</h2>
