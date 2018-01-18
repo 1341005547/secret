@@ -522,7 +522,7 @@
   <div class="content-wrapper">
   
 <!-- /.col --><!-- 功能显示开始 -->
-        <div id="content">
+        <!-- <div id="content">
           <h2>部门管理</h2>
            <h5><strong>操作说明</strong></h5>
              <div class="accordion">
@@ -648,7 +648,7 @@
             </tr>
           </table>
                 
-    </div>
+    </div> -->
    <!-- 功能结束 -->
 
 
