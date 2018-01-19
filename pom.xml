@@ -23,6 +23,7 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			<!-- 使用maven启动spring-boot -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -94,6 +95,10 @@
 			<artifactId>slf4j-jdk14</artifactId>
 			<version>1.5.6</version>
 		</dependency>
-
+		<!-- aop切入点 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
 	</dependencies>
 </project>

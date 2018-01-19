@@ -2,6 +2,7 @@ package com.realm;
 
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -10,6 +11,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +60,8 @@ public class ShiroRealm extends AuthorizingRealm {
 		// TODO Auto-generated method stub
 		UsernamePasswordToken utoken=(UsernamePasswordToken) token;
 		String usercode=utoken.getUsername();
+		Session session=SecurityUtils.getSubject().getSession();
+		session.setAttribute("usercode", usercode);
 		Login login=ls.login(usercode);
 		ByteSource salt=ByteSource.Util.bytes(usercode);//加密盐
 		//使用现实方法创建对象，构造方法参数使用（用户名、密码、加密盐、当前方法名）

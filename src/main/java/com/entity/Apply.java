@@ -5,7 +5,7 @@ import java.util.Date;
 public class Apply {
     private Integer aId;
 
-    private String aType;
+    private Integer tId;
 
     private String aEven;
 
@@ -25,15 +25,15 @@ public class Apply {
         this.aId = aId;
     }
 
-    public String getaType() {
-        return aType;
-    }
+    public Integer gettId() {
+		return tId;
+	}
 
-    public void setaType(String aType) {
-        this.aType = aType == null ? null : aType.trim();
-    }
+	public void settId(Integer tId) {
+		this.tId = tId;
+	}
 
-    public String getaEven() {
+	public String getaEven() {
         return aEven;
     }
 
