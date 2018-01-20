@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+   <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <%String path=request.getContextPath(); %>
+ 
 <!DOCTYPE html>
 <html>
-<head>
+
    <jsp:include page="../../head.jsp"></jsp:include> 
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -46,10 +48,9 @@
                   <tr >
                     <td ><select name="select" class="required input_field" id="type">
                       <option selected="selected">-这还是默认的(请选择)</option>
-                        <option value="1">调动</option>
-                        <option value="2">申购</option>
-                        <option value="3">加班</option>
-                        <option value="4">辞职</option>
+                        <c:forEach items="${type_applies }" var="type_apply">
+                        	<option id="${type_apply.tId }" >${type_apply.tName }</option>
+                        </c:forEach>
                     </select><em style="color:#F00">&nbsp;*</em></td>
                   </tr>
                   <tr><td><label>申请事件</label></td></tr>

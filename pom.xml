@@ -33,6 +33,12 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<!-- spring热部署 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
+		</dependency>
 		<!-- 3.2、导入spring boot的web支持 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -42,7 +48,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-			<version>7.0.54</version>
+			<version>8.5.14</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -112,5 +118,36 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
+		
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-test -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-test</artifactId>
+    <version>1.5.8.RELEASE</version>
+    <scope>test</scope>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>4.3.10.RELEASE</version>
+    <scope>test</scope>
+</dependency>
+<!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+    <scope>test</scope>
+</dependency>
+
+
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
 	</dependencies>
+
+
 </project>

@@ -3,7 +3,7 @@
      <%String path=request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
-<head>
+
  <jsp:include page="../../head.jsp"></jsp:include> 
 
 <body class="hold-transition skin-blue sidebar-mini">

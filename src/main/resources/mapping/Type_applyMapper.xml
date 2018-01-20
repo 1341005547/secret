@@ -56,4 +56,10 @@
 		set t_name = #{tName,jdbcType=VARCHAR}
 		where t_id = #{tId,jdbcType=INTEGER}
 	</update>
+	<select id="getAllApplyType" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from type_apply
+	</select>
+	
 </mapper>

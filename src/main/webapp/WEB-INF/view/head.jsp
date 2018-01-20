@@ -344,13 +344,19 @@
             <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
           </ul>
         </li>
-        <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-th"></i> <span>申报管理</span>
+       <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>申请管理</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="myapply"><i class="fa fa-circle-o"></i> 我的申请</a></li>
+            <li><a href="applymanage"><i class="fa fa-circle-o"></i>申请管理</a></li>
+            <li><a href="reimburseapplymanage"><i class="fa fa-circle-o"></i>报销管理</a></li>
+          </ul>
         </li>
         <li class="treeview">
           <a href="#">
@@ -423,7 +429,7 @@
         </li>
       </ul>
     </section>
-    <!-- /.sidebar -->
+ 
   </aside>
   </body>
 </html>

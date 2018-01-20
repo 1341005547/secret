@@ -1,25 +1,32 @@
 package com.web;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.entity.Type_apply;
+import com.service.ApplyService;
+
 @Controller
 public class ApplyController {
+	@Autowired
+	private ApplyService applyService;
 	
-	/**
-	 * 进入测试页面
-	 */
-	@RequestMapping("myapplytest")
-	public String myapplytest(){
-		return "apply/myapplytest";
-	}
 	
 	/**
 	 * 进入我的申请页面
 	 * @return
 	 */
 	@RequestMapping("myapply")
-	public String myapply(){
+	public String myapply(HttpServletRequest request){
+		List<Type_apply> type_applies = applyService.getAllApplyType();
+		request.setAttribute("type_applies", type_applies);	
+		
+		
 		return "apply/myapply";
 	}
 	/**
