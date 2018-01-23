@@ -2,6 +2,7 @@ package com.realm;
 
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,6 +13,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.entity.Login;
@@ -35,6 +37,7 @@ public class ShiroRealm extends AuthorizingRealm {
     @Autowired
 	private RoleService rs;
 	//授权
+	@SuppressWarnings("null")
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		// TODO Auto-generated method stub
@@ -47,6 +50,7 @@ public class ShiroRealm extends AuthorizingRealm {
 			Role role= rs.getRoles(user_role.getrId());
 			roles.add(role.getrName());
 		}
+		SecurityUtils.getSubject().getSession().setAttribute("roles",roles);
 		SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
 		info.addStringPermissions(roles);
 		return info;
@@ -59,6 +63,9 @@ public class ShiroRealm extends AuthorizingRealm {
 		UsernamePasswordToken utoken=(UsernamePasswordToken) token;
 		String usercode=utoken.getUsername();
 		Login login=ls.login(usercode);
+		
+		SecurityUtils.getSubject().getSession().setAttribute("loginuID", login.getuId());
+		
 		ByteSource salt=ByteSource.Util.bytes(usercode);//加密盐
 		//使用现实方法创建对象，构造方法参数使用（用户名、密码、加密盐、当前方法名）
 		AuthenticationInfo authenticationInfo =new SimpleAuthenticationInfo(usercode,login.getLoginPassword(),salt,this.getName()); 

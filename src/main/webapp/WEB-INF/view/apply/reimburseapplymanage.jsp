@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%String path=request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,7 @@
 
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header" style="margin-top: 55px">
       <h1>
         报销管理
         <small>To submit an expense account management</small>
@@ -43,7 +44,7 @@
                                 <td>*填报人：</td>
                                 <td><s:property value="#session.employee_name"/></td>
                                 <td>*填报时间：</td>
-                                <td><input type="text" id="status" name="" value="2018-01-12"
+                                <td><input type="text" id="status" name="" value="<%=(new java.util.Date()).toLocaleString()%>"
                                      readonly="readonly"  /></td>
                             </tr>
                             <tr>
@@ -69,19 +70,15 @@
                     <tr>
                         <td width="30%">
                             <select name="detailList.item" id="item">
-                                <option value="城际交通费">城际交通费</option>
-                                <option value="市内交通费">市内交通费</option>
-                                <option value="通讯费">通讯费</option>
-                                <option value="礼品费">礼品费</option>
-                                <option value="办公费">办公费</option>
-                                <option value="交际餐费">交际餐费</option>
-                                <option value="餐补">餐补</option>
-                                <option value="住宿费">住宿费</option>
+                                <c:forEach items="${category_dispatchs }" var="category_dispatch">
+                                	<option value="城际交通费" id="${category_dispatch.cDId }">${category_dispatch.cDName }</option>
+                               
+                                </c:forEach>
                             </select>
                         </td>
                         <td width="30%"><input type="text" name="detailList.account" id="account" /><span class=notice>*</span></td>
                         <td width="30%"><input type="text" name="detailList.des" id="desc" /><span class=notice>*</span></td>
-                        <td width="10%"><img src="<%=path %>/static/dist/images/add.gif" width="16" height="16" id="AddRow"/></td>
+                        <td width="10%"><img  src="<%=path %>/static/dist/images/add.gif" width="16" height="16" id="AddRow"/></td>
 
                     </tr>
                 </table>
@@ -89,7 +86,7 @@
                             <tr>
                                 <td>*事由：</td>
                                 <td colspan="3"><textarea rows="5" cols="66" name="claimVoucher.event"
-                                                id="event"></textarea>
+                                                id="event" style="resize:none"></textarea>
                                 </td>
                             </tr>
                             <tr align="center" colspan="4">

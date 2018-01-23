@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import com.entity.Category_dispatch;
 
 public interface Category_dispatchMapper {
@@ -14,4 +16,6 @@ public interface Category_dispatchMapper {
     int updateByPrimaryKeySelective(Category_dispatch record);
 
     int updateByPrimaryKey(Category_dispatch record);
+    
+    List<Category_dispatch> getAllCategotyDispatch();
 }

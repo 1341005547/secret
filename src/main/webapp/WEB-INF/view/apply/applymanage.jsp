@@ -1,20 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
      <%String path=request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
-
+<head>
  <jsp:include page="../../head.jsp"></jsp:include> 
 
 <body class="hold-transition skin-blue sidebar-mini">
 
-
- 
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header" style="margin-top: 50px;">
       <h1>
         申请管理
         <small>Application management</small>
@@ -97,41 +96,22 @@
                 </tr>
                 </thead>
                <tbody>
-                <tr>
-                <td><input type="checkbox" name="selectSub" /></td> 
-                  <td>Trident</td>
-                  <td><a href="applyexamine">Internet Explorer 4.0 </a></td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
-                  <td><a href="applyexamine" class="more">审核</a>&nbsp;<a href="#" class="more">删除</a></td>
-                </tr>
-                <tr>
-                <td><input type="checkbox" name="selectSub" /></td> 
-                  <td>Trident</td>
-                  <td><a href="applyexamine">Internet Explorer 5.0 </a></td>
-                  <td>Win 95+</td>
-                  <td>5</td>
-                  <td>C</td>
-                  <td><a href="applyexamine" class="more">审核</a>&nbsp;<a href="#" class="more">删除</a></td>
-                </tr>
-                <tr>
-                <td><input type="checkbox" name="selectSub" /></td> 
-                  <td>Trident</td>
-                  <td><a href="applyexamine">Internet Explorer 5.5 </a></td>
-                  <td>Win 95+</td>
-                  <td>5.5</td>
-                  <td>A</td>
-                  <td><a href="applyexamine" class="more">审核</a>&nbsp;<a href="#" class="more">删除</a></td>
-                </tr>
-             
-               
+                <c:forEach items="${applies }" var="apply">
+                	<c:if test="${apply.aSubmit==1}">
+                		<tr>
+	                		<td><input type="checkbox" name="selectSub" /></td> 
+			                <td>${apply.aId }</td>
+			                <td><a href="applyexamine?uId=${apply.uId }&aId=${apply.aId}">${apply.uName }</a></td>
+			                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${apply.aCreateTime}" type="time"/></td>
+			                <td> ${apply.aName }</td>
+			                <td>${apply.aState }</td>
+			                <td><a href="applyexamine" class="more">审核</a>&nbsp;<a href="#" class="more">删除</a></td>
+                		</tr>
+                	</c:if>
+                </c:forEach>
                 </tbody>
-
-
               </table>
                <div class="row"><div class="col-sm-5"><div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div></div>
-
              </div>
           <!-- /.box -->
         </div>

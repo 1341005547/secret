@@ -3,15 +3,16 @@
 <mapper namespace="com.dao.ApplyMapper">
 	<resultMap id="BaseResultMap" type="Apply">
 		<id column="a_id" property="aId" jdbcType="INTEGER" />
-		<result column="a_type" property="aType" jdbcType="VARCHAR" />
+		<result column="t_id" property="tId" jdbcType="VARCHAR" />
 		<result column="a_even" property="aEven" jdbcType="VARCHAR" />
 		<result column="a_leave_time" property="aLeaveTime" jdbcType="VARCHAR" />
 		<result column="a_create_time" property="aCreateTime" jdbcType="TIMESTAMP" />
 		<result column="a_state" property="aState" jdbcType="VARCHAR" />
 		<result column="u_id" property="uId" jdbcType="INTEGER" />
+		<result column="a_submit" property="aSubmit" jdbcType="INTEGER"/>
 	</resultMap>
 	<sql id="Base_Column_List">
-		a_id, a_type, a_even, a_leave_time, a_create_time, a_state, u_id
+		a_id, t_id, a_even, a_leave_time, a_create_time, a_state, u_id,a_submit
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -19,6 +20,22 @@
 		<include refid="Base_Column_List" />
 		from apply
 		where a_id = #{aId,jdbcType=INTEGER}
+	</select>
+	<!-- 根据部门id查询这个部门的申请 -->
+	<select id="selectAllApplyBydId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+		SELECT a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state,a.u_id,a.a_submit ,
+			 u.u_name as uName,ta.t_name aName
+		FROM type_apply ta   INNER JOIN (SELECT * from apply WHERE apply.a_state != "已终止") a ON ta.t_id=a.t_id
+		INNER JOIN (SELECT * from `user` WHERE `user`.d_id=#{dId,jdbcType=INTEGER} 
+			And `user`.Professional_id != 2 AND `user`.Professional_id != 3 AND `user`.Professional_id != 4 )
+				 u ON u.u_id = a.u_id
+	</select>
+	
+	
+	<select id="selectAllApplyBySubmit" resultMap="BaseResultMap" >
+		select u.u_name as uName,ta.t_name aName,
+			 a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state,a.u_id,a.a_submit 
+		FROM apply a INNER JOIN type_apply ta ON ta.t_id=a.t_id INNER JOIN `user` u ON u.u_id=a.u_id
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from apply
@@ -85,8 +102,8 @@
 	<update id="updateByPrimaryKeySelective" parameterType="Apply">
 		update apply
 		<set>
-			<if test="aType != null">
-				a_type = #{aType,jdbcType=VARCHAR},
+			<if test="tId != null">
+				t_id = #{tId,jdbcType=INTEGER},
 			</if>
 			<if test="aEven != null">
 				a_even = #{aEven,jdbcType=VARCHAR},

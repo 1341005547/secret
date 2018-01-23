@@ -22,8 +22,18 @@ public class User {
     private Integer dId;
 
     private Integer professionalId;
+    //在页面上容易得到职位名字
+    private String professionalName;
 
-    public Integer getuId() {
+    public String getProfessionalName() {
+		return professionalName;
+	}
+
+	public void setProfessionalName(String professionalName) {
+		this.professionalName = professionalName;
+	}
+
+	public Integer getuId() {
         return uId;
     }
 

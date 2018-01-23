@@ -35,12 +35,12 @@
            <h3 class="box-title">申请操作</h3>
             
           <form action="" class="">
-             <table border="0"  >
+             <table  >
                   <tr>
                     <td><label for="name">申请人姓名：</label></td>
                   </tr>
                   <tr>
-                    <td><input type="text" name="name" readonly="only" /></td>
+                    <td><input type="text" readonly="only" value="${User.uName }"/></td>
                   </tr>
                   <tr>
                     <td><label for="type">申请类型：</label></td>
@@ -49,12 +49,12 @@
                     <td ><select name="select" class="required input_field" id="type">
                       <option selected="selected">-这还是默认的(请选择)</option>
                         <c:forEach items="${type_applies }" var="type_apply">
-                        	<option id="${type_apply.tId }" >${type_apply.tName }</option>
+                        	<option id="${type_apply.tId }">${type_apply.tName }</option>
                         </c:forEach>
                     </select><em style="color:#F00">&nbsp;*</em></td>
                   </tr>
                   <tr><td><label>申请事件</label></td></tr>
-                  <tr><td><textarea name="" cols="" rows=""></textarea><em style="color:#F00">&nbsp;*</em></td></tr>
+                  <tr><td><textarea name="" cols="" rows="" style="resize:none"></textarea><em style="color:#F00">&nbsp;*</em></td></tr>
                   <tr ><td ><input type="submit" value="我要提交" id="submit" name="submit" class="submit_btn float_l" />
                     <input type="button" value="我要保存" id="submit" name="submit" class="submit_btn float_l" />
                     <input type="reset" value="重置" id="reset" name="reset" class="submit_btn float_r" /></td></tr>

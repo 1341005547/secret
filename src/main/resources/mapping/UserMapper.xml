@@ -20,9 +20,10 @@
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
-		select
-		<include refid="Base_Column_List" />
-		from user
+		select p.Professional_name professionalName,	
+		u.u_id, u.u_name, u.u_start_time, u.u_end_time, u.u_phone, u.u_sex, u.u_img, u.u_state,
+		u.d_id, u.Professional_id
+		from user u INNER JOIN professional p ON u.Professional_id=p.Professional_id
 		where u_id = #{uId,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

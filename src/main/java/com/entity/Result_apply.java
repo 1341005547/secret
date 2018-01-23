@@ -2,6 +2,8 @@ package com.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Result_apply {
     private Integer rAId;
 
@@ -12,7 +14,8 @@ public class Result_apply {
     private String rAResult;
 
     private String rAOpinion;
-
+    
+    @DateTimeFormat( pattern="yyyy-MM-dd HH:mm:ss")
     private Date rADealTime;
 
     public Integer getrAId() {

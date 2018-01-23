@@ -54,7 +54,7 @@
                     </select><em style="color:#F00">&nbsp;*</em></td>
                   </tr>
                   <tr><td><label>申请事件</label></td></tr>
-                  <tr><td><textarea name="" cols="" rows=""></textarea><em style="color:#F00">&nbsp;*</em></td></tr>
+                  <tr><td><textarea name="" cols="" rows="" style="resize:none"></textarea><em style="color:#F00">&nbsp;*</em></td></tr>
                   <tr ><td ><input type="submit" value="我要提交" id="submit" name="submit" class="submit_btn float_l" />
                     <input type="button" value="我要保存" id="submit" name="submit" class="submit_btn float_l" />
                     <input type="reset" value="重置" id="reset" name="reset" class="submit_btn float_r" /></td></tr>

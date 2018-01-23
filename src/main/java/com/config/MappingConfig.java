@@ -34,7 +34,6 @@ public class MappingConfig {
 		MapperScannerConfigurer msc=new MapperScannerConfigurer();
 		msc.setBasePackage("com.dao");
 		//msc.setSqlSessionFactoryBeanName("sqlSessionFactoryName");
-		return msc;
-		
+		return msc;	
 	}
 }
