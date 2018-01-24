@@ -43,13 +43,15 @@ public class MyApplyController {
 	 * @return
 	 */
 	@RequestMapping(value = "submitOrSava")
-	public String submitOrSava(Apply record, Integer select, String apply) {
+	public String submitOrSava(Apply record, Integer select, String apply,Integer id) {
 		System.out.println("aaaaaaaa");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		record.setuId(id);
 		record.setaCreateTime(new Date());
 		record.settId(Integer.valueOf(select));
 		record.setaEven(apply);
+		record.setaState("未审核");
 		record.setaSubmit(1);
 		
 		System.out.println("=====" + record.getaEven()+"\t"+select);
@@ -63,7 +65,7 @@ public class MyApplyController {
 				map.put("error", "失败！");
 			}
 		}
-		return "apply/applymanage";
+		return "redirect:applymanage";
 	}
 
 	/**
@@ -73,11 +75,14 @@ public class MyApplyController {
 	 * @return
 	 */
 	@RequestMapping("savaOrsubmit")
-	public String savaOrsubmit(Apply record, Integer select, String apply) {
+	public String savaOrsubmit(Apply record, Integer select, String apply,Integer id) {
+		System.out.println("bbbbbbbbbbbb");
 		Map<String, Object> map = new HashMap<String, Object>();
+		record.setuId(id);
 		record.setaCreateTime(new Date());
 		record.settId(Integer.valueOf(select));
 		record.setaEven(apply);
+		record.setaState("未提交");
 		record.setaSubmit(0);
 		
 		System.out.println("=====" + record.getaEven()+"\t"+select);
@@ -93,6 +98,39 @@ public class MyApplyController {
 		}
 		return "redirect:myapply";
 	}
+	
+	
+	/**
+	 * 进入编辑页面，完成后保存进草稿箱
+	 * 
+	 * @param record
+	 * @return
+	 */
+	@RequestMapping("savaOrsubmit1")
+	public String savaOrsubmit1(Apply record, Integer select, String apply,Integer id) {
+		System.out.println("bbbbbbbbbbbb");
+		Map<String, Object> map = new HashMap<String, Object>();
+		record.setuId(id);
+		record.setaCreateTime(new Date());
+		record.settId(Integer.valueOf(select));
+		record.setaEven(apply);
+		record.setaState("未提交");
+		record.setaSubmit(0);
+		
+		System.out.println("=====" + record.getaEven()+"\t"+select);
+		int x=0;
+		try {
+			x= myApplyService.updateByPrimaryKeySelective(record);
+		} catch (Exception e) {
+			if (x>0) {
+				map.put("error", "成功！");
+			} else {
+				map.put("error", "失败！");
+			}
+		}
+		return "redirect:myapply";
+	}
+	
 
 	/**
 	 * 提交操作，从草稿箱到审核列表
@@ -101,8 +139,8 @@ public class MyApplyController {
 	 * @return
 	 */
 	@RequestMapping("toSubmit")
-	public String submit(Integer aId) {
-		
+	public String submit(Apply record,Integer aId) {
+			
 			myApplyService.updateSaveToSubmit(aId);
 		
 		return "redirect:applymanage";

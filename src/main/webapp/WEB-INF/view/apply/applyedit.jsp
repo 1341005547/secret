@@ -15,13 +15,13 @@
 	function Check(name) {
 
 		//点击我要提交跳转的路径
-		if (name == 'submit') {
-			document.contact.action = "submitOrSava";
-		}
+		/* if (name == 'submit') {
+			document.contact.action = "toSubmit";
+		} */
 
 		//点击我要保存跳转的路径
 		if (name == 'stype') {
-			document.contact.action = "savaOrsubmit";
+			document.contact.action = "savaOrsubmit1";
 		}
 	}
 </script>
@@ -68,14 +68,17 @@
 					<div class="col-md-6">
 						<h1 class="box-title">修改操作</h1>
 
-						<form action="" class="" id="contact">
+						<form action="" id="contact" method="post" name="contact">
+						<input type="hidden" name="id" value="${user.uId }"/>
+						<input type="hidden" name="aId" value="${apply.aId }"/>
 							<table border="0">
 							
 								<tr>
 									<td><label for="name"><h2>申请人姓名：</h2></label></td>
 
 									
-									<td>${apply.uName }</td>
+									<td><input type="text" name="name" readonly="only"
+										width="209px" height="26" value="${apply.uName }" /></td>
 									
 								</tr>
 			
@@ -90,9 +93,9 @@
 										id="type">
 											<option selected="selected">${apply.tName }</option>
 											<c:forEach items="${list2 }" var="list2">
-												<c:if test="${apply.tName!=list2.tName }">
-												<option value="">${list2.tName }</option>
-												</c:if>
+												<%-- <c:if test="${apply.tName!=list2.tName }"> --%>
+												<option value="${list2.tId }">${list2.tName }</option>
+												<%-- </c:if> --%>
 											</c:forEach>
 												
 											
@@ -102,22 +105,23 @@
 									<td><label><h2>申请事件</h2></label></td>
 								</tr>
 								<tr>
-									<td><textarea name="" cols="" rows="" style="resize: none">${apply.aEven }</textarea><em
+									<td><textarea name="apply" cols="" rows="" style="resize: none">${apply.aEven }</textarea><em
 										style="color: #F00">&nbsp;</em></td>
 								</tr>
 								<tr>
 									<td><h2>
-											<input type="submit" onclick="return Check('submit')"
+											<!-- <input type="submit" onclick="return Check('submit')"
 												value="我要提交" id="submit" name="submit"
-												class="submit_btn float_l" size="24" />&nbsp;&nbsp; <input
+												class="submit_btn float_l" size="24" /> -->&nbsp;&nbsp; <input
 												type="submit" value="我要保存" id="submit"
 												onclick="return Check('stype')" name="stype"
-												class="submit_btn float_l" /> <input type="reset"
+												class="submit_btn float_l" />
+												<input type="reset"
 												value="重置" id="reset" name="reset"
 												class="submit_btn float_r" /></td>
 									</h2>
 								</tr>
-
+	
 							</table>
 						</form>
 

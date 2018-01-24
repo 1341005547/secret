@@ -62,6 +62,9 @@ public class ShiroRealm extends AuthorizingRealm {
 		UsernamePasswordToken utoken=(UsernamePasswordToken) token;
 		String usercode=utoken.getUsername();
 		Login login=ls.login(usercode);
+		if(login==null){
+			new NullPointerException();
+		}
 		Session session= SecurityUtils.getSubject().getSession();
 		session.setAttribute("login", login.getuId());
 		System.out.println(login.getLoginUsercode());

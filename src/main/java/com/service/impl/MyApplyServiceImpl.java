@@ -43,13 +43,11 @@ public class MyApplyServiceImpl implements MyApplyService {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,timeout=36000,rollbackFor=Exception.class)
-	public boolean updateByPrimaryKeySelective(Apply record) {
+	public int updateByPrimaryKeySelective(Apply record) {
 		// TODO Auto-generated method stub
-		boolean flag=false;
-		if(applymapper.updateByPrimaryKeySelective(record)>0){
-			flag=true;
-		}
-		return flag;
+		
+		
+		return applymapper.updateByPrimaryKeySelective(record);
 	}
 
 	@Override
@@ -77,6 +75,8 @@ public class MyApplyServiceImpl implements MyApplyService {
 		// TODO Auto-generated method stub
 		return applymapper.getUName(aId);
 	}
+
+	
 
 	
 

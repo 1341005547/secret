@@ -98,6 +98,7 @@
 						<h1 class="box-title">申请操作</h1>
 
 						<form action="" id="contact" method="post" name="contact">
+						<input type="hidden" name="id" value="${user.uId }"/>
 							<table border="0">
 								<tr>
 									<td><label for="name"><h2>申请人姓名：</h2></label></td>

@@ -38,5 +38,15 @@ public class Text {
 			System.out.println(apply2.gettId()+"\t"+apply2.getaEven()+"\t"+apply2.getaSubmit());
 		}
 	}
+	
+	@Test
+	public void test1() {
+		List<Apply> list=applyservice.listGetASubmit();
+		
+		for (Apply apply : list) {
+			System.out.println(apply.getaEven()+"\t"+apply.getaState());
+		}
+		
+	}
 
 }

@@ -22,17 +22,17 @@
   <link rel="stylesheet" href="<%=path %>/static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="<%=path %>/static/dist/css/skins/_all-skins.min.css">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="<%=path %>/static/static/bower_components/morris.js/morris.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/morris.js/morris.css">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="<%=path %>/static/static/bower_components/jvectormap/jquery-jvectormap.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="<%=path %>/static/static/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="<%=path %>/static/static/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="<%=path %>/static/static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="<%=path %>/static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- 管理模块样式 -->
-   <link rel="stylesheet" href="<%=path %>/static/static/bower_components/manage/css/manage.css">
+   <link rel="stylesheet" href="<%=path %>/static/bower_components/manage/css/manage.css">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   

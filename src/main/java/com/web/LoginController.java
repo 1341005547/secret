@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,13 @@ public class LoginController {
 		Subject currentUser=SecurityUtils.getSubject();
 		
 		if(!currentUser.isAuthenticated()){
-			currentUser.login(usernamePasswordToken);//进行认证
+			try {
+				currentUser.login(usernamePasswordToken);//进行认证
+			} catch (Exception e) {
+				//e.printStackTrace();
+				System.out.println("登陆失败");
+				return "login";
+			}
 		}
 		
 		Integer loginId= (Integer) SecurityUtils.getSubject().getSession().getAttribute("login");

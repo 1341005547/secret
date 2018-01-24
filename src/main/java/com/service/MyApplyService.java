@@ -33,7 +33,7 @@ public interface MyApplyService {
 	 * @param record
 	 * @return
 	 */
-	boolean updateByPrimaryKeySelective(Apply record);
+	int updateByPrimaryKeySelective(Apply record);
 	 /**
      * 把a_submit草稿箱状态改为已提交状态
      * @param record
@@ -59,4 +59,5 @@ public interface MyApplyService {
      * @return
      */
     Apply getUName(Integer aId);
+    
 }

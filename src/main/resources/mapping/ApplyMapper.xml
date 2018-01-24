@@ -3,7 +3,7 @@
 <mapper namespace="com.dao.ApplyMapper">
 	<resultMap id="BaseResultMap" type="Apply">
 		<id column="a_id" property="aId" jdbcType="INTEGER" />
-		<result column="t_id" property="tId" jdbcType="VARCHAR" />
+		<result column="t_id" property="tId" jdbcType="INTEGER" />
 		<result column="a_even" property="aEven" jdbcType="VARCHAR" />
 		<result column="a_leave_time" property="aLeaveTime" jdbcType="VARCHAR" />
 		<result column="a_create_time" property="aCreateTime" jdbcType="TIMESTAMP" />
@@ -29,7 +29,7 @@
 		insert into apply (a_id, t_id, a_even,
 		a_leave_time, a_create_time, a_state,
 		u_id, a_submit)
-		values (#{aId,jdbcType=INTEGER}, #{tId,jdbcType=VARCHAR},
+		values (#{aId,jdbcType=INTEGER}, #{tId,jdbcType=INTEGER},
 		#{aEven,jdbcType=VARCHAR},
 		#{aLeaveTime,jdbcType=VARCHAR}, #{aCreateTime,jdbcType=TIMESTAMP}, #{aState,jdbcType=VARCHAR},
 		#{uId,jdbcType=INTEGER}), #{aSubmit,jdbcType=TIMESTAMP}
@@ -67,7 +67,7 @@
 				#{aId,jdbcType=INTEGER},
 			</if>
 			<if test="tId != null">
-				#{tId,jdbcType=VARCHAR},
+				#{tId,jdbcType=INTEGER},
 			</if>
 			<if test="aEven != null">
 				#{aEven,jdbcType=VARCHAR},
@@ -93,7 +93,7 @@
 		update apply
 		<set>
 			<if test="tId != null">
-				t_id = #{tId,jdbcType=VARCHAR},
+				t_id = #{tId,jdbcType=INTEGER},
 			</if>
 			<if test="aEven != null">
 				a_even = #{aEven,jdbcType=VARCHAR},
@@ -116,31 +116,24 @@
 		</set>
 		where a_id = #{aId,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="Apply">
-		update apply
-		set t_id = #{tId,jdbcType=VARCHAR},
-		a_even = #{aEven,jdbcType=VARCHAR},
-		a_leave_time = #{aLeaveTime,jdbcType=VARCHAR},
-		a_create_time = #{aCreateTime,jdbcType=TIMESTAMP},
-		a_state = #{aState,jdbcType=VARCHAR},
-		u_id = #{uId,jdbcType=INTEGER}
-		a_submit = #{aSubmit,jdbcType=INTEGER}
-		where a_id = #{aId,jdbcType=INTEGER}
-		</update>
 		
 	<select id="listGetASubmit" resultMap="BaseResultMap">
 		<!-- select
 		<include refid="Base_Column_List"/>
 		from apply -->
-		SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a LEFT JOIN `user` u ON a.u_id = u.u_id LEFT JOIN `type_apply` t ON a.t_id = t.t_id
+	SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a LEFT JOIN `user` u ON a.u_id = u.u_id LEFT JOIN `type_apply` t ON a.t_id = t.t_id order by a.a_id	
+	<!-- SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a INNER JOIN `type_apply` t ON a.t_id = t.t_id INNER JOIN ( SELECT * FROM `user` WHERE u_id = #{uId,jdbcType=INTEGER} ) u ON a.u_id = u.u_id ORDER BY a.a_id -->
+	<!-- SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a INNER JOIN `type_apply` t ON a.t_id = t.t_id INNER JOIN USER u ON a.u_id = u.u_id WHERE u.u_id = 1 ORDER BY a.a_id -->
 	</select>
 	
 	<update id="updateSaveToSubmit">
-		update apply set a_submit=1 where a_id=#{aId,jdbcType=INTEGER}
+		update apply set a_submit=1,a_state='未审核' where a_id=#{aId,jdbcType=INTEGER}
 	</update>
 	
 	<select id="getUName" resultMap="BaseResultMap">
 		
 	SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a LEFT JOIN `user` u ON a.u_id = u.u_id LEFT JOIN `type_apply` t ON a.t_id = t.t_id WHERE a.a_id=#{aId,jdbcType=INTEGER}	
 	</select>
+	
+	
 </mapper>
