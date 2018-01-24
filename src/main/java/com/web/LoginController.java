@@ -2,6 +2,8 @@ package com.web;
 
 import java.util.List;
 
+
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.entity.Login;
 import com.entity.Role;
+import com.entity.User;
 import com.entity.User_role;
 import com.service.LoginService;
 import com.service.RoleService;
+import com.service.UserService;
 import com.service.User_roleService;
 
 @Controller
@@ -27,7 +31,8 @@ public class LoginController {
 	private RoleService roleService;
 	@Autowired
 	private User_roleService userRoleService;
-	
+	@Autowired
+	private UserService userservice;
 	
 	/**
 	 * 用户登陆
@@ -36,9 +41,14 @@ public class LoginController {
 	public String userLogin(String loginUsercode,String loginPassword){
 		UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(loginUsercode,loginPassword);//把账户和密码存到令牌中
 		Subject currentUser=SecurityUtils.getSubject();
+		
 		if(!currentUser.isAuthenticated()){
 			currentUser.login(usernamePasswordToken);//进行认证
 		}
+		
+		Integer loginId= (Integer) SecurityUtils.getSubject().getSession().getAttribute("login");
+		User user=userservice.selectByPrimaryKey(loginId);
+		SecurityUtils.getSubject().getSession().setAttribute("user", user);
 	    return "index";
 	}
 	

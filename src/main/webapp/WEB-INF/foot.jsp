@@ -240,6 +240,9 @@
 <script src="<%=path %>/static/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<%=path %>/static/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- 分页 -->
+<script src="<%=path %>/static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<%=path %>/static/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<%=path %>/static/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -247,11 +250,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<%=path %>/static/dist/js/demo.js"></script>
 
-
-
-<script type="text/javascript" src="<%=path %>/static/bower_components/js/select.js"></script>
-<script type='text/javascript' src='<%=path %>/static/bower_components/js/jquery.js'></script>
-<script type="text/javascript" src="<%=path %>/static/bower_components/js/ddsmoothmenu.js"></script>
-<script type="text/javascript" src="<%=path %>/static/bower_components/js/function.js"></script>
+<%-- <script type="text/javascript" src="<%=path %>/static/bower_components/js/function.js"></script> --%>
 </body>
 </html>

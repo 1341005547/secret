@@ -1,186 +1,261 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-  <%String path=request.getContextPath(); %>
+	pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-   <jsp:include page="../../head.jsp"></jsp:include> 
+<script type="text/javascript" src="<%=path %>/static/jquery-3.1.1.js"></script>
+<jsp:include page="../../head.jsp"></jsp:include>
+
+
+<!-- <SCRIPT LANGUAGE="JavaScript">
+      $(document).ready(function() {
+        $("#chk_SelectALL").click(function(){
+                  if($(this).is(":checked")){
+                  $("tbody :checkbox").prop("checked",true);
+              }
+              else{
+                  $("tbody :checkbox").prop("checked",false);
+              }
+    }); 
+  });
+</SCRIPT> -->
+<!-- <style type="text/css">
+  table{
+      line-height: 30px;
+
+  }
+</style> -->
+<script type="text/javascript">
+
+	function Check(name){
+		
+		//点击我要提交跳转的路径
+		if(name=='submit'){
+			document.contact.action = "submitOrSava";
+		}
+		
+		//点击我要保存跳转的路径
+		if(name=='stype'){
+			document.contact.action = "savaOrsubmit";
+		}
+	}
+
+
+</script>
+</head>
 
 <body class="hold-transition skin-blue sidebar-mini">
 
 
- 
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style='margin-top: 55px;margin-left:-2px' >
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        我的申请
-        <small>my application</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">申请管理</a></li>
-        <li class="active">我的申请</li>
-      </ol>
-    </section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-md-6">
-           <h3 class="box-title">申请操作</h3>
-            
-          <form action="" class="">
-             <table border="0"  >
-                  <tr>
-                    <td><label for="name">申请人姓名：</label></td>
-                  </tr>
-                  <tr>
-                    <td><input type="text" name="name" readonly="only" /></td>
-                  </tr>
-                  <tr>
-                    <td><label for="type">申请类型：</label></td>
-                  </tr>
-                  <tr >
-                    <td ><select name="select" class="required input_field" id="type">
-                      <option selected="selected">-这还是默认的(请选择)</option>
-                        <option value="1">调动</option>
-                        <option value="2">申购</option>
-                        <option value="3">加班</option>
-                        <option value="4">辞职</option>
-                    </select><em style="color:#F00">&nbsp;*</em></td>
-                  </tr>
-                  <tr><td><label>申请事件</label></td></tr>
-                  <tr><td><textarea name="" cols="" rows=""></textarea><em style="color:#F00">&nbsp;*</em></td></tr>
-                  <tr ><td ><input type="submit" value="我要提交" id="submit" name="submit" class="submit_btn float_l" />
-                    <input type="button" value="我要保存" id="submit" name="submit" class="submit_btn float_l" />
-                    <input type="reset" value="重置" id="reset" name="reset" class="submit_btn float_r" /></td></tr>
-
-                </table>
-          </form>
-             
-      
-      </div>   
-    </div>
-    </section>
-    <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">申请草稿箱</h3>
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<span>${error}</span>
+		<section class="content-header">
+		<div class="panel panel-default">
+			<h1 style="color:red">
+				我的申请 <small>My application</small>
+			</h1>
+			<div id="panel-element-288445" class="panel-collapse in">
+			<div class="panel-body">
+              申报管理模块-我的申请-该页面信息
             </div>
-
-              <div>
-                <div class="divlable"><label>Show<select name="example1_length" aria-controls="example1" class="labelselect">
-                      <option value="10">10</option>
-                      <option value="25">25</option>
-                      <option value="50">50</option>
-                      <option value="100">100</option>
-                    </select>entries</label>
-                  <div>Search<label><input type="search" class="form-control input-sm"></label></div>
-                </div>
-              </div>
-              
-
-
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped" cellpadding="0" cellspacing="0" border="1px">
-              <!-- 遍历循环传递数据 -->
-              <!-- ============表头============= -->
-
-
-                <thead>
-                <tr>
-                  <th width="80" align="left"><input id="chk_SelectALL" type="checkbox" />全选</th>
-                  <th>申请编号</th>
-                  <th>申请人</th>
-                  <th>申请时间</th>
-                  <th>类型</th>
-                  <th>状态</th>
-                  <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                <td><input type="checkbox" name="selectSub" /></td> 
-                  <td>Trident</td>
-                  <td><a href="applyexamine">Internet Explorer 4.0 </a></td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
-                  <td><a href="#" class="more">提交</a>&nbsp;<a href="applyedit" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-                </tr>
-                <tr>
-                <td><input type="checkbox" name="selectSub" /></td> 
-                  <td>Trident</td>
-                  <td><a href="applyexamine">Internet Explorer 5.0 </a></td>
-                  <td>Win 95+</td>
-                  <td>5</td>
-                  <td>C</td>
-                  <td><a href="#" class="more">提交</a>&nbsp;<a href="applyedit" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-                </tr>
-                <tr>
-                <td><input type="checkbox" name="selectSub" /></td> 
-                  <td>Trident</td>
-                  <td><a href="applyexamine">Internet Explorer 5.5 </a></td>
-                  <td>Win 95+</td>
-                  <td>5.5</td>
-                  <td>A</td>
-                  <td><a href="#" class="more">提交</a>&nbsp;<a href="applyedit" class="more">编辑</a>&nbsp;<a href="#" class="more">删除</a></td>
-                </tr>
-             
-               
-                </tbody>
-
-              </table>
-
-
-          <div class="row">
-              <div class="col-sm-5">
-                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-              </div>
-              <div class="col-sm-7">
-                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                  <ul class="pagination">
-                    <li class="paginate_button previous disabled" id="example1_previous">
-                      <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
-                    </li>
-                    <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
-                    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a></li>
-                    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li>
-                    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li>
-                    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li>
-                    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">6</a></li>
-                    <li class="paginate_button next" id="example1_next">
-                      <a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
             </div>
-         </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
+            </div>
+		<div class="panel panel-default">
+          <div class="panel-heading">
+             <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-614238" href="#panel-element-862650" style="color:blue">操作介绍</a>
+          </div>
+          <div id="panel-element-862650" class="panel-collapse collapse">
+            <div class="panel-body">
+              <p>[我要提交] -该方案用来提交用户的表单信息</p>
+              <p>[我要保存] -该方案用来保存用户的表单信息</p>
+              <p>[重置] -该方案用来重置用户的表单信息</p>
+              <p>[提交] -该方案用来提交申请信息</p>
+              <p>[编辑] -该方案用来修改申请信息</p>
+              <p>[删除] -该方案用来删除申请信息</p>
+            </div>
+          </div>	
+    
 
-    <!-- /.content -->
-  </div>
- 
-  <div class="control-sidebar-bg"></div>
+    
+		</section>
+
+		<!-- Main content -->
+			<section class="content">
+				<div class="row">
+					<div class="col-md-6">
+						<h1 class="box-title">申请操作</h1>
+
+						<form action="" id="contact" method="post" name="contact">
+							<table border="0">
+								<tr>
+									<td><label for="name"><h2>申请人姓名：</h2></label></td>
+
+
+									<td><input type="text" name="name" readonly="only"
+										width="209px" height="26" value="${user.uName }" /></td>
+								</tr>
+
+								<tr>
+
+									<td><label for="type"><h2>申请类型：</h2></label></td>
+
+
+
+
+									<td><select name="select" class="required input_field"
+										id="type">
+											<option selected="selected">-这还是默认的(请选择)</option>
+											<c:forEach items="${list2 }" var="list2">
+												<option value="${list2.tId }">${list2.tName }</option>
+											</c:forEach>
+											
+									</select><em style="color: #F00">&nbsp;</em></td>
+								</tr>
+								<tr>
+									<td><label><h2>申请事件</h2></label></td>
+								</tr>
+								<tr>
+									<td><textarea name="apply" style="resize: none"></textarea><em
+										style="color: #F00">&nbsp;</em></td>
+								</tr>
+								<tr>
+									<td><h2>
+											<input type="submit" onclick="Check('submit')"
+												value="我要提交" id="submit" name="submit"
+												class="submit_btn float_l"/>&nbsp;&nbsp; <input
+												type="submit" value="我要保存" id="submit"
+												onclick="Check('stype')" name="stype"
+												class="submit_btn float_l" /> <input type="reset"
+												value="重置" id="reset" name="reset"
+												class="submit_btn float_r" /></td>
+									</h2>
+								</tr>
+
+							</table>
+						</form>
+
+
+					</div>
+				</div>
+			</section>
+		<!-- Main content -->
+		<section class="content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header">
+							<h3 class="box-title">申请草稿箱</h3>
+						</div>
+
+
+
+						<!-- /.box-header -->
+						<div class="box-body">
+							<table id="example1" class="table table-bordered table-striped"
+								cellpadding="0" cellspacing="0" border="1px">
+								<!-- 遍历循环传递数据 -->
+								<!-- ============表头============= -->
+
+
+								<thead>
+									<tr>
+										<th width="80" align="left"><input id="chk_SelectALL"
+											 type="checkbox" name="controlAll"
+											 />全选</th>
+										<th>申请编号</th>
+										<th>申请人</th>
+										<th>申请时间</th>
+										<th>类型</th>
+										<th>状态</th>
+										<th>操作</th>
+									</tr>
+								</thead>
+									<tbody>
+										<c:forEach items="${list }" var="list">
+											<c:if test="${list.aSubmit==0}">
+												<tr>
+
+													<td><input type="checkbox" name="selectSub" /></td>
+													<td>${list.aId }</td>
+													<td>${list.uName }</td>
+													<td><fmt:formatDate value="${list.aCreateTime}"
+															pattern="yyyy-MM-dd hh:mm:ss" /></td>
+													<td>${list.tName }</td>
+													<td>${list.aState }</td>
+												
+													
+													<td><a href="toSubmit?aId=${list.aId }" class="more" onclick="if(confirm('确定提交吗?')==false)return false;">提交</a>&nbsp;<a
+														href="toSave?aId=${list.aId }" class="more" onclick="if(confirm('确定编辑吗?')==false)return false;">编辑</a>&nbsp;<a href="toDelete?aId=${list.aId }"
+														class="more" onclick="if(confirm('确定删除吗?')==false)return false;">删除</a></td>
+												</tr>
+											</c:if>
+										</c:forEach>
+									</tbody>
+
+								</table>
+
+
+						
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<!-- /.row -->
+		</section>
+
+		<!-- /.content -->
+	</div>
+
+	<div class="control-sidebar-bg"></div>
 
 
 
 
 
- <jsp:include page="../../foot.jsp"></jsp:include> 
+	<jsp:include page="../../foot.jsp"></jsp:include>
+	<!-- 分页 -->
+
+	<script>
+ $(function () {
+	 
+	 $('#example1').DataTable({ 
+		
+		         searching: true,//屏蔽datatales的查询框  
+		         aLengthMenu:[2,10],//设置一页展示10条记录  
+		        
+		         "oLanguage": {  //对表格国际化  
+		            "sLengthMenu": "每页显示 _MENU_条",    
+		            "sZeroRecords": "没有找到符合条件的数据",    
+		        //  "sProcessing": "&lt;img src=’./loading.gif’ /&gt;",    
+		            "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",    
+		            "sInfoEmpty": "木有记录",    
+		            "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",    
+		            "sSearch": "搜索：",    
+		            "oPaginate": {    
+		            "sFirst": "首页",    
+		            "sPrevious": "前一页",    
+		            "sNext": "后一页",    
+		            "sLast": "尾页"    
+		                   
+		            }    
+		        },
+		 })
+  })
+</script>
 
 </body>
 </html>
+

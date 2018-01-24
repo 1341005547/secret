@@ -17,25 +17,31 @@
   <link rel="stylesheet" href="<%=path %>/static/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
+       
+   <!-- 分页 -->
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="<%=path %>/static/dist/css/skins/_all-skins.min.css">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="static/bower_components/morris.js/morris.css">
+  <link rel="stylesheet" href="<%=path %>/static/static/bower_components/morris.js/morris.css">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="static/bower_components/jvectormap/jquery-jvectormap.css">
+  <link rel="stylesheet" href="<%=path %>/static/static/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="static/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="<%=path %>/static/static/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="static/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="<%=path %>/static/static/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="<%=path %>/static/static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- 管理模块样式 -->
-   <link rel="stylesheet" href="static/bower_components/manage/css/manage.css">
+   <link rel="stylesheet" href="<%=path %>/static/static/bower_components/manage/css/manage.css">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <!--  -->
+  
   <link href="<%=path %>/static/bower_components/css/applymanage.css" rel="stylesheet">
 
-<link href="<%=path %>/static/bower_components/css/templatemo_style.css" rel="stylesheet" type="text/css" />
+
+
+
+	<link href="<%=path %>/static/bower_components/css/templatemo_style.css" rel="stylesheet" type="text/css" />
 
     <link href="<%=path %>/static/bower_components/fonts/css/font-awesome.min.css" rel="stylesheet">
     <link href="<%=path %>/static/bower_components/css/animate.min.css" rel="stylesheet">
@@ -45,8 +51,6 @@
     <link rel="<%=path %>/static/bower_components/stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
     <link href="<%=path %>/static/bower_components/css/icheck/flat/green.css" rel="stylesheet">
     <link href="<%=path %>/static/bower_components/css/floatexamples.css" rel="stylesheet" />
-
-    <script src="<%=path %>/static/bower_components/js/jquery.min.js"></script>
 </head>
   <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
@@ -401,7 +405,7 @@
             <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
             <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
             <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            <li><a href="toinline.html"><i class="fa fa-circle-o"></i>考勤记录</a></li>
           </ul>
         </li>
         <li class="treeview">

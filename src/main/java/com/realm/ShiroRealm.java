@@ -2,6 +2,8 @@ package com.realm;
 
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -10,6 +12,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +62,9 @@ public class ShiroRealm extends AuthorizingRealm {
 		UsernamePasswordToken utoken=(UsernamePasswordToken) token;
 		String usercode=utoken.getUsername();
 		Login login=ls.login(usercode);
+		Session session= SecurityUtils.getSubject().getSession();
+		session.setAttribute("login", login.getuId());
+		System.out.println(login.getLoginUsercode());
 		ByteSource salt=ByteSource.Util.bytes(usercode);//加密盐
 		//使用现实方法创建对象，构造方法参数使用（用户名、密码、加密盐、当前方法名）
 		AuthenticationInfo authenticationInfo =new SimpleAuthenticationInfo(usercode,login.getLoginPassword(),salt,this.getName()); 

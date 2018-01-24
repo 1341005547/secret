@@ -3,15 +3,16 @@
 <mapper namespace="com.dao.ApplyMapper">
 	<resultMap id="BaseResultMap" type="Apply">
 		<id column="a_id" property="aId" jdbcType="INTEGER" />
-		<result column="a_type" property="aType" jdbcType="VARCHAR" />
+		<result column="t_id" property="tId" jdbcType="VARCHAR" />
 		<result column="a_even" property="aEven" jdbcType="VARCHAR" />
 		<result column="a_leave_time" property="aLeaveTime" jdbcType="VARCHAR" />
 		<result column="a_create_time" property="aCreateTime" jdbcType="TIMESTAMP" />
 		<result column="a_state" property="aState" jdbcType="VARCHAR" />
 		<result column="u_id" property="uId" jdbcType="INTEGER" />
+		<result column="a_submit" property="aSubmit" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		a_id, a_type, a_even, a_leave_time, a_create_time, a_state, u_id
+		a_id, t_id, a_even, a_leave_time, a_create_time, a_state, u_id, a_submit
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -25,13 +26,13 @@
 		where a_id = #{aId,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="Apply">
-		insert into apply (a_id, a_type, a_even,
+		insert into apply (a_id, t_id, a_even,
 		a_leave_time, a_create_time, a_state,
-		u_id)
-		values (#{aId,jdbcType=INTEGER}, #{aType,jdbcType=VARCHAR},
+		u_id, a_submit)
+		values (#{aId,jdbcType=INTEGER}, #{tId,jdbcType=VARCHAR},
 		#{aEven,jdbcType=VARCHAR},
 		#{aLeaveTime,jdbcType=VARCHAR}, #{aCreateTime,jdbcType=TIMESTAMP}, #{aState,jdbcType=VARCHAR},
-		#{uId,jdbcType=INTEGER})
+		#{uId,jdbcType=INTEGER}), #{aSubmit,jdbcType=TIMESTAMP}
 	</insert>
 	<insert id="insertSelective" parameterType="Apply">
 		insert into apply
@@ -39,8 +40,8 @@
 			<if test="aId != null">
 				a_id,
 			</if>
-			<if test="aType != null">
-				a_type,
+			<if test="tId != null">
+				t_id,
 			</if>
 			<if test="aEven != null">
 				a_even,
@@ -57,13 +58,16 @@
 			<if test="uId != null">
 				u_id,
 			</if>
+			<if test="aSubmit != null">
+				a_submit,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="aId != null">
 				#{aId,jdbcType=INTEGER},
 			</if>
-			<if test="aType != null">
-				#{aType,jdbcType=VARCHAR},
+			<if test="tId != null">
+				#{tId,jdbcType=VARCHAR},
 			</if>
 			<if test="aEven != null">
 				#{aEven,jdbcType=VARCHAR},
@@ -80,13 +84,16 @@
 			<if test="uId != null">
 				#{uId,jdbcType=INTEGER},
 			</if>
+			<if test="aSubmit != null">
+				#{aSubmit,jdbcType=INTEGER},
+			</if>
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="Apply">
 		update apply
 		<set>
-			<if test="aType != null">
-				a_type = #{aType,jdbcType=VARCHAR},
+			<if test="tId != null">
+				t_id = #{tId,jdbcType=VARCHAR},
 			</if>
 			<if test="aEven != null">
 				a_even = #{aEven,jdbcType=VARCHAR},
@@ -103,17 +110,37 @@
 			<if test="uId != null">
 				u_id = #{uId,jdbcType=INTEGER},
 			</if>
+			<if test="aSubmit != null">
+				a_submit = #{aSubmit,jdbcType=INTEGER},
+			</if>
 		</set>
 		where a_id = #{aId,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="Apply">
 		update apply
-		set a_type = #{aType,jdbcType=VARCHAR},
+		set t_id = #{tId,jdbcType=VARCHAR},
 		a_even = #{aEven,jdbcType=VARCHAR},
 		a_leave_time = #{aLeaveTime,jdbcType=VARCHAR},
 		a_create_time = #{aCreateTime,jdbcType=TIMESTAMP},
 		a_state = #{aState,jdbcType=VARCHAR},
 		u_id = #{uId,jdbcType=INTEGER}
+		a_submit = #{aSubmit,jdbcType=INTEGER}
 		where a_id = #{aId,jdbcType=INTEGER}
+		</update>
+		
+	<select id="listGetASubmit" resultMap="BaseResultMap">
+		<!-- select
+		<include refid="Base_Column_List"/>
+		from apply -->
+		SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a LEFT JOIN `user` u ON a.u_id = u.u_id LEFT JOIN `type_apply` t ON a.t_id = t.t_id
+	</select>
+	
+	<update id="updateSaveToSubmit">
+		update apply set a_submit=1 where a_id=#{aId,jdbcType=INTEGER}
 	</update>
+	
+	<select id="getUName" resultMap="BaseResultMap">
+		
+	SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a LEFT JOIN `user` u ON a.u_id = u.u_id LEFT JOIN `type_apply` t ON a.t_id = t.t_id WHERE a.a_id=#{aId,jdbcType=INTEGER}	
+	</select>
 </mapper>

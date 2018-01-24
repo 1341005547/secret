@@ -5,7 +5,7 @@ import java.util.Date;
 public class Apply {
     private Integer aId;
 
-    private String aType;
+    private Integer tId;
 
     private String aEven;
 
@@ -16,8 +16,43 @@ public class Apply {
     private String aState;
 
     private Integer uId;
+    
+    private Integer aSubmit;
+    /**
+     * 显示申请人名称
+     */
+    private String uName;
+    
+    /**
+     * 显示类型
+     */
+    private String tName;
+    
+    public String gettName() {
+		return tName;
+	}
 
-    public Integer getaId() {
+	public void settName(String tName) {
+		this.tName = tName;
+	}
+
+	public String getuName() {
+		return uName;
+	}
+
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
+
+	public Integer getaSubmit() {
+		return aSubmit;
+	}
+
+	public void setaSubmit(Integer aSubmit) {
+		this.aSubmit = aSubmit;
+	}
+
+	public Integer getaId() {
         return aId;
     }
 
@@ -25,12 +60,12 @@ public class Apply {
         this.aId = aId;
     }
 
-    public String getaType() {
-        return aType;
+    public Integer gettId() {
+        return tId;
     }
 
-    public void setaType(String aType) {
-        this.aType = aType == null ? null : aType.trim();
+    public void settId(Integer tId) {
+        this.tId = tId;
     }
 
     public String getaEven() {
