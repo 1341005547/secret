@@ -91,7 +91,7 @@
 
 									<td><select name="select" class="required input_field"
 										id="type">
-											<option selected="selected">${apply.tName }</option>
+											<%-- <option selected="selected">${apply.tName }</option> --%>
 											<c:forEach items="${list2 }" var="list2">
 												<%-- <c:if test="${apply.tName!=list2.tName }"> --%>
 												<option value="${list2.tId }">${list2.tName }</option>

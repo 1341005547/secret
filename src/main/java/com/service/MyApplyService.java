@@ -21,7 +21,7 @@ public interface MyApplyService {
 	 * 查找所有申报表
 	 * @return
 	 */
-	List<Apply> listGetASubmit();
+	List<Apply> listGetASubmit(Integer aId);
 	/**
 	 * 动态添加
 	 * @param record
@@ -59,5 +59,10 @@ public interface MyApplyService {
      * @return
      */
     Apply getUName(Integer aId);
+    /**
+     * 显示最大申报id
+     * @return
+     */
+    int showMaxApplyId();
     
 }

@@ -117,11 +117,10 @@
 		where a_id = #{aId,jdbcType=INTEGER}
 	</update>
 		
-	<select id="listGetASubmit" resultMap="BaseResultMap">
-		<!-- select
-		<include refid="Base_Column_List"/>
-		from apply -->
-	SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a LEFT JOIN `user` u ON a.u_id = u.u_id LEFT JOIN `type_apply` t ON a.t_id = t.t_id order by a.a_id	
+	<select id="listGetASubmit" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		
+	<!-- SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a LEFT JOIN `user` u ON a.u_id = u.u_id LEFT JOIN `type_apply` t ON a.t_id = t.t_id order by a.a_id -->	
+	SELECT u.u_name AS uName, u.u_id AS idu, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a INNER JOIN `type_apply` t ON a.t_id = t.t_id INNER JOIN `user` u ON a.u_id = u.u_id WHERE a.u_id = #{uId} ORDER BY a.a_id
 	<!-- SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a INNER JOIN `type_apply` t ON a.t_id = t.t_id INNER JOIN ( SELECT * FROM `user` WHERE u_id = #{uId,jdbcType=INTEGER} ) u ON a.u_id = u.u_id ORDER BY a.a_id -->
 	<!-- SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a INNER JOIN `type_apply` t ON a.t_id = t.t_id INNER JOIN USER u ON a.u_id = u.u_id WHERE u.u_id = 1 ORDER BY a.a_id -->
 	</select>
@@ -135,5 +134,7 @@
 	SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a LEFT JOIN `user` u ON a.u_id = u.u_id LEFT JOIN `type_apply` t ON a.t_id = t.t_id WHERE a.a_id=#{aId,jdbcType=INTEGER}	
 	</select>
 	
-	
+	<select id="showMaxApplyId" resultType="java.lang.Integer">
+		select max(a_id) as max from apply 
+	</select>
 </mapper>

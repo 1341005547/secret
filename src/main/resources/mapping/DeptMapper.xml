@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.DeptMapper">
+	<resultMap id="BaseResultMap" type="Dept">
+		<id column="d_id" property="dId" jdbcType="INTEGER" />
+		<result column="d_name" property="dName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		d_id,d_name
+	</sql>
+	<select id="getDeptPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		d.*,
+		u.u_id as uId
+		from dept
+		d INNER JOIN user u ON u.d_id=d.d_id where u.u_id=#{uId}
+	</select>
+	<select id="getAllDept" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List"/>
+		from dept
+	</select>
+
+
+
+
+
+
+
+
+
+</mapper>

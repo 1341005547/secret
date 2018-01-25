@@ -44,6 +44,11 @@
 		if(name=='stype'){
 			document.contact.action = "savaOrsubmit";
 		}
+		
+		//点击调度，并进行提交跳转的路径
+		if(name=='submits'){
+			document.contact.action = "dispatchToSubmit";
+		}
 	}
 
 
@@ -100,6 +105,79 @@
 						<form action="" id="contact" method="post" name="contact">
 						<input type="hidden" name="id" value="${user.uId }"/>
 							<table border="0">
+							<a  class="btn btn-default btn-flat" data-toggle="modal" data-target="#myapply_dispatch">调度</a>
+            
+     
+    <div class="modal fade" id="myapply_dispatch" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog role=" document" style="width: 450px">
+		<div class="modal-content">
+			<!-- 内容-->
+			<div class="row">
+				<div class="col-md-4" style="margin: 13px; width: 450px">
+					
+					<div class="box box-widget widget-user-2">
+						
+					<form action="" method="post">
+					<input type="hidden" name="uId" value="${user.uId }" />
+					<input type="hidden" name="dept" value="${dept.dId }" />
+					<input type="hidden" name="pro" value="${professional.professionalId }" />
+					<div class="form-group has-feedback">
+						<h2 style="color:red">调度申请人</h2><input type="text"  class="form-control" placeholder="调度申请人" readonly="readonly" value="${user.uName }">
+					</div>
+					<div class="form-group has-feedback">
+						<h2 style="color:red">当前部门</h2><input type="text"  class="form-control" placeholder="当前部门" readonly="readonly" value="${dept.dName }">
+					</div>
+						
+					<div class="form-group has-feedback">
+						<h2 style="color:red">当前职位</h2><input type="text" class="form-control" placeholder="当前职位" readonly="readonly" value="${professional.professionalName }">
+						
+					</div> 
+					
+					<div class="form-group has-feedback">
+						<h2 style="color:red">要调动到的部门</h2><!-- <input type="text"  class="form-control" placeholder="要调动的部门" > -->
+						<select name="deptid" class="required input_field"
+										id="deptid">
+											<option selected="selected">-这还是默认的(请选择)</option>
+											<c:forEach items="${list3 }" var="list3"> 
+												<option value="${list3.dId }">${list3.dName }</option>
+											</c:forEach> 
+											
+									</select>
+					</div>
+					<div class="form-group has-feedback">
+						<h2 style="color:red">要调动到的职位</h2><!-- <input type="text"  class="form-control" placeholder="要调动的职位"> -->
+						<select name="profess" class="required input_field"
+										id="professid">
+											<option selected="selected">-这还是默认的(请选择)</option>
+											<c:forEach items="${list4 }" var="list4"> 
+												<option value="${list4.professionalId }">${list4.professionalName }</option>
+											</c:forEach> 
+											
+									</select>
+					</div>
+					<!-- <div class="form-group has-feedback">
+						<h2 style="color:red">调度时间</h2><input type="text"  class="form-control" placeholder="调度时间">
+					</div> -->
+				
+					<div class="row">
+						
+						<input type="submit" class="btn btn-block btn-facebook btn-flat" onclick="Check('submits')" value="提交" id="submits" name="submits">
+						<input type="reset" class="btn btn-block btn-google btn-flat">
+						
+					</div>
+				</form>
+						
+					</div>
+				</div>
+			</div>
+			<!-- 内容-->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			</div>
+		</div>
+	</div>
+</div>
 								<tr>
 									<td><label for="name"><h2>申请人姓名：</h2></label></td>
 
@@ -111,9 +189,6 @@
 								<tr>
 
 									<td><label for="type"><h2>申请类型：</h2></label></td>
-
-
-
 
 									<td><select name="select" class="required input_field"
 										id="type">
@@ -159,7 +234,6 @@
 						<div class="box-header">
 							<h3 class="box-title">申请草稿箱</h3>
 						</div>
-
 
 
 						<!-- /.box-header -->
@@ -235,7 +309,7 @@
 	 $('#example1').DataTable({ 
 		
 		         searching: true,//屏蔽datatales的查询框  
-		         aLengthMenu:[2,10],//设置一页展示10条记录  
+		         aLengthMenu:[5,10],//设置一页展示10条记录  
 		        
 		         "oLanguage": {  //对表格国际化  
 		            "sLengthMenu": "每页显示 _MENU_条",    

@@ -1,5 +1,7 @@
 package com.entity;
 
+import java.util.Date;
+
 public class Dispatch {
     private Integer dispatchId;
 
@@ -7,13 +9,53 @@ public class Dispatch {
 
     private Integer dispatchUId;
 
-    private Integer dispatchCreateTime;
+    private Date dispatchCreateTime;
+    
+    private Integer aId;
+    
 
+	/**
+     * 调动前的职位
+     */
     private Integer pId;
-
+    /**
+     * 调动后的职位
+     */
     private Integer dispatchPId;
+    
+    /**
+     * 调动前的部门
+     */
+    private Integer dId;
+    /**
+     * 调动后的部门
+     */
+    private Integer dispatchDId;
 
-    public Integer getDispatchId() {
+    public Integer getaId() {
+		return aId;
+	}
+
+	public void setaId(Integer aId) {
+		this.aId = aId;
+	}
+    public Integer getdId() {
+		return dId;
+	}
+
+	public void setdId(Integer dId) {
+		this.dId = dId;
+	}
+
+	public Integer getDispatchDId() {
+		return dispatchDId;
+	}
+
+	public void setDispatchDId(Integer dispatchDId) {
+		this.dispatchDId = dispatchDId;
+	}
+
+	public Integer getDispatchId() {
         return dispatchId;
     }
 
@@ -37,11 +79,11 @@ public class Dispatch {
         this.dispatchUId = dispatchUId;
     }
 
-    public Integer getDispatchCreateTime() {
+    public Date getDispatchCreateTime() {
         return dispatchCreateTime;
     }
 
-    public void setDispatchCreateTime(Integer dispatchCreateTime) {
+    public void setDispatchCreateTime(Date dispatchCreateTime) {
         this.dispatchCreateTime = dispatchCreateTime;
     }
 

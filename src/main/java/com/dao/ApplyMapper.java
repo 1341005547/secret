@@ -21,7 +21,7 @@ public interface ApplyMapper {
      * 
      * @return
      */
-    List<Apply> listGetASubmit();
+    List<Apply> listGetASubmit(Integer aId);
     
     /**
      * 把a_submit草稿箱状态改为已提交状态
@@ -36,6 +36,9 @@ public interface ApplyMapper {
      * @return
      */
     Apply getUName(Integer aId);
-   
-    
+    /**
+     * 显示最大申报id
+     * @return
+     */
+    int showMaxApplyId();
 }

@@ -25,9 +25,9 @@ public class MyApplyServiceImpl implements MyApplyService {
 	}
 
 	@Override
-	public List<Apply> listGetASubmit() {
+	public List<Apply> listGetASubmit(Integer aId) {
 		// TODO Auto-generated method stub
-		return applymapper.listGetASubmit();
+		return applymapper.listGetASubmit(aId);
 	}
 
 	@Override
@@ -74,6 +74,12 @@ public class MyApplyServiceImpl implements MyApplyService {
 	public Apply getUName(Integer aId) {
 		// TODO Auto-generated method stub
 		return applymapper.getUName(aId);
+	}
+
+	@Override
+	public int showMaxApplyId() {
+		// TODO Auto-generated method stub
+		return applymapper.showMaxApplyId();
 	}
 
 	

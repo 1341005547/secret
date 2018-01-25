@@ -28,7 +28,20 @@ public class Apply {
      */
     private String tName;
     
-    public String gettName() {
+    /**
+     * 显示最大申报单id
+     */
+    private Integer max;
+    
+	public Integer getMax() {
+		return max;
+	}
+
+	public void setMax(Integer max) {
+		this.max = max;
+	}
+
+	public String gettName() {
 		return tName;
 	}
 

@@ -1,5 +1,6 @@
 package com.web;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,10 +16,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.common.DateUtil;
 import com.entity.Apply;
+import com.entity.Dept;
+import com.entity.Dispatch;
 import com.entity.Login;
+import com.entity.Professional;
 import com.entity.Type_apply;
+import com.service.DeptService;
+import com.service.DispatchService;
 import com.service.MyApplyService;
+import com.service.ProfessionalService;
 import com.service.Type_applyService;
 
 /**
@@ -35,6 +43,15 @@ public class MyApplyController {
 
 	@Autowired
 	private Type_applyService type_applyservice;
+	
+	@Autowired
+	private DeptService deptService;
+	
+	@Autowired
+	private ProfessionalService professionalservice;
+	
+	@Autowired
+	private DispatchService dispatchservice;
 
 	/**
 	 * 进入提交页面,添加
@@ -131,6 +148,43 @@ public class MyApplyController {
 		return "redirect:myapply";
 	}
 	
+	/**
+	 * 点击调度，并进行提交跳转的路径
+	 * @return
+	 */
+	@RequestMapping("dispatchToSubmit")
+	public String dispatchToSubmit(Dispatch record,Integer dept,Integer pro,Integer deptid,Integer profess){
+		Apply apply = new Apply();
+		Integer uId=(Integer) SecurityUtils.getSubject().getSession().getAttribute("login");
+		apply.setaSubmit(1);   //已经提交
+		apply.setaState("未审核");
+		apply.setaEven("申请调任");
+		apply.setaCreateTime(DateUtil.parseDateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+		apply.setuId(uId);
+		apply.settId(3);
+		myApplyService.insertSelective(apply);
+
+		int x=myApplyService.showMaxApplyId();
+		
+		record.setuId(uId);
+		record.setDispatchCreateTime(DateUtil.parseDateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+		//调动前的职位
+		record.setpId(pro);
+		//调动后的职位
+		record.setDispatchPId(profess);
+		//调动前的部门
+		record.setdId(dept);
+		//调动后的部门
+		record.setDispatchDId(deptid);
+		//获取最大申报id
+		record.setaId(x);
+		
+		dispatchservice.insertSelective(record);
+		
+		return "redirect:applymanage";
+	}
+	
+	
 
 	/**
 	 * 提交操作，从草稿箱到审核列表
@@ -193,10 +247,25 @@ public class MyApplyController {
 	 */
 	@RequestMapping("myapply")
 	public String myapply(Model model) {
-		List<Apply> list = myApplyService.listGetASubmit();
+		//获取登陆用户所有草稿
+		Integer uId=(Integer) SecurityUtils.getSubject().getSession().getAttribute("login");
+		List<Apply> list = myApplyService.listGetASubmit(uId);
 		model.addAttribute("list", list);
+		//获取所有申报类别
 		List<Type_apply> list2 = type_applyservice.listAll();
 		model.addAttribute("list2", list2);
+		//获取用户当前部门
+		Dept dept=deptService.getDeptPrimaryKey(uId);
+		model.addAttribute("dept", dept);
+		//获取用户当前职位
+		Professional professional=professionalservice.getProfessionalByUId(uId);
+		model.addAttribute("professional", professional);
+		//获取所有部门
+		List<Dept> list3=deptService.getAllDept();
+		model.addAttribute("list3", list3);
+		//获取所有职位
+		List<Professional> list4=professionalservice.getAllPro();
+		model.addAttribute("list4", list4);
 		return "apply/myapply";
 	}
 
