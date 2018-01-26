@@ -18,7 +18,7 @@ public interface ApplyMapper {
     
     /**
      * 获取申报表集合，a_submit为0草稿箱内容，1为已提交待审核申报表
-     * 
+     * 按照aid查找所有报销单
      * @return
      */
     List<Apply> listGetASubmit(Integer aId);

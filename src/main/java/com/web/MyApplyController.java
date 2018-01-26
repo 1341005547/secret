@@ -32,8 +32,8 @@ import com.service.Type_applyService;
 /**
  * 我的申请页面
  * 
- * @author
- * 
+ * @author 刘林春
+ * Create Time 2018/1/22
  */
 @Controller
 public class MyApplyController {
@@ -229,6 +229,23 @@ public class MyApplyController {
 			model.addAttribute("apply", apply);
 		
 		return "apply/applyedit";
+	}
+	
+	/**
+	 * 去查看
+	 * @param record
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("toLook")
+	public String look(Model model,Integer aId) {
+		
+			List<Type_apply> list2 = type_applyservice.listAll();
+			model.addAttribute("list2", list2);
+			Apply apply = myApplyService.getUName(aId);
+			model.addAttribute("apply", apply);
+		
+		return "apply/applylook";
 	}
 	
 	
