@@ -9,6 +9,15 @@
 	<sql id="Base_Column_List">
 		permission_id, permission_name
 	</sql>
+	
+	<select id="selectPermissionByUid" resultType="INTEGER" 
+		parameterType="java.lang.Integer">
+		
+			select DISTINCT permission_id from role_permission where r_id in (
+				select r_id from user_role where u_id = #{u_id,jdbcType=INTEGER}
+		)
+	</select>
+	
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select

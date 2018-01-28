@@ -5,9 +5,10 @@
 		<id column="u_r_id" property="uRId" jdbcType="INTEGER" />
 		<result column="u_id" property="uId" jdbcType="INTEGER" />
 		<result column="r_id" property="rId" jdbcType="INTEGER" />
+		<result column="give_power_time" property="give_Power_Time" jdbcType="DATE" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		u_r_id, u_id, r_id
+		u_r_id, u_id, r_id,give_power_time
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -20,11 +21,27 @@
 		delete from user_role
 		where u_r_id = #{uRId,jdbcType=INTEGER}
 	</delete>
+	
+	
+	<!-- 按uid删除uid对应的所有用户角色关系 -->
+	<delete id="deleteUserRoleByRid" parameterType="java.lang.Integer">
+		delete from user_role
+		where r_id = #{rId,jdbcType=INTEGER}
+	</delete>
+	<!-- 按uid删除uid对应的所有用户角色关系 -->
+	<delete id="deleteUserRoleByUid" parameterType="java.lang.Integer">
+		delete from user_role
+		where u_id = #{uId,jdbcType=INTEGER}
+	</delete>
+	
+	
+	
+	
 	<insert id="insert" parameterType="User_role">
-		insert into user_role (u_r_id, u_id, r_id
+		insert into user_role (u_r_id, u_id, r_id,give_power_time
 		)
-		values (#{uRId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER},
-		#{rId,jdbcType=INTEGER}
+		values (#{uRId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER},#{rId,jdbcType=INTEGER},
+		#{give_Power_Time,jdbcType=DATE}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="User_role">
@@ -39,6 +56,9 @@
 			<if test="rId != null">
 				r_id,
 			</if>
+			<if test="give_Power_Time != null">
+				give_power_time,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="uRId != null">
@@ -49,6 +69,9 @@
 			</if>
 			<if test="rId != null">
 				#{rId,jdbcType=INTEGER},
+			</if>
+			<if test="give_Power_Time != null">
+				#{give_power_time,jdbcType=DATE},
 			</if>
 		</trim>
 	</insert>
@@ -61,6 +84,9 @@
 			<if test="rId != null">
 				r_id = #{rId,jdbcType=INTEGER},
 			</if>
+			<if test="give_Power_Time != null">
+				give_power_time = #{give_Power_Time,jdbcType=DATE},
+			</if>
 		</set>
 		where u_r_id = #{uRId,jdbcType=INTEGER}
 	</update>
@@ -68,9 +94,12 @@
 		update user_role
 		set u_id = #{uId,jdbcType=INTEGER},
 		r_id = #{rId,jdbcType=INTEGER}
+		give_power_time = #{give_Power_Time,jdbcType=DATE}
 		where u_r_id = #{uRId,jdbcType=INTEGER}
 	</update>
-	<!-- 通过用户id 获取角色id -->
+	
+	
+	<!-- 通过用户Uid 获取用户角色中间表 -->
 	<select id="getUserRoles" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select

@@ -26,6 +26,14 @@
 		from user
 		where u_id = #{uId,jdbcType=INTEGER}
 	</select> -->
+	<!-- 权限需加SQL语句 -->
+	<select id="selectByDept_id" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where d_id = #{dId,jdbcType=INTEGER}
+	</select>
 	<!-- 调动 -->
     <select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">

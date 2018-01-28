@@ -20,4 +20,9 @@ public interface User_roleMapper {
      * 通过用户id 获取角色
      */
     List<User_role> getUserRoles(Integer uId);
+    //按uid删除uid对应的所有用户角色关系
+    int deleteUserRoleByUid(Integer uId);
+    //按rid删除用户角色关系
+    int deleteUserRoleByRid(Integer rId);
+ 
 }

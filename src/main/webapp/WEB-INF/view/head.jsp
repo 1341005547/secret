@@ -296,7 +296,7 @@
             <li><a href="toemail.html"><i class="fa fa-circle-o"></i> 邮箱</a></li>
           </ul>
         </li>
-        <li class="treeview">
+       <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>授权管理</span>
             <span class="pull-right-container">
@@ -304,9 +304,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+            <li><a href="power_look.html"><i class="fa fa-circle-o"></i> 我的权限</a></li>
+            <li><a href="power_set.html"><i class="fa fa-circle-o"></i> 角色设定</a></li>
+            <li><a href="power_give.html"><i class="fa fa-circle-o"></i> 权限分配</a></li>
           </ul>
         </li>
     <!-- 系统管理 -->
