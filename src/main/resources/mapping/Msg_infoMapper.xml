@@ -24,6 +24,18 @@
 		from msg_info
 		where msg_id = #{msgId,jdbcType=INTEGER}
 	</select>
+	
+	<!-- 通过udi查询邮箱 -->
+		<select id="getMsg_infoByUid" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from msg_info
+		where msg_sendto_u_id = #{msgSendtoUId,jdbcType=INTEGER}
+	</select>
+	
+	
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from msg_info
 		where msg_id = #{msgId,jdbcType=INTEGER}

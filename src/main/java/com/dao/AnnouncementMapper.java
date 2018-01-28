@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import com.entity.Announcement;
 
 public interface AnnouncementMapper {
@@ -14,4 +16,6 @@ public interface AnnouncementMapper {
     int updateByPrimaryKeySelective(Announcement record);
 
     int updateByPrimaryKey(Announcement record);
+    
+    List<Announcement> selectAdver();
 }

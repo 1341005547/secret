@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import com.entity.Type_apply;
 
 public interface Type_applyMapper {
@@ -14,4 +16,10 @@ public interface Type_applyMapper {
     int updateByPrimaryKeySelective(Type_apply record);
 
     int updateByPrimaryKey(Type_apply record);
+    /**
+     * 查询所有
+     * @return
+     */
+    List<Type_apply> listAll();
+    
 }

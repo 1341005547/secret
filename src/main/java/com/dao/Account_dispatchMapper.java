@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import com.entity.Account_dispatch;
 
 public interface Account_dispatchMapper {
@@ -14,4 +16,8 @@ public interface Account_dispatchMapper {
     int updateByPrimaryKeySelective(Account_dispatch record);
 
     int updateByPrimaryKey(Account_dispatch record);
+    
+    Account_dispatch accountdispathDealByaId(Integer applyaId);
+    
+    List<Account_dispatch> accountdispathDealByuId(Integer uId);
 }

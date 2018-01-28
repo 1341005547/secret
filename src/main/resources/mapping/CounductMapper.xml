@@ -21,10 +21,20 @@
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
-		<include refid="Base_Column_List" />
-		from counduct
-		where counduct_id = #{counductId,jdbcType=INTEGER}
+		c.counduct_id, c.counduct_type, c.counduct_title, c.counduct_content,
+		c.counduct_create_time,
+		c.u_id,u.u_name as uname
+		from counduct c left join user u on u.u_id=c.u_id where counduct_id = #{counductId,jdbcType=INTEGER}
 	</select>
+	
+	<select id="selectCounduct" resultMap="BaseResultMap">
+		select
+		c.counduct_id, c.counduct_type, c.counduct_title, c.counduct_content,
+		convert_tz(c.counduct_create_time, '-08:00','+00:00') as counduct_create_time,
+		c.u_id,u.u_name as uname
+		from counduct c left join user u on u.u_id=c.u_id order by c.counduct_id
+	</select>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from counduct
 		where counduct_id = #{counductId,jdbcType=INTEGER}
@@ -40,6 +50,10 @@
 		#{uId,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective" parameterType="Counduct">
+		<selectKey keyProperty="counductId" resultType="int">  
+            select LAST_INSERT_ID()  
+        </selectKey> 
+	
 		insert into counduct
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="counductId != null">

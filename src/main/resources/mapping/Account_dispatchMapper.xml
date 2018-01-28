@@ -20,6 +20,36 @@
 		from account_dispatch
 		where a_d_id = #{aDId,jdbcType=INTEGER}
 	</select>
+	
+	<!-- 根据申请单id查询报销单 -->
+	<select id="accountdispathDealByaId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	SELECT ad.u_id,ad.a_id,ad.a_d_price,u.u_name uName,ad.a_d_time,ad.a_d_explain,
+		cd.c_d_name cdName,a.a_even aEven,a.a_state  aState 
+		<!-- ,ra.r_a_result rAResult -->
+
+	FROM account_dispatch ad 
+	
+	INNER JOIN (SELECT * from category_dispatch) cd ON cd.c_d_id = ad.c_d_id INNER JOIN 
+	
+	(SELECT * from apply WHERE a_id = #{aId,jdbcType=INTEGER}) a  ON a.a_id = ad.a_id INNER JOIN 
+	 (SELECT * FROM `user`) u ON u.u_id=ad.u_id <!-- INNER JOIN (SELECT * FROM result_apply ) ra ON ra.a_id = a.a_id -->
+	</select>
+	
+	
+	<!-- 员工查询自己报销单 -->
+	<select id="accountdispathDealByuId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		SELECT ad.u_id,ad.a_id,ad.a_d_price,u.u_name uName,ad.a_d_time,
+		ad.a_d_explain,cd.c_d_name cdName,a.a_even aEven,a.a_state  aState
+		FROM account_dispatch ad 
+		
+		INNER JOIN (SELECT * from category_dispatch) cd ON cd.c_d_id = ad.c_d_id INNER JOIN 
+		
+		(SELECT * from apply) a  ON a.a_id = ad.a_id INNER JOIN 
+		
+		
+		 (SELECT * FROM `user` WHERE `user`.u_id = #{uId,jdbcType=INTEGER}) u ON u.u_id=ad.u_id 
+	</select>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from account_dispatch
 		where a_d_id = #{aDId,jdbcType=INTEGER}

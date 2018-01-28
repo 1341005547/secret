@@ -2,6 +2,15 @@ package com.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+/**
+ * 公告管理
+ * @author 巴士里
+ *
+ */
 public class Counduct {
     private Integer counductId;
 
@@ -14,8 +23,18 @@ public class Counduct {
     private Date counductCreateTime;
 
     private Integer uId;
+    
+    private String uname;
 
-    public Integer getCounductId() {
+    public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+	public Integer getCounductId() {
         return counductId;
     }
 
@@ -47,6 +66,8 @@ public class Counduct {
         this.counductContent = counductContent == null ? null : counductContent.trim();
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getCounductCreateTime() {
         return counductCreateTime;
     }

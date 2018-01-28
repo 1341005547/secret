@@ -8,7 +8,27 @@
 			jdbcType="TIMESTAMP" />
 		<result column="oms_end_time" property="omsEndTime" jdbcType="TIMESTAMP" />
 		<result column="oms_state" property="omsState" jdbcType="VARCHAR" />
+		<result column="quantity" property="quantity" jdbcType="INTEGER" />
+		<result column="month" property="month" jdbcType="VARCHAR" />
+		<result column="d_name" property="deptName" jdbcType="VARCHAR" />
+		<association property="user" javaType="User">
+			<id column="u_id" property="uId" jdbcType="INTEGER" />
+			<result column="u_name" property="uName" jdbcType="VARCHAR" />
+			<result column="u_start_time" property="uStartTime" jdbcType="TIMESTAMP" />
+			<result column="u_end_time" property="uEndTime" jdbcType="TIMESTAMP" />
+			<result column="u_phone" property="uPhone" jdbcType="VARCHAR" />
+			<result column="u_sex" property="uSex" jdbcType="VARCHAR" />
+			<result column="u_img" property="uImg" jdbcType="VARCHAR" />
+			<result column="u_state" property="uState" jdbcType="VARCHAR" />
+			<result column="d_id" property="dId" jdbcType="INTEGER" />
+			<result column="Professional_id" property="professionalId"
+				jdbcType="INTEGER" />
+		</association>
 	</resultMap>
+
+
+
+
 	<sql id="Base_Column_List">
 		oms_id, u_id, oms_start_time, oms_end_time, oms_state
 	</sql>
@@ -19,16 +39,102 @@
 		from oa_manual_sign
 		where oms_id = #{omsId,jdbcType=INTEGER}
 	</select>
+	<resultMap type="Oa_manual_sign" id="selectAllManual_resultMap"
+		extends="BaseResultMap">
+		<association property="professional" javaType="Professional">
+			<id column="Professional_id" property="professionalId" jdbcType="INTEGER" />
+			<result column="Professional_name" property="professionalName"
+				jdbcType="VARCHAR" />
+		</association>
+	</resultMap>
+	<select id="listAllManual" resultMap="selectAllManual_resultMap">
+		select
+		bb.u_id,bb.month,bb.u_name,bb.dept_id,p.Professional_name,bb.quantity
+		from professional p,(select
+		u.u_id,month,u.u_name,b.dept_id,u.Professional_id,quantity from user
+		u,(select u_id,dept_id,DATE_FORMAT(time,'%Y-%m') as month,count(u_id)
+		as quantity
+		from base_statistics
+		where DATE_FORMAT(time,'%Y')=#{year}
+		and u_id=#{u_id} and
+		manual_result!="请假"
+		group by month
+		) b where
+		u.u_id=b.u_id) bb where p.Professional_id=bb.Professional_id
+		order by
+		month
+	</select>
+	<resultMap type="BaseStatisticsEntry" id="baseStatisticsMap">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="u_id" jdbcType="INTEGER" property="uid" />
+		<result column="time" jdbcType="DATE" property="time" />
+		<result column="dept_id" jdbcType="INTEGER" property="deptId" />
+		<result column="manual_result" jdbcType="VARCHAR" property="manualResult" />
+		<result column="monthQuality" jdbcType="INTEGER" property="monthQuality" />
+	</resultMap>
+	<select id="getMonthQuality" resultMap="baseStatisticsMap">
+		select
+		*,COUNT(manual_result) monthQuality from base_statistics where
+		DATE_FORMAT(time,'%Y-%m')=#{month} GROUP BY manual_result
+	</select>
+	<select id="getMonthByPerson" resultMap="selectAllManual_resultMap">
+		select
+		bb.u_id,bb.month,bb.u_name,bb.dept_id,dept.d_name,p.Professional_name,bb.quantity
+		from professional p,dept,(select
+		u.u_id,month,u.u_name,b.dept_id,u.Professional_id,quantity from user
+		u,(select u_id,dept_id,DATE_FORMAT(time,'%Y-%m') as month,count(u_id)
+		as
+		quantity
+		from base_statistics
+		where DATE_FORMAT(time,'%Y-%m')=#{month}
+		and u_id=#{uId} and
+		manual_result!="请假"
+		) b where u.u_id=b.u_id) bb
+		where p.Professional_id=bb.Professional_id and bb.dept_id=dept.d_id
+
+	</select>
+	<select id="getMonthByPersonManual" resultMap="baseStatisticsMap">
+		select
+		u_id,dept_id,DATE_FORMAT(time,'%Y-%m') as month,count(u_id)
+		as
+		monthQuality,manual_result
+		from base_statistics
+		where
+		DATE_FORMAT(time,'%Y-%m')=#{month}
+		and u_id=#{uId} and
+		manual_result=#{result}
+	</select>
+	<select id="selectStartTime" resultType="String">
+		select
+		DATE_FORMAT(oms_start_time,'%Y-%m-%d') as oms_start_time from
+		oa_manual_sign where u_id=#{uId} and DATE_FORMAT(oms_start_time,'%Y-%m-%d')
+		=#{month}
+	</select>
+	<select id="selectEndTime" resultMap="BaseResultMap">
+		select * from oa_manual_sign where u_id=#{uId} and DATE_FORMAT(oms_start_time,'%Y-%m-%d')=#{month}
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from oa_manual_sign
+		delete from
+		oa_manual_sign
 		where oms_id = #{omsId,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="Oa_manual_sign">
-		insert into oa_manual_sign (oms_id, u_id, oms_start_time,
-		oms_end_time, oms_state)
-		values (#{omsId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER},
+		<selectKey keyProperty="omsId" resultType="INTEGER">
+			select
+			LAST_INSERT_ID()
+		</selectKey>
+		insert into oa_manual_sign
+		(oms_id, u_id, oms_start_time,
+		oms_end_time,
+		oms_state)
+		values
+		(#{omsId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER},
 		#{omsStartTime,jdbcType=TIMESTAMP},
-		#{omsEndTime,jdbcType=TIMESTAMP}, #{omsState,jdbcType=VARCHAR})
+		#{omsEndTime,jdbcType=TIMESTAMP},
+		#{omsState,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertBase" parameterType="BaseStatisticsEntry">
+		insert into base_statistics(id,u_id,time,dept_id,manual_result) values(#{id},#{uid},#{time},#{deptId},#{manualResult})
 	</insert>
 	<insert id="insertSelective" parameterType="Oa_manual_sign">
 		insert into oa_manual_sign
@@ -86,11 +192,15 @@
 		where oms_id = #{omsId,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="Oa_manual_sign">
-		update oa_manual_sign
+		update
+		oa_manual_sign
 		set u_id = #{uId,jdbcType=INTEGER},
-		oms_start_time = #{omsStartTime,jdbcType=TIMESTAMP},
-		oms_end_time = #{omsEndTime,jdbcType=TIMESTAMP},
-		oms_state = #{omsState,jdbcType=VARCHAR}
+		oms_start_time =
+		#{omsStartTime,jdbcType=TIMESTAMP},
+		oms_end_time =
+		#{omsEndTime,jdbcType=TIMESTAMP},
+		oms_state =
+		#{omsState,jdbcType=VARCHAR}
 		where oms_id = #{omsId,jdbcType=INTEGER}
 	</update>
 </mapper>

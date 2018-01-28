@@ -28,4 +28,10 @@ public class LoginServiceImpl implements LoginService {
 		return mapper.selectByloginUsercode(usercode);
 	}
 
+	@Override
+	public Login selectByPrimaryKey(Integer loginId) {
+		// TODO Auto-generated method stub
+		return mapper.selectByPrimaryKey(loginId);
+	}
+
 }

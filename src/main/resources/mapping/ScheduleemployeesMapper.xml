@@ -2,16 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.dao.ScheduleemployeesMapper">
 	<resultMap id="BaseResultMap" type="Scheduleemployees">
-		<id column="s_id" property="sId" jdbcType="INTEGER" />
-		<result column="s_content" property="sContent" jdbcType="VARCHAR" />
-		<result column="s_start_time" property="sStartTime" jdbcType="TIMESTAMP" />
-		<result column="s_end_time" property="sEndTime" jdbcType="TIMESTAMP" />
-		<result column="s_update_time" property="sUpdateTime" jdbcType="TIMESTAMP" />
-		<result column="s_create_time" property="sCreateTime" jdbcType="TIMESTAMP" />
-		<result column="u_id" property="uId" jdbcType="INTEGER" />
+		<id column="s_id" property="s_id" jdbcType="INTEGER" />
+		<result column="s_content" property="scheduleContent" jdbcType="VARCHAR" />
+		<result column="s_start_time" property="scheduleStartTime"
+			jdbcType="TIMESTAMP" />
+		<result column="s_end_time" property="scheduleEndTime"
+			jdbcType="TIMESTAMP" />
+		<result column="s_update_time" property="scheduleUpdateTime"
+			jdbcType="TIMESTAMP" />
+		<result column="s_create_time" property="scheduleCreateTime"
+			jdbcType="TIMESTAMP" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
 	</resultMap>
+	
+	
+	<!-- 日历显示 -->
+	<resultMap  id="CalendarMap" type="Calendar">
+		<id column="s_id" property="s_id" jdbcType="INTEGER" />
+		<result column="s_content" property="title" jdbcType="VARCHAR" />
+		<result column="s_start_time" property="start" jdbcType="TIMESTAMP" />
+		<result column="s_end_time" property="end" jdbcType="TIMESTAMP" />
+		<result column="u_id" property="u_id" jdbcType="INTEGER" />
+	</resultMap>
+	<select id="selectByCalendarKey" resultMap="CalendarMap"
+		parameterType="java.lang.Integer">
+		select
+		s_id, s_content, convert_tz(s_start_time, '-08:00', '+00:00') as s_start_time, 
+		convert_tz(s_end_time, '-08:00', '+00:00') as s_end_time, u_id
+		from scheduleemployees
+		where u_id = #{u_id,jdbcType=INTEGER}
+	</select>
+	<!-- /.日历显示 -->
+	
+	
+
 	<sql id="Base_Column_List">
-		s_id, s_content, s_start_time, s_end_time, s_update_time, s_create_time,
+		s_id, s_content, s_start_time, s_end_time, s_update_time,
+		s_create_time,
 		u_id
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
@@ -19,102 +46,120 @@
 		select
 		<include refid="Base_Column_List" />
 		from scheduleemployees
-		where s_id = #{sId,jdbcType=INTEGER}
+		where s_id = #{s_id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByUid" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from scheduleemployees
+		where u_id = #{u_id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from scheduleemployees
-		where s_id = #{sId,jdbcType=INTEGER}
+		delete from
+		scheduleemployees
+		where s_id = #{s_id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="Scheduleemployees">
-		insert into scheduleemployees (s_id, s_content, s_start_time,
-		s_end_time, s_update_time, s_create_time,
+		insert into scheduleemployees
+		(s_id, s_content, s_start_time,
+		s_end_time, s_update_time,
+		s_create_time,
 		u_id)
-		values (#{sId,jdbcType=INTEGER}, #{sContent,jdbcType=VARCHAR},
-		#{sStartTime,jdbcType=TIMESTAMP},
-		#{sEndTime,jdbcType=TIMESTAMP}, #{sUpdateTime,jdbcType=TIMESTAMP}, #{sCreateTime,jdbcType=TIMESTAMP},
-		#{uId,jdbcType=INTEGER})
+		values (#{s_id,jdbcType=INTEGER},
+		#{scheduleContent,jdbcType=VARCHAR},
+		#{scheduleStartTime,jdbcType=TIMESTAMP},
+		#{scheduleEndTime,jdbcType=TIMESTAMP},
+		#{scheduleUpdateTime,jdbcType=TIMESTAMP},
+		#{scheduleCreateTime,jdbcType=TIMESTAMP},
+		#{u_id,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective" parameterType="Scheduleemployees">
 		insert into scheduleemployees
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="sId != null">
+			<if test="s_id != null">
 				s_id,
 			</if>
-			<if test="sContent != null">
+			<if test="scheduleContent != null">
 				s_content,
 			</if>
-			<if test="sStartTime != null">
+			<if test="scheduleStartTime != null">
 				s_start_time,
 			</if>
-			<if test="sEndTime != null">
+			<if test="scheduleEndTime != null">
 				s_end_time,
 			</if>
-			<if test="sUpdateTime != null">
+			<if test="scheduleUpdateTime != null">
 				s_update_time,
 			</if>
-			<if test="sCreateTime != null">
+			<if test="scheduleCreateTime != null">
 				s_create_time,
 			</if>
-			<if test="uId != null">
+			<if test="u_id != null">
 				u_id,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="sId != null">
-				#{sId,jdbcType=INTEGER},
+			<if test="s_id != null">
+				#{s_id,jdbcType=INTEGER},
 			</if>
-			<if test="sContent != null">
-				#{sContent,jdbcType=VARCHAR},
+			<if test="scheduleContent != null">
+				#{scheduleContent,jdbcType=VARCHAR},
 			</if>
-			<if test="sStartTime != null">
-				#{sStartTime,jdbcType=TIMESTAMP},
+			<if test="scheduleStartTime != null">
+				#{scheduleStartTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="sEndTime != null">
-				#{sEndTime,jdbcType=TIMESTAMP},
+			<if test="scheduleEndTime != null">
+				#{scheduleEndTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="sUpdateTime != null">
-				#{sUpdateTime,jdbcType=TIMESTAMP},
+			<if test="scheduleUpdateTime != null">
+				#{scheduleUpdateTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="sCreateTime != null">
-				#{sCreateTime,jdbcType=TIMESTAMP},
+			<if test="scheduleCreateTime != null">
+				#{scheduleCreateTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="uId != null">
-				#{uId,jdbcType=INTEGER},
+			<if test="u_id != null">
+				#{u_id,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="Scheduleemployees">
 		update scheduleemployees
 		<set>
-			<if test="sContent != null">
-				s_content = #{sContent,jdbcType=VARCHAR},
+			<if test="scheduleContent != null">
+				s_content = #{scheduleContent,jdbcType=VARCHAR},
 			</if>
-			<if test="sStartTime != null">
-				s_start_time = #{sStartTime,jdbcType=TIMESTAMP},
+			<if test="scheduleStartTime != null">
+				s_start_time = #{scheduleStartTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="sEndTime != null">
-				s_end_time = #{sEndTime,jdbcType=TIMESTAMP},
+			<if test="scheduleEndTime != null">
+				s_end_time = #{scheduleEndTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="sUpdateTime != null">
-				s_update_time = #{sUpdateTime,jdbcType=TIMESTAMP},
+			<if test="scheduleUpdateTime != null">
+				s_update_time = #{scheduleUpdateTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="sCreateTime != null">
-				s_create_time = #{sCreateTime,jdbcType=TIMESTAMP},
+			<if test="scheduleCreateTime != null">
+				s_create_time = #{scheduleCreateTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="uId != null">
-				u_id = #{uId,jdbcType=INTEGER},
+			<if test="u_id != null">
+				u_id = #{u_id,jdbcType=INTEGER},
 			</if>
 		</set>
-		where s_id = #{sId,jdbcType=INTEGER}
+		where s_id = #{s_id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="Scheduleemployees">
-		update scheduleemployees
-		set s_content = #{sContent,jdbcType=VARCHAR},
-		s_start_time = #{sStartTime,jdbcType=TIMESTAMP},
-		s_end_time = #{sEndTime,jdbcType=TIMESTAMP},
-		s_update_time = #{sUpdateTime,jdbcType=TIMESTAMP},
-		s_create_time = #{sCreateTime,jdbcType=TIMESTAMP},
-		u_id = #{uId,jdbcType=INTEGER}
-		where s_id = #{sId,jdbcType=INTEGER}
+		update
+		scheduleemployees
+		set s_content = #{scheduleContent,jdbcType=VARCHAR},
+		s_start_time = #{scheduleStartTime,jdbcType=TIMESTAMP},
+		s_end_time =
+		#{scheduleEndTime,jdbcType=TIMESTAMP},
+		s_update_time =
+		#{scheduleUpdateTime,jdbcType=TIMESTAMP},
+		s_create_time =
+		#{scheduleCreateTime,jdbcType=TIMESTAMP},
+		u_id =
+		#{u_id,jdbcType=INTEGER}
+		where s_id = #{s_id,jdbcType=INTEGER}
 	</update>
 </mapper>

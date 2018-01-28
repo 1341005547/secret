@@ -9,9 +9,10 @@
 		<result column="a_create_time" property="aCreateTime" jdbcType="TIMESTAMP" />
 		<result column="a_state" property="aState" jdbcType="VARCHAR" />
 		<result column="u_id" property="uId" jdbcType="INTEGER" />
+		<result column="a_submit" property="aSubmit" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		a_id, t_id, a_even, a_leave_time, a_create_time, a_state, u_id
+		a_id, t_id, a_even, a_leave_time, a_create_time, a_state, u_id, a_submit
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -20,6 +21,156 @@
 		from apply
 		where a_id = #{aId,jdbcType=INTEGER}
 	</select>
+	<!-- 根据部门id查询这个部门的申请  部门经理-->
+<select id="selectAllApplyBydId" resultMap="BaseResultMap" parameterType="Apply" >
+		SELECT 
+			a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state,a.u_id,a.a_submit ,
+			adcd.a_d_explain aDExplain,adcd.a_d_price aDPrice,adcd.c_d_name cdName,
+			u.u_name as uName,
+			ta.t_name aName
+			<!-- ,ra.r_a_result rAResult -->
+		FROM type_apply ta   INNER JOIN 
+		(SELECT * from apply WHERE apply.a_state != "已终止" and apply.a_state != "已审批" and apply.a_state != "待审批" )
+		 a ON ta.t_id=a.t_id		
+		INNER JOIN 
+		(SELECT * from `user` WHERE `user`.d_id=#{dId,jdbcType=INTEGER} 
+		And `user`.Professional_id != 2 AND `user`.Professional_id != 3 AND `user`.Professional_id != 4 )
+		u ON u.u_id = a.u_id INNER JOIN (SELECT ad.a_id,ad.a_d_price,ad.a_d_explain,cd.c_d_name from account_dispatch ad INNER JOIN (SELECT * FROM category_dispatch ) cd ON cd.c_d_id= ad.c_d_id) adcd ON
+		adcd.a_id = a.a_id <!--INNER JOIN  (SELECT * FROM result_apply ) ra ON ra.a_id = a.a_id -->
+</select>
+<!-- 部门经理查看这个部门的调度申请 -->
+<select id="selectAlldispatchBytId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+SELECT 
+			a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state,a.u_id,a.a_submit ,
+			
+			u.u_name as uName,
+			ta.t_name aName ,
+		
+	d.dName dName,d.pName pName,d.disdName,d.dispName,d.dispatch_create_time dcTime,d.p_id pId, d.dispatch_p_id dpId,d.d_id dId,d.dispatch_d_id disdId
+
+		FROM type_apply ta   INNER JOIN 
+		(SELECT * from apply WHERE apply.a_state != "已终止" and apply.a_state != "已审批" and apply.a_state != "待审批" )
+		 a ON ta.t_id=a.t_id		
+		INNER JOIN 
+		(SELECT * from `user` WHERE `user`.d_id=#{dId,jdbcType=INTEGER} 
+		And `user`.Professional_id != 2 AND `user`.Professional_id != 3 AND `user`.Professional_id != 4 )
+		u ON u.u_id = a.u_id 
+		INNER JOIN (SELECT dis.* ,de.d_name disdName ,p.Professional_name dispName ,de2.d_name dName,p2.Professional_name pName
+FROM dispatch dis INNER JOIN (SELECT d_name,d_id from dept) de ON de.d_id = dis.`dispatch_d_id` INNER JOIN  (SELECT Professional_id,Professional_name from professional) p ON
+
+p.Professional_id = dis.dispatch_p_id INNER JOIN (SELECT d_name,d_id from dept ) de2 ON de2.d_id=dis.d_id INNER JOIN (SELECT Professional_id,Professional_name from professional) p2
+ON p2.Professional_id= dis.p_id) d	ON d.a_id = a.a_id
+
+
+
+
+
+</select>
+
+
+
+
+
+<!-- 获取最大的申请id -->
+<!-- 	<select id="showMaxApplyId" resultMap="BaseResultMap">
+		SELECT MAX(a_id) maxAId FROM apply
+	</select> -->
+	
+	<select id="selectAllApplyBySubmit" resultMap="BaseResultMap" >
+		select u.u_name as uName,ta.t_name aName,
+			 a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state,a.u_id,a.a_submit 
+		FROM apply a INNER JOIN type_apply ta ON ta.t_id=a.t_id INNER JOIN `user` u ON u.u_id=a.u_id
+	</select>
+	<!-- 总经理查看部门经理的申请  -->
+	<select id="selectApplyGMDeal"  resultMap="BaseResultMap">
+		SELECT a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, 
+			a.a_state,a.u_id,a.a_submit , u.Professional_id,
+			 u.u_name as uName,ta.t_name aName 
+			 <!-- ,ra.r_a_result rAResult -->
+		FROM type_apply ta   INNER JOIN (SELECT * from apply WHERE apply.a_state != "已终止" and apply.a_state != "已审批")
+ 		a ON ta.t_id=a.t_id		
+		INNER JOIN (SELECT * from `user` WHERE 
+			`user`.Professional_id = 2 OR `user`.Professional_id = 3 OR `user`.Professional_id = 4 )
+				 u ON u.u_id = a.u_id 
+ 		<!-- INNER JOIN (SELECT p.* from process p where p.process_deal_u_id = 5) ps ON
+ 		ps.a_id=a.a_id  INNER JOIN (SELECT * FROM result_apply ) ra ON ra.a_id = a.a_id -->
+	</select>
+	<!-- 需要让总经理审批的报销单申请 -->
+	<select id="selectNeetGMDeal" resultMap="BaseResultMap">
+	SELECT 
+			a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state,a.u_id,a.a_submit ,
+			adcd.a_d_explain aDExplain,adcd.a_d_price aDPrice,adcd.c_d_name cdName,
+			u.u_name as uName,
+			ta.t_name aName,p.process_id processId
+		
+		FROM type_apply ta   INNER JOIN 
+		(SELECT * from apply WHERE apply.a_state != "已终止" AND apply.a_state ="待审批")
+		 a ON ta.t_id=a.t_id		
+		INNER JOIN 
+		(SELECT * from `user` WHERE  `user`.Professional_id = 1 )
+		u ON u.u_id = a.u_id INNER JOIN 
+
+
+(SELECT ad.a_id,ad.a_d_price,ad.a_d_explain,cd.c_d_name from account_dispatch ad 
+
+INNER JOIN (SELECT * FROM category_dispatch ) cd ON cd.c_d_id= ad.c_d_id) adcd ON
+		adcd.a_id = a.a_id   INNER JOIN
+		
+(SELECT * FROM process p INNER JOIN (SELECT u.u_id,u.u_name,u.Professional_id,p.Professional_name from `user` u INNER JOIN 
+(SELECT Professional_id,Professional_name 
+	FROM professional WHERE Professional_name ="销售部经理" OR Professional_name ="项目开发部经理" OR  Professional_name ="人事部经理") p 
+		ON u.Professional_id=p.Professional_id) users ON users.u_id = p.process_deal_u_id )
+		 p ON p.a_id = a.a_id  
+	</select>
+	<!-- 需要让总经理审批的调度单申请 -->
+	<select id="selectNeetGMdispatchDeal" resultMap="BaseResultMap">
+SELECT 
+			a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state,a.u_id,a.a_submit ,
+			
+			u.u_name as uName,
+			ta.t_name aName ,
+		
+	d.dName dName,d.pName pName,d.disdName,d.dispName,d.dispatch_create_time dcTime,d.p_id pId, d.dispatch_p_id dpId,d.d_id dId,d.dispatch_d_id disdId
+,p.process_id processId
+		FROM type_apply ta   INNER JOIN 
+		(SELECT * from apply WHERE apply.a_state != "已终止" AND apply.a_state ="待审批" )
+		 a ON ta.t_id=a.t_id		
+		INNER JOIN 
+		(SELECT * from `user` WHERE `user`.Professional_id = 1 )
+		u ON u.u_id = a.u_id 
+		INNER JOIN (SELECT dis.* ,de.d_name disdName ,p.Professional_name dispName ,de2.d_name dName,p2.Professional_name pName
+FROM dispatch dis INNER JOIN (SELECT d_name,d_id from dept) de ON de.d_id = dis.`dispatch_d_id` INNER JOIN  (SELECT Professional_id,Professional_name from professional) p ON
+p.Professional_id = dis.dispatch_p_id INNER JOIN (SELECT d_name,d_id from dept ) de2 ON de2.d_id=dis.d_id INNER JOIN (SELECT Professional_id,Professional_name from professional) p2
+ON p2.Professional_id= dis.p_id  WHERE dis.d_id != dis.dispatch_d_id) d	ON d.a_id = a.a_id   INNER JOIN
+		
+(SELECT * FROM process p INNER JOIN (SELECT u.u_id,u.u_name,u.Professional_id,p.Professional_name from `user` u INNER JOIN 
+(SELECT Professional_id,Professional_name 
+	FROM professional WHERE Professional_name ="销售部经理" OR Professional_name ="项目开发部经理" OR  Professional_name ="人事部经理") p 
+		ON u.Professional_id=p.Professional_id) users ON users.u_id = p.process_deal_u_id )
+		 p ON p.a_id = a.a_id  
+	
+	</select>
+	
+	
+	
+	
+<!-- 用户个人报销单申请 -->
+<select id="selectAccountDispathByUId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	SELECT 
+	
+	 a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state,a.u_id,a.a_submit 
+	
+	,ta.t_name aName,u_name uName
+	
+	FROM apply a  INNER JOIN type_apply ta ON ta.t_id = a.t_id INNER JOIN 
+	
+	(SELECT * FROM `user` WHERE `user`.u_id = #{uId,jdbcType=INTEGER}) u ON a.u_id = u.u_id AND a.t_id = 3
+
+
+</select>
+	
+	
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from apply
 		where a_id = #{aId,jdbcType=INTEGER}
@@ -27,11 +178,11 @@
 	<insert id="insert" parameterType="Apply">
 		insert into apply (a_id, t_id, a_even,
 		a_leave_time, a_create_time, a_state,
-		u_id)
-		values (#{aId,jdbcType=INTEGER}, #{tId,jdbcType=VARCHAR},
+		u_id, a_submit)
+		values (#{aId,jdbcType=INTEGER}, #{tId,jdbcType=INTEGER},
 		#{aEven,jdbcType=VARCHAR},
 		#{aLeaveTime,jdbcType=VARCHAR}, #{aCreateTime,jdbcType=TIMESTAMP}, #{aState,jdbcType=VARCHAR},
-		#{uId,jdbcType=INTEGER})
+		#{uId,jdbcType=INTEGER}), #{aSubmit,jdbcType=TIMESTAMP}
 	</insert>
 	<insert id="insertSelective" parameterType="Apply">
 		insert into apply
@@ -57,6 +208,9 @@
 			<if test="uId != null">
 				u_id,
 			</if>
+			<if test="aSubmit != null">
+				a_submit,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="aId != null">
@@ -80,12 +234,15 @@
 			<if test="uId != null">
 				#{uId,jdbcType=INTEGER},
 			</if>
+			<if test="aSubmit != null">
+				#{aSubmit,jdbcType=INTEGER},
+			</if>
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="Apply">
 		update apply
 		<set>
-			<if test="aType != null">
+			<if test="tId != null">
 				t_id = #{tId,jdbcType=INTEGER},
 			</if>
 			<if test="aEven != null">
@@ -103,17 +260,31 @@
 			<if test="uId != null">
 				u_id = #{uId,jdbcType=INTEGER},
 			</if>
+			<if test="aSubmit != null">
+				a_submit = #{aSubmit,jdbcType=INTEGER},
+			</if>
 		</set>
 		where a_id = #{aId,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="Apply">
-		update apply
-		set t_id = #{tId,jdbcType=INTEGER},
-		a_even = #{aEven,jdbcType=VARCHAR},
-		a_leave_time = #{aLeaveTime,jdbcType=VARCHAR},
-		a_create_time = #{aCreateTime,jdbcType=TIMESTAMP},
-		a_state = #{aState,jdbcType=VARCHAR},
-		u_id = #{uId,jdbcType=INTEGER}
-		where a_id = #{aId,jdbcType=INTEGER}
+		
+	<select id="listGetASubmit" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		
+	<!-- SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a LEFT JOIN `user` u ON a.u_id = u.u_id LEFT JOIN `type_apply` t ON a.t_id = t.t_id order by a.a_id -->	
+	SELECT u.u_name AS uName, u.u_id AS idu, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a INNER JOIN `type_apply` t ON a.t_id = t.t_id INNER JOIN `user` u ON a.u_id = u.u_id WHERE a.u_id = #{uId} ORDER BY a.a_id
+	<!-- SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a INNER JOIN `type_apply` t ON a.t_id = t.t_id INNER JOIN ( SELECT * FROM `user` WHERE u_id = #{uId,jdbcType=INTEGER} ) u ON a.u_id = u.u_id ORDER BY a.a_id -->
+	<!-- SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a INNER JOIN `type_apply` t ON a.t_id = t.t_id INNER JOIN USER u ON a.u_id = u.u_id WHERE u.u_id = 1 ORDER BY a.a_id -->
+	</select>
+	
+	<update id="updateSaveToSubmit">
+		update apply set a_submit=1,a_state='未审核' where a_id=#{aId,jdbcType=INTEGER}
 	</update>
+	
+	<select id="getUName" resultMap="BaseResultMap">
+		
+	SELECT u.u_name AS uName, t.t_name AS tName, a.a_id, a.t_id, a.a_even, a.a_leave_time, a.a_create_time, a.a_state, a.u_id, a.a_submit FROM apply a LEFT JOIN `user` u ON a.u_id = u.u_id LEFT JOIN `type_apply` t ON a.t_id = t.t_id WHERE a.a_id=#{aId,jdbcType=INTEGER}	
+	</select>
+	
+	<select id="showMaxApplyId" resultType="java.lang.Integer">
+		select max(a_id) as max from apply 
+	</select>
 </mapper>

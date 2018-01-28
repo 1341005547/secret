@@ -17,11 +17,14 @@ public class User {
 
     private String uImg;
 
+    private String uEmail;
     private String uState;
 
     private Integer dId;
 
     private Integer professionalId;
+    //在页面上容易得到职位名字
+    private String professionalName;
 
     public Integer getuId() {
         return uId;
@@ -79,7 +82,17 @@ public class User {
         this.uImg = uImg == null ? null : uImg.trim();
     }
 
-    public String getuState() {
+    
+    
+    public String getuEmail() {
+		return uEmail;
+	}
+
+	public void setuEmail(String uEmail) {
+		this.uEmail = uEmail;
+	}
+
+	public String getuState() {
         return uState;
     }
 
@@ -102,4 +115,13 @@ public class User {
     public void setProfessionalId(Integer professionalId) {
         this.professionalId = professionalId;
     }
+
+	public String getProfessionalName() {
+		return professionalName;
+	}
+
+	public void setProfessionalName(String professionalName) {
+		this.professionalName = professionalName;
+	}
+    
 }

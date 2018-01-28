@@ -14,4 +14,10 @@ public interface LoginService {
 	 * 
 	 */
 	public Login login(String usercode);
+	/**
+	 * 根据用户id得到用户信息
+	 * @param loginId
+	 * @return
+	 */
+	public Login selectByPrimaryKey(Integer loginId);
 }

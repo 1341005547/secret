@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import com.entity.Scheduledept;
 
 public interface ScheduledeptMapper {
@@ -10,6 +12,10 @@ public interface ScheduledeptMapper {
     int insertSelective(Scheduledept record);
 
     Scheduledept selectByPrimaryKey(Integer scheduledeptId);
+
+    List selectByDid(Integer d_id);
+    
+    List selectByCalendarKey(Integer d_id);
 
     int updateByPrimaryKeySelective(Scheduledept record);
 

@@ -3,73 +3,75 @@ package com.entity;
 import java.util.Date;
 
 public class Scheduleemployees {
-    private Integer sId;
+    private Integer s_id;
 
-    private String sContent;
+    private String scheduleContent;
 
-    private Date sStartTime;
+    private Date scheduleStartTime;
 
-    private Date sEndTime;
+    private Date scheduleEndTime;
 
-    private Date sUpdateTime;
+    private Date scheduleUpdateTime;
 
-    private Date sCreateTime;
+    private Date scheduleCreateTime;
 
-    private Integer uId;
+    private Integer u_id;
 
-    public Integer getsId() {
-        return sId;
-    }
+	public Integer getS_id() {
+		return s_id;
+	}
 
-    public void setsId(Integer sId) {
-        this.sId = sId;
-    }
+	public void setS_id(Integer s_id) {
+		this.s_id = s_id;
+	}
 
-    public String getsContent() {
-        return sContent;
-    }
+	public String getScheduleContent() {
+		return scheduleContent;
+	}
 
-    public void setsContent(String sContent) {
-        this.sContent = sContent == null ? null : sContent.trim();
-    }
+	public void setScheduleContent(String scheduleContent) {
+		this.scheduleContent = scheduleContent;
+	}
 
-    public Date getsStartTime() {
-        return sStartTime;
-    }
+	public Date getScheduleStartTime() {
+		return scheduleStartTime;
+	}
 
-    public void setsStartTime(Date sStartTime) {
-        this.sStartTime = sStartTime;
-    }
+	public void setScheduleStartTime(Date scheduleStartTime) {
+		this.scheduleStartTime = scheduleStartTime;
+	}
 
-    public Date getsEndTime() {
-        return sEndTime;
-    }
+	public Date getScheduleEndTime() {
+		return scheduleEndTime;
+	}
 
-    public void setsEndTime(Date sEndTime) {
-        this.sEndTime = sEndTime;
-    }
+	public void setScheduleEndTime(Date scheduleEndTime) {
+		this.scheduleEndTime = scheduleEndTime;
+	}
 
-    public Date getsUpdateTime() {
-        return sUpdateTime;
-    }
+	public Date getScheduleUpdateTime() {
+		return scheduleUpdateTime;
+	}
 
-    public void setsUpdateTime(Date sUpdateTime) {
-        this.sUpdateTime = sUpdateTime;
-    }
+	public void setScheduleUpdateTime(Date scheduleUpdateTime) {
+		this.scheduleUpdateTime = scheduleUpdateTime;
+	}
 
-    public Date getsCreateTime() {
-        return sCreateTime;
-    }
+	public Date getScheduleCreateTime() {
+		return scheduleCreateTime;
+	}
 
-    public void setsCreateTime(Date sCreateTime) {
-        this.sCreateTime = sCreateTime;
-    }
+	public void setScheduleCreateTime(Date scheduleCreateTime) {
+		this.scheduleCreateTime = scheduleCreateTime;
+	}
 
-    public Integer getuId() {
-        return uId;
-    }
+	public Integer getU_id() {
+		return u_id;
+	}
 
-    public void setuId(Integer uId) {
-        this.uId = uId;
-    }
+	public void setU_id(Integer u_id) {
+		this.u_id = u_id;
+	}
+
+
 }

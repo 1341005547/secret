@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import com.entity.Counduct;
 
 public interface CounductMapper {
@@ -14,4 +16,6 @@ public interface CounductMapper {
     int updateByPrimaryKeySelective(Counduct record);
 
     int updateByPrimaryKey(Counduct record);
+    
+    List<Counduct> selectCounduct();
 }

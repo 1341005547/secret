@@ -1,9 +1,17 @@
 package com.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,10 +19,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.entity.Login;
+import com.entity.Oa_manual_sign;
 import com.entity.Role;
 import com.entity.User_role;
 import com.service.LoginService;
+import com.service.Oa_manual_signService;
 import com.service.RoleService;
 import com.service.User_roleService;
 
@@ -27,6 +39,8 @@ public class LoginController {
 	private RoleService roleService;
 	@Autowired
 	private User_roleService userRoleService;
+	@Autowired
+	private Oa_manual_signService oa_manualService;
 	
 	/**
 	 * 用户登陆
@@ -36,8 +50,24 @@ public class LoginController {
 		UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(loginUsercode,loginPassword);//把账户和密码存到令牌中
 		Subject currentUser=SecurityUtils.getSubject();
 		if(!currentUser.isAuthenticated()){
-			currentUser.login(usernamePasswordToken);//进行认证
+			try {
+				currentUser.login(usernamePasswordToken);//进行认证
+			} catch (Exception e) {
+				//e.printStackTrace();
+				return "index";
+			}
 		}
+		Login login=loginService.login(loginUsercode);
+		//格式化
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Map map=new HashMap();
+		Date date=new Date();
+		String time=df.format(date);
+		Oa_manual_sign oa_manual_sign=oa_manualService.selectEndTime(login.getuId(),time);
+		Session session=SecurityUtils.getSubject().getSession();
+		session.setAttribute("login", login);
+		session.setAttribute("outmasi",oa_manual_sign);
+
 	    return "home";
 	}
 	
@@ -46,7 +76,7 @@ public class LoginController {
 	 */
 	@RequestMapping("getroles/{name}")
 	@ResponseBody
-	public Role getRoles(@PathVariable String name){
+	public List getRoles(@PathVariable String name){
        System.out.println("我触发了");
        Login login=loginService.login(name);
 	   Integer uid= login.getuId();
@@ -58,7 +88,7 @@ public class LoginController {
 			
 			}  
 	   }
-	   return role ;
+	   return userRoles ;
 	 
 	}
 	/**
@@ -68,6 +98,20 @@ public class LoginController {
 	@RequestMapping("login.html")
 	public String toLogin(){
 		System.out.println("我触发了");
-		return "login";
+		return "index";
 	}
+	
+
+	
+	@RequestMapping(value="updatemsgstate",produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	public Map getMap(){
+		Map map=new HashMap();
+		map.put("name", "zhangsan");
+		map.put("sex", "aaaaaaa");
+		map.put("date", new Date());
+		return map;
+		
+	}
+	
 }

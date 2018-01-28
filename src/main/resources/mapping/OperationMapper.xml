@@ -15,10 +15,17 @@
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
-		<include refid="Base_Column_List" />
-		from operation
+		o.operation_id, o.u_id, o.operation_even, o.operation_time,u.u_name as uname
+		from operation o left join user u on o.u_id=u.u_id
 		where operation_id = #{operationId,jdbcType=INTEGER}
 	</select>
+	
+	<select id="selectOperation" resultMap="BaseResultMap">
+		select
+		o.operation_id, o.u_id, o.operation_even, o.operation_time,u.u_name as uname
+		from operation o left join user u on o.u_id=u.u_id order by o.operation_id
+	</select>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from operation
 		where operation_id = #{operationId,jdbcType=INTEGER}

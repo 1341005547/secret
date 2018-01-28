@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.BaseStatistics">
+	<resultMap id="BaseResultMap" type="BaseStatisticsEntry">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="u_id" property="uid" jdbcType="INTEGER" />
+		<result column="time" property="time" jdbcType="DATE" />
+		<result column="dept_id" property="deptId" jdbcType="INTEGER" />
+		<result column="manual_result" property="manualResult" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="ExtendResultMap" type="BaseStatisticsEntry">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="u_id" property="uid" jdbcType="INTEGER" />
+		<result column="u_name" property="uname" jdbcType="VARCHAR"/>
+		<result column="time" property="time" jdbcType="DATE" />
+		<result column="dept_id" property="deptId" jdbcType="INTEGER" />
+		<result column="manual_result" property="manualResult" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="getApplyMsg" type="DealLeave">
+		<result property="uid"  column="uid"/>
+		<result property="deptId" column="deptId"/>
+		<result property="startTime" column="start"/>
+		<result property="endTime" column="endTime"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, u_id , time, dept_id , manual_result
+	</sql>
+	<sql id="Extend_Column_List">
+		base_statistics.id,base_statistics.u_id, user.u_name, base_statistics.time, base_statistics.dept_id , base_statistics.manual_result
+	</sql>
+	<!--获得部门/公司时间段内的迟到数据-->
+	<select id="selectStatistics" resultType="long"
+		parameterType="StatisticsCondition">
+		select
+		count(base_statistics.id)
+		from base_statistics
+		<where>
+			<if test="deptId != null">
+				base_statistics.dept_id = #{deptId,jdbcType=INTEGER}
+			</if>
+			<if test="startTime != null" >
+				AND
+				base_statistics.time <![CDATA[>=]]> #{startTime,jdbcType=DATE}
+				AND base_statistics.time <![CDATA[<=]]> #{endTime,jdbcType=DATE}
+			</if>
+			<if test="manualResult != null">
+				AND base_statistics.manual_result = #{manualResult,jdbcType=VARCHAR}
+			</if>
+		</where>
+
+	</select>
+	<!--获得部门总人数-->
+	<select id="selectCount" resultType="long"
+			parameterType="java.lang.Integer">
+		select
+		count(u_id)
+		from user
+		<if test="deptId != null ">
+			where d_id = #{deptId,jdbcType=INTEGER}
+		</if>
+	</select>
+	<!--获得统计数据-->
+	<select id="selectExcelData" resultMap="ExtendResultMap"
+			parameterType="StatisticsCondition">
+		select
+		<include refid="Extend_Column_List"/>
+		from base_statistics,user
+		WHERE base_statistics.u_id = user.u_id
+		<if test="deptId != null ">
+			AND
+			base_statistics.dept_id = #{deptId,jdbcType=INTEGER}
+		</if>
+		<if test="startTime != null" >
+			AND
+			base_statistics.time <![CDATA[>=]]> #{startTime,jdbcType=DATE}
+			AND base_statistics.time <![CDATA[<=]]> #{endTime,jdbcType=DATE}
+		</if>
+	</select>
+	<!--获得病假信息-->
+	<select id="getApplyMsg" resultType="DealLeave">
+		SELECT apply.u_id uid,user.d_id deptId,leave.leave_start_time startTime,leave.leave_end_time endTime
+        FROM apply,dept,`leave`,user
+        WHERE dept.d_id = user.d_id
+        AND leave.u_id = user.u_id
+        AND user.u_id = apply.u_id
+        AND apply.a_id= #{applyId,jdbcType=INTEGER};
+	</select>
+
+	<insert id="insert" parameterType="Base_Statistics" keyProperty="id" keyColumn="id" useGeneratedKeys="true" >
+		insert into base_statistics (u_id, time,
+		dept_id, manual_result)
+		values (#{uid,jdbcType=INTEGER},
+		#{time,jdbcType=DATE},#{deptId,jdbcType=INTEGER},
+		#{manualResult,jdbcType=VARCHAR})
+	</insert>
+</mapper>
