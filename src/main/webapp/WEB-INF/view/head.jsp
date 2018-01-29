@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
 <%String path=request.getContextPath(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -296,19 +296,26 @@
             <li><a href="toemail.html"><i class="fa fa-circle-o"></i> 邮箱</a></li>
           </ul>
         </li>
-       <li class="treeview">
+        <!-- 授权管理 -->
+       
+         <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>授权管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
+          
           <ul class="treeview-menu">
             <li><a href="power_look.html"><i class="fa fa-circle-o"></i> 我的权限</a></li>
             <li><a href="power_set.html"><i class="fa fa-circle-o"></i> 角色设定</a></li>
             <li><a href="power_give.html"><i class="fa fa-circle-o"></i> 权限分配</a></li>
           </ul>
+       
         </li>
+        
+        
+
     <!-- 系统管理 -->
       <li class="treeview">
           <a href="#">
@@ -318,6 +325,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
+          
              <li><a href="adver.html">公告管理</a></li>
              <li><a href="loglogin.html">登录日志</a></li>
              <li><a href="operate.html">操作日志</a></li>

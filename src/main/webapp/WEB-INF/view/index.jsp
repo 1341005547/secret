@@ -17,7 +17,7 @@
 		<iframe allowtransparency="true" frameborder="0" width="385"
 			height="96" scrolling="no"
 			src="https://tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=3&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=385&h=96&align=right"></iframe>
-		<img alt="崩坏3图片" src="<%=path%>/static/dist/img/credit/benghua3.jpg">
+		<img alt="办公图片" src="<%=path%>/static/bower_components/images/timg.jpg">
 		<!-- /.col -->
 		<!-- 功能显示开始 -->
 

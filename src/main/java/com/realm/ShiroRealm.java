@@ -53,18 +53,21 @@ public class ShiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		// TODO Auto-generated method stub
+		SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
 		String usercode= (String) principals.getPrimaryPrincipal();
 		Login login=ls.login(usercode);
 		Integer uid= login.getuId();
+		//System.out.println(uid);
 		List<String> roles=null;
 		List<User_role>  userRoles=urs.getUserRoles(uid);
 		for (User_role user_role : userRoles) {
 			Role role= rs.getRoles(user_role.getrId());
-			roles.add(role.getrName());
+			System.out.println(role.getrName());
+			info.addRole(role.getrName());
 		}
-	    Session session=SecurityUtils.getSubject().getSession();
-		session.setAttribute("roles", roles);
-		SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
+	    /*Session session=SecurityUtils.getSubject().getSession();
+		session.setAttribute("roles", roles);*/
+		//SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
 		info.addRoles(roles);
 		return info;
 	}
