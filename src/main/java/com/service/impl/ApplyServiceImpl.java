@@ -56,6 +56,48 @@ public class ApplyServiceImpl implements ApplyService{
 		return applyMapper.updateByPrimaryKeySelective(record);
 	}
 
+	@Override
+	public List<Apply> selectApplyGMDeal() {
+		// TODO Auto-generated method stub
+		return applyMapper.selectApplyGMDeal();
+	}
+
+	@Override
+	public int insertSelective(Apply record) {
+		// TODO Auto-generated method stub
+		return applyMapper.insertSelective(record);
+	}
+
+	@Override
+	public Apply showMaxApplyId() {
+		// TODO Auto-generated method stub
+		return applyMapper.showMaxApplyId();
+	}
+
+	@Override
+	public List<Apply> selectAccountDispathByUId(Integer uId) {
+		// TODO Auto-generated method stub
+		return applyMapper.selectAccountDispathByUId(uId);
+	}
+
+	@Override
+	public List<Apply> selectNeetGMDeal() {
+		// TODO Auto-generated method stub
+		return applyMapper.selectNeetGMDeal();
+	}
+
+	@Override
+	public List<Apply> selectAlldispatchBytId(Integer tId ) {
+		// TODO Auto-generated method stub
+		return applyMapper.selectAlldispatchBytId(tId);
+	}
+
+	@Override
+	public List<Apply> selectNeetGMdispatchDeal() {
+		// TODO Auto-generated method stub
+		return applyMapper.selectNeetGMdispatchDeal();
+	}
+
 
 
 }

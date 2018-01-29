@@ -18,6 +18,7 @@
 		u_id, u_name, u_start_time, u_end_time, u_phone, u_sex, u_img, u_state,
 		d_id, Professional_id
 	</sql>
+	
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select p.Professional_name professionalName,	
@@ -26,6 +27,9 @@
 		from user u INNER JOIN professional p ON u.Professional_id=p.Professional_id
 		where u_id = #{uId,jdbcType=INTEGER}
 	</select>
+	
+	
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from user
 		where u_id = #{uId,jdbcType=INTEGER}

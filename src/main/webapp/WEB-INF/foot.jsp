@@ -248,11 +248,5 @@
 <script src="<%=path %>/static/dist/js/demo.js"></script>
 
 
-<!-- 添加的样式 -->
-<script type="text/javascript" src="<%=path %>/static/bower_components/js/select.js"></script>
-<script type='text/javascript' src='<%=path %>/static/bower_components/js/jquery.js'></script>
-<script type="text/javascript" src="<%=path %>/static/bower_components/js/ddsmoothmenu.js"></script>
-<script type="text/javascript" src="<%=path %>/static/bower_components/js/function.js"></script>
-<!-- 添加的样式 -->
 </body>
 </html>

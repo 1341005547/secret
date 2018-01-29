@@ -15,9 +15,67 @@ public class Account_dispatch {
 
     private Date aDTime;
 
-    private Integer tId;
+    private Integer aId;
+    
+    private String uName;
+    
+    private String cdName;
+    
+    private String aEven;
+    
+    private String aState;
+    
+    private String rAResult;
+    
+    
+    
+    
+    
+    public String getrAResult() {
+		return rAResult;
+	}
 
-    public Integer getaDId() {
+	public void setrAResult(String rAResult) {
+		this.rAResult = rAResult;
+	}
+
+	public String getCdName() {
+		return cdName;
+	}
+
+	public void setCdName(String cdName) {
+		this.cdName = cdName;
+	}
+
+	public String getaEven() {
+		return aEven;
+	}
+
+	public void setaEven(String aEven) {
+		this.aEven = aEven;
+	}
+
+	public String getaState() {
+		return aState;
+	}
+
+	public void setaState(String aState) {
+		this.aState = aState;
+	}
+
+	public String getuName() {
+		return uName;
+	}
+
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
+
+	public Account_dispatch() {
+		super();
+	}
+
+	public Integer getaDId() {
         return aDId;
     }
 
@@ -65,11 +123,13 @@ public class Account_dispatch {
         this.aDTime = aDTime;
     }
 
-    public Integer gettId() {
-        return tId;
-    }
+	public Integer getaId() {
+		return aId;
+	}
 
-    public void settId(Integer tId) {
-        this.tId = tId;
-    }
+	public void setaId(Integer aId) {
+		this.aId = aId;
+	}
+
+   
 }

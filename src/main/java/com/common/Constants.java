@@ -13,7 +13,7 @@ public class Constants {
 
     public static final String POSITION_SM = "销售部经理";
     
-    public static final String POSITION_RDM = "研发部经理";
+    public static final String POSITION_RDM = "项目开发部经理";
     
     public static final String POSITION_PM = "人事部经理";
 
@@ -31,7 +31,7 @@ public class Constants {
     
     public static final String CLAIMVOUCHER_BACK = "已打回";
     
-    public static final String CLAIMVOUCHER_APPROVING = "待审批";
+    public static final String CLAIMVOUCHER_APPROVING = "待审核";
     
     public static final String CLAIMVOUCHER_APPROVED = "已审批";
 

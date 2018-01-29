@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/manage/css/manage.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- 分页 -->
+    <link rel="stylesheet" href="<%=path %>/static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 </head>
   <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">

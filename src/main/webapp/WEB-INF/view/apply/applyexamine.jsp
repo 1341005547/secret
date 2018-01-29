@@ -5,15 +5,7 @@
     <%String path=request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
-<script type="text/javascript">
-	function(){
-		$(.input_field){
-			
-		}
-	}
-	
-	
-</script>
+
 <head>
    <jsp:include page="../../head.jsp"></jsp:include> 
 </head>
@@ -45,7 +37,7 @@
             <table width="402" >
               <tr>
                 <td width="152" height="40">申请人：</td>
-                <td width="234">${UUser.uName }</td>
+                <td width="234">${UUser.uName } &nbsp;${UUser.professionalName }</td>
               </tr>
               <tr>
                 <td height="40">申请时间：</td>
@@ -65,6 +57,38 @@
                 	<td>${APPLY.aLeaveTime }</td>
               	</tr>
               </c:if>
+              <c:if test="${APPLY.aName=='报销' }">
+              	<tr>
+                	<td height="40">报销项：</td>
+                	<td>${APPLY.cdName }</td>
+              	</tr>
+              	<tr>
+                	<td height="40">报销金额：</td>
+                	<td>${APPLY.aDPrice } ￥</td>
+              	</tr>
+              	<tr>
+                	<td height="40">报销说明：</td>
+                	<td>${APPLY.aDExplain }</td>
+              	</tr>
+              </c:if>
+               <c:if test="${APPLY.aName=='调度' }">
+              	<tr>
+                	<td height="40">调度前部门  职位：</td>
+                	<td>${APPLY.dName } ${APPLY.pName }</td>
+              	</tr>
+              	<tr>
+                	<td height="40">调度后部门 职位：</td>
+                	<td>${APPLY.disdName } ${APPLY.dispName }</td>
+              	</tr>
+              	<tr>
+                	<td height="40">调度时间：</td>
+                	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${APPLY.dcTime }" type="time"/></td>
+              	</tr>
+              </c:if>
+               <tr>
+                <td height="40">申请状态：</td>
+                <td>${APPLY.aState }</td>
+              </tr>
               <tr>
                 <td height="40">申请意见：</td>
                 <td>望领导批准</td>
@@ -102,9 +126,14 @@
                         <option value="拒绝">拒绝</option>
                     </select><em style="color:#F00">&nbsp;*</em>
                     <div class="cleaner h10"></div>
+               <input type="hidden"  name="applydName" value="${APPLY.dName }"/>
+               <input type="hidden"  name="applydisdName" value="${APPLY.disdName }"/>
+               <input type="hidden"  name="applytype" value="${APPLY.aName }">
                <input type="hidden"  name="aId" value="${APPLY.aId }"/>             
                <input type="hidden" name="rADealUser" value="${User.uId }"/>
-               <input type="submit" value="我要提交" id="submit" name="submit" class="submit_btn float_l" />
+               <input type="hidden"name="aDPrice" value="${APPLY.aDPrice }">
+        		<input type="hidden"name="processId" value="${APPLY.processId} "/>
+               <input type="submit" value="提交" id="submit" name="submit" class="submit_btn float_l" />
                <input type="reset" value="重置" id="reset" name="reset" class="submit_btn float_r" />
               </form>
            </div>   

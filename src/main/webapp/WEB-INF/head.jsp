@@ -330,7 +330,7 @@
         </div>
         <div class="pull-left info">
           <p>${User.uName }</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> ${User.professionalName } Online</a>
         </div>
       </div>
       <!-- search form -->

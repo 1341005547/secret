@@ -33,6 +33,59 @@
       <div class="row">
         <div class="col-md-6">
            <h3 class="box-title">申请操作</h3>
+           
+   <a  class="btn btn-default btn-flat" data-toggle="modal" data-target="#myapply_dispatch">调度</a>
+            
+     
+    <div class="modal fade" id="myapply_dispatch" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog role=" document" style="width: 450px">
+		<div class="modal-content">
+			<!-- 内容-->
+			<div class="row">
+				<div class="col-md-4" style="margin: 13px; width: 450px">
+					
+					<div class="box box-widget widget-user-2">
+						
+					<form action="" method="post">
+					<div class="form-group has-feedback">
+						<input type="text"  class="form-control" placeholder="调度申请人" readonly="readonly">
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text"  class="form-control" placeholder="当前部门" readonly="readonly">
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text"  class="form-control" placeholder="当前职位" readonly="readonly">
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text"  class="form-control" placeholder="要调动的部门" >
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text"  class="form-control" placeholder="要调动的职位">
+					</div>
+					<div class="form-group has-feedback">
+						<input type="text"  class="form-control" placeholder="调度时间">
+					</div>
+				
+					<div class="row">
+						
+						<input type="submit" class="btn btn-block btn-facebook btn-flat">
+						<input type="reset" class="btn btn-block btn-google btn-flat">
+					</div>
+				</form>				
+					</div>
+				</div>
+			</div>
+			<!-- 内容-->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			</div>
+		</div>
+	</div>
+</div>
+     
+     
+
             
           <form action="" class="">
              <table  >
@@ -58,7 +111,6 @@
                   <tr ><td ><input type="submit" value="我要提交" id="submit" name="submit" class="submit_btn float_l" />
                     <input type="button" value="我要保存" id="submit" name="submit" class="submit_btn float_l" />
                     <input type="reset" value="重置" id="reset" name="reset" class="submit_btn float_r" /></td></tr>
-
                 </table>
           </form>
              
@@ -94,10 +146,9 @@
               <!-- 遍历循环传递数据 -->
               <!-- ============表头============= -->
 
-
                 <thead>
                 <tr>
-                  <th width="80" align="left"><input id="chk_SelectALL" type="checkbox" />全选</th>
+              
                   <th>申请编号</th>
                   <th>申请人</th>
                   <th>申请时间</th>
@@ -108,7 +159,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                <td><input type="checkbox" name="selectSub" /></td> 
+ 
                   <td>Trident</td>
                   <td><a href="applyexamine">Internet Explorer 4.0 </a></td>
                   <td>Win 95+</td>
@@ -174,12 +225,7 @@
 
     <!-- /.content -->
   </div>
- 
   <div class="control-sidebar-bg"></div>
-
-
-
-
 
  <jsp:include page="../../foot.jsp"></jsp:include> 
 
