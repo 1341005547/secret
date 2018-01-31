@@ -32,7 +32,7 @@ public class Result_applyController {
 	public String insert(Result_apply record,Double aDPrice,
 			String applytype,String applydName,String applydisdName,Integer processId ){	
 		
-		User user =(User) SecurityUtils.getSubject().getSession().getAttribute("User");
+		User user =(User) SecurityUtils.getSubject().getSession().getAttribute("user");
 		Apply apply = new Apply();
 		Process process = new Process();
 		if(user.getProfessionalName().equals(Constants.POSITION_SM) | 
@@ -81,13 +81,15 @@ public class Result_applyController {
 			
 		}else if (user.getProfessionalName().equals(Constants.POSITION_GM)) {
 			
+			apply.setaId(record.getaId());
+			apply.setaState("已审批");  //申请表的状态
+			
 			if(applytype.equals("调度")){
 				if(!applydName.equals(applydisdName)){
 					/**
 					 * 流程
 					 */
-					apply.setaId(record.getaId());
-					apply.setaState("已审批");  //申请表的状态
+					
 					process.setProcessId(processId); //流程表id
 					process.setProcessNextUId(null);	  //下一个处理人 5 总经理 
 					process.setaId(record.getaId());	// 申请单id	
@@ -97,26 +99,25 @@ public class Result_applyController {
 			}
 				
 				if(aDPrice != null && aDPrice != 0){
-					if(aDPrice>300){
 						/**
 						 * 流程
 						 */
-						apply.setaId(record.getaId());
-						apply.setaState("已审批");  //申请表的状态
+						
 						process.setProcessId(processId); //流程表id
 						process.setProcessNextUId(null);	  //下一个处理人 5 总经理 
 						process.setaId(record.getaId());	// 申请单id	
 						process.setProcessState("已审批");	// 流程状态
 						processService.updateByPrimaryKeySelective(process);
 						
-					}
 				}
 			
 		}
 		
 }
 		
-		applyService.updateByPrimaryKeySelective(apply);	
+		if(apply.getaId()!=null){
+			applyService.updateByPrimaryKeySelective(apply);
+		}	
 		record.setrADealTime(DateUtil.doConvertToDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
 		result_applyService.insert(record);	
 		return "redirect:applymanage";	

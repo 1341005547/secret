@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +16,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.common.Constants;
 import com.common.DateUtil;
+import com.dao.Account_dispatchMapper;
+import com.entity.Account_dispatch;
 import com.entity.Apply;
+import com.entity.Category_dispatch;
 import com.entity.Dept;
 import com.entity.Dispatch;
 import com.entity.Login;
 import com.entity.Professional;
 import com.entity.Type_apply;
+import com.entity.User;
+import com.service.ApplyService;
 import com.service.DeptService;
 import com.service.DispatchService;
 import com.service.MyApplyService;
 import com.service.ProfessionalService;
 import com.service.Type_applyService;
+import com.service.UserService;
 
 /**
  * 我的申请页面
@@ -51,6 +59,13 @@ public class MyApplyController {
 	
 	@Autowired
 	private DispatchService dispatchservice;
+	
+	@Autowired
+	private ApplyService applyService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private Account_dispatchMapper account_dispatchMapper;
 
 	/**
 	 * 进入提交页面,添加
@@ -154,18 +169,18 @@ public class MyApplyController {
 	@RequestMapping("dispatchToSubmit")
 	public String dispatchToSubmit(Dispatch record,Integer dept,Integer pro,Integer deptid,Integer profess){
 		Apply apply = new Apply();
-		Integer uId=(Integer) SecurityUtils.getSubject().getSession().getAttribute("login");
+		Login login=(Login) SecurityUtils.getSubject().getSession().getAttribute("login");
 		apply.setaSubmit(1);   //已经提交
 		apply.setaState("未审核");
 		apply.setaEven("申请调任");
 		apply.setaCreateTime(DateUtil.parseDateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
-		apply.setuId(uId);
-		apply.settId(3);
+		apply.setuId(login.getuId());
+		apply.settId(1);
 		myApplyService.insertSelective(apply);
 
 		int x=myApplyService.showMaxApplyId();
 		
-		record.setuId(uId);
+		record.setuId(login.getuId());
 		record.setDispatchCreateTime(DateUtil.parseDateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
 		//调动前的职位
 		record.setpId(pro);
@@ -180,7 +195,7 @@ public class MyApplyController {
 		
 		dispatchservice.insertSelective(record);
 		
-		return "redirect:applymanage";
+		return "redirect:myapply";
 	}
 	
 	
@@ -280,6 +295,102 @@ public class MyApplyController {
 		return "apply/myapply";
 	}
 
+
+	
+	
+	
+	
+	
+	
+	/**
+	 * 进入申请管理页面
+	 * @return
+	 */
+	@RequestMapping("applymanage")
+	public String applymanage(HttpServletRequest request,HttpSession session) {
+		List<Apply> applies = null;
+		Professional Professional =(Professional) SecurityUtils.getSubject().getSession().getAttribute("professional");
+		System.out.println(Professional.getProfessionalName());
+		User user =(User) SecurityUtils.getSubject().getSession().getAttribute("user");
+		if(!Professional.getProfessionalName().equals(Constants.POSITION_GM)&&!Professional.getProfessionalName().equals(Constants.POSITION_STAFF)){
+			applies = applyService.selectAllApplyBydId(user.getdId());
+			List<Apply> applies3 = applyService.selectAlldispatchBytId(user.getdId());
+			session.setAttribute("applies3", applies3);
+		}
+		if(user.getProfessionalName().equals(Constants.POSITION_GM)){
+			applies = applyService.selectApplyGMDeal();
+			List<Apply> applies2 = applyService.selectNeetGMDeal();
+			session.setAttribute("applies2", applies2);
+			List<Apply> applies3 = applyService.selectNeetGMdispatchDeal();
+			session.setAttribute("applies3", applies3);
+		}
+		session.setAttribute("applies", applies);
+		return "apply/applymanage";
+	}
+	/**
+	 * 进入报销管理页面
+	 * @return
+	 */
+	@RequestMapping("reimburseapplymanage")
+	public String reimburseapplymanage(HttpServletRequest request,HttpSession session) {
+		List<Account_dispatch> applies = null;
+		List<Category_dispatch> category_dispatchs = applyService.getAllCategotyDispatch();
+		request.setAttribute("category_dispatchs", category_dispatchs);
+		Professional Professional =(Professional) SecurityUtils.getSubject().getSession().getAttribute("professional");
+		User user =(User) SecurityUtils.getSubject().getSession().getAttribute("user");
+		System.out.println(user.getuId());
+		if(Professional.getProfessionalName().equals(Constants.POSITION_STAFF)){
+			applies = account_dispatchMapper.accountdispathDealByuId(user.getuId());
+		}
+		
+		session.setAttribute("reimburseapplies", applies);
+		
+		return "apply/reimburseapplymanage";
+	}
+	/**
+	 * 进入申请详情页面
+	 * @return
+	 */
+	@RequestMapping("applyexamine")
+	public String applyexamine(Integer uId, Integer aId,HttpServletRequest request,HttpSession session) {
+		User UUser = userService.selectByPrimaryKey(uId);
+		request.setAttribute("UUser", UUser);
+		@SuppressWarnings("unchecked")
+		List<Apply> applies =(List<Apply>) session.getAttribute("applies");
+		@SuppressWarnings("unchecked")
+		List<Apply> applies2 =  (List<Apply>)   session.getAttribute("applies2");
+		@SuppressWarnings("unchecked")
+		List<Apply> applies3 =  (List<Apply>)   session.getAttribute("applies3");
+		
+		if(applies!=null){
+			for (Apply apply : applies) {
+				if(apply.getaId()==aId){
+					request.setAttribute("APPLY", apply);
+					return "apply/applyexamine";
+				}
+			}
+		}
+		if(applies3!=null){
+			for (Apply apply3 : applies3) {
+				if(apply3.getaId()==aId){
+					request.setAttribute("APPLY", apply3);
+					return "apply/applyexamine";
+				}
+			}
+		}
+		if(applies2 !=null){
+			for (Apply apply2 : applies2) {
+				if(apply2.getaId()==aId){
+					request.setAttribute("APPLY", apply2);
+					return "apply/applyexamine";
+				}
+			}
+		}
+			
+		
+		return "apply/applyexamine";
+	}
+	
 
 
 

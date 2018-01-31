@@ -1660,7 +1660,7 @@ table.display tr.odd.row_selected td {
 }
 
 div.box {
-    height: 500px;
+   
     padding: 10px;
     overflow: auto;
     border: 1px solid #8080FF;

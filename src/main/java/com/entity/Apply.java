@@ -3,261 +3,271 @@ package com.entity;
 import java.util.Date;
 
 public class Apply {
-    private Integer aId;
+	private Integer aId;
 
-    private Integer tId;
+	private Integer tId;
 
-    private String aEven;
+	private String aEven;
 
-    private String aLeaveTime;
+	private String aLeaveTime;
 
-    private Date aCreateTime;
+	private Date aCreateTime;
 
-    private String aState;
+	private String aState;
 
-    private Integer uId;
-    
-    private Integer aSubmit;
-    /**
-     * 显示申请人名称
-     */
-    private String uName;
-    
-    /**
-     * 显示类型
-     */
-    private String aName;
-    
-    /**
-     * 显示最大申报单id
-     */
- private Integer maxAId; //最大的申请ID
-    
-    private String aDExplain; //报销单项说明
-    
-    private Double aDPrice;	//报销单项价格
-    	
-    private String cdName; //报销单项名字
-    
-    private String rAResult; //处理结果
-    
-    private Integer dId; 	//调动前部门id
-    private Integer disdId;  //调动后部门id
-    private Integer pId;	//调动前职位id
-    private Integer dpId;	 //调动后职位id
-    
-    private String dName; //调动前部门名
+	private Integer uId;
 
-    private String pName; //调动前职位名
-    
-    private String disdName; //调动后部门名字
-    
-    private String dispName; //调动后职位名
-    
-    private Date dcTime; //调动时间
-    
-   private Integer processId; //流程表id
+	private Integer aSubmit;
+	/**
+	 * 显示申请人名称
+	 */
+	private String uName;
 
-public Integer getaId() {
-	return aId;
-}
+	/**
+	 * 显示类型
+	 */
+	private String aName;
+	/**
+	 * 显示类型
+	 */
+	private String tName;
 
-public void setaId(Integer aId) {
-	this.aId = aId;
-}
+	/**
+	 * 显示最大申报单id
+	 */
+	private Integer maxAId; // 最大的申请ID
 
-public Integer gettId() {
-	return tId;
-}
+	private String aDExplain; // 报销单项说明
 
-public void settId(Integer tId) {
-	this.tId = tId;
-}
+	private Double aDPrice; // 报销单项价格
 
-public String getaEven() {
-	return aEven;
-}
+	private String cdName; // 报销单项名字
 
-public void setaEven(String aEven) {
-	this.aEven = aEven;
-}
+	private String rAResult; // 处理结果
 
-public String getaLeaveTime() {
-	return aLeaveTime;
-}
+	private Integer dId; // 调动前部门id
+	private Integer disdId; // 调动后部门id
+	private Integer pId; // 调动前职位id
+	private Integer dpId; // 调动后职位id
 
-public void setaLeaveTime(String aLeaveTime) {
-	this.aLeaveTime = aLeaveTime;
-}
+	private String dName; // 调动前部门名
 
-public Date getaCreateTime() {
-	return aCreateTime;
-}
+	private String pName; // 调动前职位名
 
-public void setaCreateTime(Date aCreateTime) {
-	this.aCreateTime = aCreateTime;
-}
+	private String disdName; // 调动后部门名字
 
-public String getaState() {
-	return aState;
-}
+	private String dispName; // 调动后职位名
 
-public void setaState(String aState) {
-	this.aState = aState;
-}
+	private Date dcTime; // 调动时间
 
-public Integer getuId() {
-	return uId;
-}
+	private Integer processId; // 流程表id
 
-public void setuId(Integer uId) {
-	this.uId = uId;
-}
+	public Integer getaId() {
+		return aId;
+	}
 
-public Integer getaSubmit() {
-	return aSubmit;
-}
+	public void setaId(Integer aId) {
+		this.aId = aId;
+	}
 
-public void setaSubmit(Integer aSubmit) {
-	this.aSubmit = aSubmit;
-}
+	public Integer gettId() {
+		return tId;
+	}
 
-public String getuName() {
-	return uName;
-}
+	public void settId(Integer tId) {
+		this.tId = tId;
+	}
 
-public void setuName(String uName) {
-	this.uName = uName;
-}
+	public String getaEven() {
+		return aEven;
+	}
 
-public String getaName() {
-	return aName;
-}
+	public void setaEven(String aEven) {
+		this.aEven = aEven;
+	}
 
-public void setaName(String aName) {
-	this.aName = aName;
-}
+	public String getaLeaveTime() {
+		return aLeaveTime;
+	}
 
-public Integer getMaxAId() {
-	return maxAId;
-}
+	public void setaLeaveTime(String aLeaveTime) {
+		this.aLeaveTime = aLeaveTime;
+	}
 
-public void setMaxAId(Integer maxAId) {
-	this.maxAId = maxAId;
-}
+	public Date getaCreateTime() {
+		return aCreateTime;
+	}
 
-public String getaDExplain() {
-	return aDExplain;
-}
+	public void setaCreateTime(Date aCreateTime) {
+		this.aCreateTime = aCreateTime;
+	}
 
-public void setaDExplain(String aDExplain) {
-	this.aDExplain = aDExplain;
-}
+	public String getaState() {
+		return aState;
+	}
 
-public Double getaDPrice() {
-	return aDPrice;
-}
+	public void setaState(String aState) {
+		this.aState = aState;
+	}
 
-public void setaDPrice(Double aDPrice) {
-	this.aDPrice = aDPrice;
-}
+	public Integer getuId() {
+		return uId;
+	}
 
-public String getCdName() {
-	return cdName;
-}
+	public void setuId(Integer uId) {
+		this.uId = uId;
+	}
 
-public void setCdName(String cdName) {
-	this.cdName = cdName;
-}
+	public Integer getaSubmit() {
+		return aSubmit;
+	}
 
-public String getrAResult() {
-	return rAResult;
-}
+	public void setaSubmit(Integer aSubmit) {
+		this.aSubmit = aSubmit;
+	}
 
-public void setrAResult(String rAResult) {
-	this.rAResult = rAResult;
-}
+	public String getuName() {
+		return uName;
+	}
 
-public Integer getdId() {
-	return dId;
-}
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
 
-public void setdId(Integer dId) {
-	this.dId = dId;
-}
+	public String getaName() {
+		return aName;
+	}
 
-public Integer getDisdId() {
-	return disdId;
-}
+	public void setaName(String aName) {
+		this.aName = aName;
+	}
 
-public void setDisdId(Integer disdId) {
-	this.disdId = disdId;
-}
+	public Integer getMaxAId() {
+		return maxAId;
+	}
 
-public Integer getpId() {
-	return pId;
-}
+	public void setMaxAId(Integer maxAId) {
+		this.maxAId = maxAId;
+	}
 
-public void setpId(Integer pId) {
-	this.pId = pId;
-}
+	public String getaDExplain() {
+		return aDExplain;
+	}
 
-public Integer getDpId() {
-	return dpId;
-}
+	public void setaDExplain(String aDExplain) {
+		this.aDExplain = aDExplain;
+	}
 
-public void setDpId(Integer dpId) {
-	this.dpId = dpId;
-}
+	public Double getaDPrice() {
+		return aDPrice;
+	}
 
-public String getdName() {
-	return dName;
-}
+	public void setaDPrice(Double aDPrice) {
+		this.aDPrice = aDPrice;
+	}
 
-public void setdName(String dName) {
-	this.dName = dName;
-}
+	public String getCdName() {
+		return cdName;
+	}
 
-public String getpName() {
-	return pName;
-}
+	public void setCdName(String cdName) {
+		this.cdName = cdName;
+	}
 
-public void setpName(String pName) {
-	this.pName = pName;
-}
+	public String getrAResult() {
+		return rAResult;
+	}
 
-public String getDisdName() {
-	return disdName;
-}
+	public void setrAResult(String rAResult) {
+		this.rAResult = rAResult;
+	}
 
-public void setDisdName(String disdName) {
-	this.disdName = disdName;
-}
+	public Integer getdId() {
+		return dId;
+	}
 
-public String getDispName() {
-	return dispName;
-}
+	public void setdId(Integer dId) {
+		this.dId = dId;
+	}
 
-public void setDispName(String dispName) {
-	this.dispName = dispName;
-}
+	public Integer getDisdId() {
+		return disdId;
+	}
 
-public Date getDcTime() {
-	return dcTime;
-}
+	public void setDisdId(Integer disdId) {
+		this.disdId = disdId;
+	}
 
-public void setDcTime(Date dcTime) {
-	this.dcTime = dcTime;
-}
+	public Integer getpId() {
+		return pId;
+	}
 
-public Integer getProcessId() {
-	return processId;
-}
+	public void setpId(Integer pId) {
+		this.pId = pId;
+	}
 
-public void setProcessId(Integer processId) {
-	this.processId = processId;
-}
-   
-    
+	public Integer getDpId() {
+		return dpId;
+	}
+
+	public void setDpId(Integer dpId) {
+		this.dpId = dpId;
+	}
+
+	public String getdName() {
+		return dName;
+	}
+
+	public void setdName(String dName) {
+		this.dName = dName;
+	}
+
+	public String getpName() {
+		return pName;
+	}
+
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+
+	public String getDisdName() {
+		return disdName;
+	}
+
+	public void setDisdName(String disdName) {
+		this.disdName = disdName;
+	}
+
+	public String getDispName() {
+		return dispName;
+	}
+
+	public void setDispName(String dispName) {
+		this.dispName = dispName;
+	}
+
+	public Date getDcTime() {
+		return dcTime;
+	}
+
+	public void setDcTime(Date dcTime) {
+		this.dcTime = dcTime;
+	}
+
+	public Integer getProcessId() {
+		return processId;
+	}
+
+	public void setProcessId(Integer processId) {
+		this.processId = processId;
+	}
+
+	public String gettName() {
+		return tName;
+	}
+
+	public void settName(String tName) {
+		this.tName = tName;
+	}
 
 }

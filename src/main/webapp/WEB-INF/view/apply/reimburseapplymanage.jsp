@@ -15,7 +15,7 @@
 
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header" style="margin-top: 55px">
+    <section class="content-header" style="margin-top: 0px">
       <h1>
         报销管理
         <small>To submit an expense account management</small>
@@ -50,7 +50,7 @@
                  <table style="width: 90%" class="addform-base" >
                             <tr>
                                 <td><h4>*填报人：</h4></td>
-                                <td><h4>${User.uName }</h4></td>
+                                <td><h4>${user.uName }</h4></td>
                                 <td><h4>*填报时间：</h4></td>
                                 <td><h4><input type="text" id="status" name="" value="<%=(new java.util.Date()).toLocaleString()%>"
                                      readonly="readonly"  /></h4></td>
@@ -160,7 +160,7 @@
 					                <td> ${account_dispatch.cdName }</td>
 					                <td>${account_dispatch.aState }</td>
 					                <td>
-					                	<c:if test="${User.professionalName!='员工' }">
+					                	<c:if test="${user.professionalName!='员工' }">
 					                		<a href="applyexamine?uId=${account_dispatch.uId }&aId=${account_dispatch.aId}" class="more">审核</a>&nbsp;
 					                	 </c:if>
 					                	
@@ -234,32 +234,6 @@ function accountdispathDeal(applyaId){
 </div>
 
 
-           
-           
-
-             <div class="row">
-              <div class="col-sm-5">
-                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-              </div>
-              <div class="col-sm-7">
-                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                  <ul class="pagination">
-                    <li class="paginate_button previous disabled" id="example1_previous">
-                      <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
-                    </li>
-                    <li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li>
-                    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a></li>
-                    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li>
-                    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li>
-                    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li>
-                    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">6</a></li>
-                    <li class="paginate_button next" id="example1_next">
-                      <a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
            </div>
 
      
@@ -268,6 +242,33 @@ function accountdispathDeal(applyaId){
 
   
    <jsp:include page="../foot.jsp"></jsp:include> 
+   <script>
+			$(function() {
+
+				$('#example1').DataTable({
+
+					searching : true,//屏蔽datatales的查询框  
+					aLengthMenu : [ 5, 10 ],//设置一页展示10条记录  
+
+					"oLanguage" : { //对表格国际化  
+						"sLengthMenu" : "每页显示 _MENU_条",
+						"sZeroRecords" : "没有找到符合条件的数据",
+						//  "sProcessing": "&lt;img src=’./loading.gif’ /&gt;",    
+						"sInfo" : "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+						"sInfoEmpty" : "木有记录",
+						"sInfoFiltered" : "(从 _MAX_ 条记录中过滤)",
+						"sSearch" : "搜索：",
+						"oPaginate" : {
+							"sFirst" : "首页",
+							"sPrevious" : "前一页",
+							"sNext" : "后一页",
+							"sLast" : "尾页"
+
+						}
+					},
+				})
+			})
+		</script>
 </body>
 </html>
 

@@ -12,14 +12,14 @@
 <jsp:include page="../head.jsp"></jsp:include>
 <link href="<%=path %>/static/bower_components/css/templatemo_style.css" rel="stylesheet" type="text/css" />
 
-    <link href="<%=path %>/static/bower_components/fonts/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<%=path %>/static/bower_components/css/animate.min.css" rel="stylesheet">
+    <%-- <link href="<%=path %>/static/bower_components/fonts/css/font-awesome.min.css" rel="stylesheet"> --%>
+    <%-- <link href="<%=path %>/static/bower_components/css/animate.min.css" rel="stylesheet"> --%>
 
     <!-- Custom styling plus plugins -->
     <link href="<%=path %>/static/bower_components/css/custom.css" rel="stylesheet">
-    <link rel="<%=path %>/static/bower_components/stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
+    <%-- <link rel="<%=path %>/static/bower_components/stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
     <link href="<%=path %>/static/bower_components/css/icheck/flat/green.css" rel="stylesheet">
-    <link href="<%=path %>/static/bower_components/css/floatexamples.css" rel="stylesheet" />
+    <link href="<%=path %>/static/bower_components/css/floatexamples.css" rel="stylesheet" /> --%>
 <script type="text/javascript">
 	function Check(name) {
 
@@ -49,9 +49,12 @@
 					<h1 style="color:red">
 						查看申请 <small>Look application</small>
 					</h1>
-					<div id="panel-element-288445" class="panel-collapse in">
-						<div class="panel-body">申报管理模块-查看申请-该页面信息</div>
-					</div>
+					
+					<ol class="breadcrumb">
+						<li><a href="#"><i class="fa fa-dashboard"></i>申报管理模块</a></li>
+						<li><a href="#">查看申请</a></li>
+						<li class="active">该页面信息</li>
+					</ol>
 				</div>
 				<div class="panel panel-default">
 					<div class="panel-heading">

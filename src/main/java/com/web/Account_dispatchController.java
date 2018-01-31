@@ -29,7 +29,7 @@ public class Account_dispatchController {
 	@RequestMapping("account_dispatchAdd")
 	public String insert(Account_dispatch account_dispatch,String aEven){
 		
-		User user =(User) SecurityUtils.getSubject().getSession().getAttribute("User");
+		User user =(User) SecurityUtils.getSubject().getSession().getAttribute("user");
 		
 		Apply apply = new Apply();
 		

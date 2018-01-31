@@ -110,7 +110,7 @@
             <div id="contact_form">
                <form method="post" name="contact" action="result_applyAdd">
                  <label for="email">审核人：</label>
-                 <input type="text" id="title" class="input_field" value="${User.uName }" readonly="readonly" />
+                 <input type="text" id="title" class="input_field" value="${user.uName }" readonly="readonly" />
                     <em style="color:#F00">&nbsp;*</em>
                  <div class="cleaner h10"></div>
                  <label for="email">审核建议：</label>
@@ -130,7 +130,7 @@
                <input type="hidden"  name="applydisdName" value="${APPLY.disdName }"/>
                <input type="hidden"  name="applytype" value="${APPLY.aName }">
                <input type="hidden"  name="aId" value="${APPLY.aId }"/>             
-               <input type="hidden" name="rADealUser" value="${User.uId }"/>
+               <input type="hidden" name="rADealUser" value="${user.uId }"/>
                <input type="hidden"name="aDPrice" value="${APPLY.aDPrice }">
         		<input type="hidden"name="processId" value="${APPLY.processId} "/>
                <input type="submit" value="提交" id="submit" name="submit" class="submit_btn float_l" />

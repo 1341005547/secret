@@ -8,10 +8,10 @@
 		<result column="a_d_price" property="aDPrice" jdbcType="DOUBLE" />
 		<result column="a_d_explain" property="aDExplain" jdbcType="VARCHAR" />
 		<result column="a_d_time" property="aDTime" jdbcType="TIMESTAMP" />
-		<result column="t_id" property="tId" jdbcType="INTEGER" />
+		<result column="a_id" property="aId" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		a_d_id, u_id, c_d_id, a_d_price, a_d_explain, a_d_time, t_id
+		a_d_id, u_id, c_d_id, a_d_price, a_d_explain, a_d_time, a_id
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -57,11 +57,11 @@
 	<insert id="insert" parameterType="Account_dispatch">
 		insert into account_dispatch (a_d_id, u_id, c_d_id,
 		a_d_price, a_d_explain, a_d_time,
-		t_id)
+		a_id)
 		values (#{aDId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER},
 		#{cDId,jdbcType=INTEGER},
 		#{aDPrice,jdbcType=DOUBLE}, #{aDExplain,jdbcType=VARCHAR}, #{aDTime,jdbcType=TIMESTAMP},
-		#{tId,jdbcType=INTEGER})
+		#{aId,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective" parameterType="Account_dispatch">
 		insert into account_dispatch
@@ -84,8 +84,8 @@
 			<if test="aDTime != null">
 				a_d_time,
 			</if>
-			<if test="tId != null">
-				t_id,
+			<if test="aId != null">
+				a_id,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -107,8 +107,8 @@
 			<if test="aDTime != null">
 				#{aDTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="tId != null">
-				#{tId,jdbcType=INTEGER},
+			<if test="aId != null">
+				#{aId,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>
@@ -130,8 +130,8 @@
 			<if test="aDTime != null">
 				a_d_time = #{aDTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="tId != null">
-				t_id = #{tId,jdbcType=INTEGER},
+			<if test="aId != null">
+				a_id = #{aId,jdbcType=INTEGER},
 			</if>
 		</set>
 		where a_d_id = #{aDId,jdbcType=INTEGER}
@@ -143,7 +143,7 @@
 		a_d_price = #{aDPrice,jdbcType=DOUBLE},
 		a_d_explain = #{aDExplain,jdbcType=VARCHAR},
 		a_d_time = #{aDTime,jdbcType=TIMESTAMP},
-		t_id = #{tId,jdbcType=INTEGER}
+		a_id = #{aId,jdbcType=INTEGER}
 		where a_d_id = #{aDId,jdbcType=INTEGER}
 	</update>
 </mapper>
