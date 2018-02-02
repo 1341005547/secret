@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.PostMapper">
+	<resultMap id="BaseResultMap" type="PostDispatch">
+		<id column="dispatchId" property="dispatchId" jdbcType="INTEGER" />
+		<result column="loginUsercode" property="loginUsercode"
+			jdbcType="VARCHAR" />
+		<result column="dispatchCreateTime" property="dispatchCreateTime"
+			jdbcType="DATE" />
+		<result column="beforePost" property="beforePost" jdbcType="VARCHAR" />
+		<result column="afterPost" property="afterPost" jdbcType="VARCHAR" />
+		<result column="uname" property="uname" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="PostDispatchDetailMap" type="PostDispatchDetail">
+
+
+	</resultMap>
+
+	<select id="selectPostMsg" resultMap="BaseResultMap">
+		SELECT
+		x.a dispatchId,x.c
+		loginUsercode,x.d dispatchCreateTime,x.g uname,x.e beforePost,y.f
+		afterPost
+		FROM
+		(select dispatch.dispatch_id a,login.login_usercode
+		c,dispatch.dispatch_create_time d, user.u_id
+		,professional.Professional_name e,`user`.u_name
+		g,dispatch_apply.dispatch_apply_even
+		from user INNER JOIN dispatch on
+		user.u_id = dispatch.u_id
+		LEFT OUTER JOIN login on user.u_id =
+		login.u_id
+		LEFT OUTER JOIN dispatch_apply on dispatch_apply.u_id =
+		`user`.u_id
+		LEFT OUTER JOIN professional on
+		professional.Professional_id =
+		`user`.d_id) x
+		INNER JOIN
+		(SELECT
+		`user`.u_name,professional.Professional_name
+		f,result_apply.r_a_result,result_apply.r_a_opinion,dispatch.dispatch_id
+		b
+		from `user` INNER JOIN dispatch on dispatch_u_id = `user`.u_id
+		LEFT
+		JOIN professional ON user.Professional_id =
+		professional.Professional_id
+		LEFT JOIN
+		result_apply on
+		result_apply.r__a_deal_user = `user`.u_id) y
+		on x.a =
+		y.b
+	</select>
+	<select id="selectPostMsgDetail" resultMap="PostDispatchDetailMap">
+		SELECT
+		x.a
+		dispatchId,x.b loginUsercode,x.c dispatchCreateTime,x.d,x.e
+		beforePost,x.f uname,x.g dispatchNote,y.h afterPost,y.i
+		dispatchResult,y.j dispatchOpinion,y.k dispatchName
+		FROM
+		(select
+		dispatch.dispatch_id a,login.login_usercode
+		b,dispatch.dispatch_create_time c, user.u_id
+		d,professional.Professional_name e,`user`.u_name
+		f,dispatch_apply.dispatch_apply_even g
+		from user INNER JOIN dispatch on
+		user.u_id = dispatch.u_id
+		LEFT OUTER JOIN login on user.u_id =
+		login.u_id
+		LEFT OUTER JOIN dispatch_apply on dispatch_apply.u_id =
+		`user`.u_id
+		LEFT OUTER JOIN professional on
+		professional.Professional_id =
+		`user`.d_id) x
+		INNER JOIN
+		(SELECT
+		`user`.u_name k,professional.Professional_name
+		h,result_apply.r_a_result i,result_apply.r_a_opinion
+		j,dispatch.dispatch_id b
+		from `user` INNER JOIN dispatch on
+		dispatch.dispatch_u_id = `user`.u_id
+		LEFT JOIN professional ON
+		user.Professional_id =
+		professional.Professional_id
+		LEFT JOIN
+		result_apply on result_apply.r__a_deal_user = `user`.u_id) y
+		on x.a =
+		y.b
+		and x.a = #{dispatchId}
+	</select>
+	<select id="selectMatters" parameterType="MatterDept">
+		select `user`.u_id uid
+		,`user`.u_name uname,dept.d_name deptName,professional.professional_name professionalName,`user`.u_phone uphone,`user`.u_state ustate
+		from user INNER JOIN professional on professional.Professional_id =
+		`user`.Professional_id
+		INNER JOIN dept on dept.d_id = `user`.d_id where
+		professional.Professional_id=2
+	</select>
+</mapper>

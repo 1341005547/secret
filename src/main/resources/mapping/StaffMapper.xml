@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.StaffMapper">
+	<resultMap type="Staff" id="BaseResultMap">
+		<id column="u_id" property="uId" jdbcType="INTEGER" />
+		<result column="login_usercode" property="loginUsercode"
+			jdbcType="VARCHAR" />
+		<result column="u_name" property="uname" jdbcType="VARCHAR" />
+		<result column="u_sex" property="usex" jdbcType="VARCHAR" />
+		<result column="d_name" property="dname" jdbcType="VARCHAR" />
+		<result column="professional_name" property="professionName"
+			jdbcType="VARCHAR" />
+		<result column="u_state" property="ustate" jdbcType="VARCHAR" />
+
+		<result column="u_email" property="uemail" jdbcType="VARCHAR" />
+		<result column="u_img" property="uimg" jdbcType="VARCHAR" />
+		<result column="u_start_time" property="uStartTime" jdbcType="TIMESTAMP" />
+		<result column="u_end_time" property="uEndTime" jdbcType="TIMESTAMP" />
+		<result column="u_phone" property="uphone" jdbcType="VARCHAR" />
+		<result column="d_id" property="dId" jdbcType="INTEGER" />
+		<result column="professional_id" property="professionId"
+			jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- 实现员工列表 -->
+	<select id="SelectStaff" resultMap="BaseResultMap">
+		select
+		u.u_id, l.login_usercode,u.u_name,u.u_sex
+		,d.d_name,p.Professional_name ,u.u_state
+		from login l,user u ,dept
+		d,professional p
+		where u.u_id = l.u_id and u.d_id=d.d_id and
+		u.Professional_id =p.Professional_id
+		GROUP BY l.login_usercode
+		ORDER BY l.login_id ASC
+	</select>
+
+	<!-- 通讯录列表 -->
+	<select id="SelectAddress" resultMap="BaseResultMap">
+		select
+		l.login_usercode,d.d_name,p.Professional_name,u.* from user u
+		LEFT JOIN login l on u.u_id=l.u_id
+		LEFT JOIN dept d ON u.d_id=d.d_id
+		LEFT JOIN professional p ON u.Professional_id=p.Professional_id
+		order by u.u_id
+	</select>
+
+</mapper>

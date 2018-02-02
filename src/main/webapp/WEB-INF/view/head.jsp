@@ -239,20 +239,22 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">首页</li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i> <span>人事管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>         
-          <ul class="treeview-menu">
-            <li><a href="department.html"><i class="fa fa-circle-o"></i> 部门管理</a></li>            
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> 员工管理</a></li>
-            <li><a href="index3.html"><i class="fa fa-circle-o"></i> 调动管理</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> 通讯录管理</a></li>
-          </ul>
-        </li>
+   	<li class="treeview"><a href="#"> <i
+					class="fa fa-dashboard"></i> <span>人事管理</span> <span
+					class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu" id="menu">
+					<li><a href="department.html"><i class="fa fa-circle-o"></i>
+							部门管理</a></li>
+					<li><a href="staff.html"><i class="fa fa-circle-o"></i>
+							员工管理</a></li>
+					<li><a href="post.html"><i class="fa fa-circle-o"></i>
+							调动管理</a></li>
+					<li><a href="address.html"><i class="fa fa-circle-o"></i>
+							通讯录管理</a></li>
+				</ul></li>
      <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i> <span>日程管理</span>

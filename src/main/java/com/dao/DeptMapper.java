@@ -26,4 +26,6 @@ public interface DeptMapper {
 	 * 查询所有部门
 	 */
 	List<Dept> getAllDept();
+	
+	List<Dept> selectList();
 }

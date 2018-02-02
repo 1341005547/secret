@@ -191,4 +191,15 @@
 	   from user
 	   where u_email=#{uEmail,jdbcType=VARCHAR}
 	</select>
+	
+	<!-- 下面为自己添加的方法 -->
+	<select id="selectUserByPhone" parameterType="String" resultMap="BaseResultMap">
+		select * from user where u_phone=#{uPhone}
+	</select>
+	
+	<!-- 删除用户信息 -->
+	<delete id="deleteUserAndLoginByUid" parameterType="int">
+		delete user ,login  from user LEFT JOIN login  on user.u_id=login.u_id
+		where user.u_id=#{uId}
+	</delete>
 </mapper>
