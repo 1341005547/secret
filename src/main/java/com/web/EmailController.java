@@ -100,10 +100,10 @@ public class EmailController {
 		      msginfo.setMsgTitle(title);
 		      msginfo.setMsgContent(context);
 		      msginfo.setMsgState("未读");
-		      msginfo.setMsgSendtoUId(null);
+		      
 		      msginfo.setMsgCreateTime(new Date());
 		      User touser=userService.getUserByUemal(toEmail);
-		      msginfo.setMsgSendtoUId(touser.getuId());
+		    /*  msginfo.setMsgSendtoUId(touser.getuId());*/
 		     /* 把东西存到信箱表中*/
 		      msgService.insertByMsgInfo(msginfo);
 		     return "email/emailtest";

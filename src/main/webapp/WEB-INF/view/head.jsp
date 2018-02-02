@@ -46,11 +46,15 @@
 			data : {},
 			dataType : "json",
 			success : function(data) {
-				if($("#spanqq").text().trim()=="[未签到] [未签退]"){
-					$("#spanqq").text("[已签到] [未签退]");
+				if($("#spanqq").text().trim()=="[未签到] [未签退]"){	
+					$("#spanqq").text("[已签到] [未签退]");				
+					$("#signIn").addClass('btn btn-primary btn-xs');				
+					$("#signIn").attr('data-toggle', 'modal');			
+					$("#signIn").attr('disabled', 'disabled');
 					return false;
 					}
 				if (data.msg == "已签到") {
+					
 					alert("您今天已经签过到了");
 					
 					
@@ -69,15 +73,16 @@
 			dataType : "json",
 			success : function(data) {
 				if($("#spanqq").text().trim()=="[已签到] [未签退]"){
-					$("#spanqq").text("[已签到] [已签退]");	
+					$("#spanqq").text("[已签到] [已签退]");
+					$("#signBack").addClass('btn btn-primary btn-xs');				
+					$("#signBack").attr('data-toggle', 'modal');			
+					$("#signBack").attr('disabled', 'disabled');
 					return false;
 					}
 				if (data.msg =="未签到") {
 					alert('您还没签到，请先签到');
 					return false;
 				} else if (data.msg =="已签退") {
-					
-					
 					alert('您已经签过退了！');
 									
 					return false;
@@ -161,10 +166,15 @@
 								</li>
 								<li>
 									<div id="newsletter" align="center">
-										<input type="submit" value="签到" title="我要签到"
-											class="subscribebtn more"
+										<input type="submit" value="签到" title="我要签到" id="signIn"
+										<c:if
+											test="${outmasi.omsState==1||outmasi.omsState==0 || outmasi.omsState==2 || outmasi.omsState==3 || outmasi.omsState==4}">class="btn btn-primary btn-xs" data-toggle="modal" disabled
+										</c:if>							
 											style="border-right: #FFF solid 2px" onclick="return inreg()" />
-										<input type="submit" value="签退" title="我要签退"
+											
+										<input type="submit" value="签退" title="我要签退" id="signBack" 
+										<c:if
+											test="${outmasi.omsState==0 || outmasi.omsState==2 || outmasi.omsState==3 || outmasi.omsState==4}">class="btn btn-primary btn-xs" data-toggle="modal" disabled</c:if>
 											class="subscribebtn" style="border-right: #FFF solid 2px;"
 											onclick="return outreg();" />
 
