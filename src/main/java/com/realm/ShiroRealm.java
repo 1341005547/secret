@@ -1,5 +1,6 @@
 package com.realm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import com.entity.Dept;
 import com.entity.Login;
+import com.entity.Permission;
 import com.entity.Professional;
 import com.entity.Role;
 import com.entity.User;
@@ -49,6 +51,10 @@ public class ShiroRealm extends AuthorizingRealm {
     private DeptService ds;//部门表
     @Autowired
     private ProfessionalService ps;//职位表
+    
+    @Autowired
+	private RoleService roleService;
+    
 	//授权
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -58,17 +64,22 @@ public class ShiroRealm extends AuthorizingRealm {
 		Login login=ls.login(usercode);
 		Integer uid= login.getuId();
 		//System.out.println(uid);
-		List<String> roles=null;
+		List<String> per_name_list =new ArrayList<String>();
 		List<User_role>  userRoles=urs.getUserRoles(uid);
-		for (User_role user_role : userRoles) {
+		
+		List<Permission> per_list = roleService.getPerNameListByUid(uid);
+		/*for (User_role user_role : userRoles) {
 			Role role= rs.getRoles(user_role.getrId());
 			System.out.println(role.getrName());
-			info.addRole(role.getrName());
-		}
+			roles.add(role.getrName());
+		}*/
 	    /*Session session=SecurityUtils.getSubject().getSession();
 		session.setAttribute("roles", roles);*/
 		//SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
-		info.addRoles(roles);
+		for (Permission i : per_list) {
+			per_name_list.add(i.getPermissionName());
+		}
+		info.addStringPermissions(per_name_list);
 		return info;
 	}
     
