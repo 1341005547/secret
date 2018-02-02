@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.MatterMapper">
+
+
+
+	<select id="selectMatters" resultType="MatterDept">
+		select
+		dept.d_id deptId,dept.d_name deptName,p.b uid,p.c uname,p.d
+		professionalName,p.f uphone,p.g ustate
+		from dept
+		LEFT JOIN (select `user`.u_id b ,`user`.u_name c,`user`.d_id
+		a,professional.professional_name d,professional.Professional_id
+		e,`user`.u_phone f,`user`.u_state g
+		from `user` INNER JOIN professional on `user`.Professional_id =
+		professional.Professional_id WHERE professional.Professional_id = 2)p
+		on p.a = dept.d_id
+	</select>
+</mapper>

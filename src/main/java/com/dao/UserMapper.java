@@ -23,4 +23,13 @@ public interface UserMapper {
     
     //通过部门号，得到部门成员集合
     List<User> selectByDept_id(Integer dId);
+    
+    /**获得所有员工信息*/
+    List<User> selectUser();
+    
+    /**根据联系方式获得用户信息*/
+    User selectUserByPhone(String uPhone);
+    
+    /**根据用户id删除用户和登陆表*/
+    int deleteUserAndLoginByUid(Integer uid);
 }

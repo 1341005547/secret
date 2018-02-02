@@ -65,7 +65,8 @@ public class EmailController {
 	 */
 	@RequestMapping("doemail.html")
 	public String toemail(String host,Integer port,String emailname,String emailpassword,String toEmail,String title,String message,String context ){
-		
+		     System.setProperty("java.net.preferIPv4Stack", "true");
+ 
 		      SimpleEmail mail = new SimpleEmail();
 		      // 设置邮箱服务器信息25
 		      mail.setSmtpPort(port);
@@ -89,8 +90,8 @@ public class EmailController {
 				  // 发送邮件
 				  mail.send();
 			} catch (EmailException e) {
-				//e.printStackTrace();
-				System.out.println("失败，请重试");
+				e.printStackTrace();
+				//System.out.println("失败，请重试");
 			}
 	     // System.out.println("发送成功");
 		      Msg_info msginfo=new Msg_info();
@@ -100,7 +101,7 @@ public class EmailController {
 		      msginfo.setMsgTitle(title);
 		      msginfo.setMsgContent(context);
 		      msginfo.setMsgState("未读");
-		      msginfo.setMsgSendtoUId(null);
+		      //msginfo.setMsgSendtoUId(null);
 		      msginfo.setMsgCreateTime(new Date());
 		      User touser=userService.getUserByUemal(toEmail);
 		      msginfo.setMsgSendtoUId(touser.getuId());

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.Staff_InfoMapper">
+	<resultMap type="Staff_Info" id="BaseResultMap">
+		<id column="u_id" property="uId" jdbcType="INTEGER" />
+		<result column="u_name" property="uName" jdbcType="VARCHAR" />
+		<result column="u_start_time" property="uStartTime" jdbcType="TIMESTAMP" />
+		<result column="u_end_time" property="uEndTime" jdbcType="TIMESTAMP" />
+		<result column="u_phone" property="uPhone" jdbcType="VARCHAR" />
+		<result column="u_sex" property="uSex" jdbcType="VARCHAR" />
+		<result column="u_img" property="uImg" jdbcType="VARCHAR" />
+		<result column="u_state" property="uState" jdbcType="VARCHAR" />
+		<result column="d_id" property="dId" jdbcType="INTEGER" />
+		<result column="Professional_id" property="professionalId"
+			jdbcType="INTEGER" />
+		<result column="login_usercode" property="loginUsercode"
+			jdbcType="INTEGER" />
+		<result column="d_Name" property="dName" jdbcType="VARCHAR" />
+		<result column="professional_name" property="professionalName"
+			jdbcType="VARCHAR" />
+		<result column="r_name" property="rName" jdbcType="VARCHAR" />
+
+	</resultMap>
+
+	<!-- 员工详情里诶白哦 -->
+	<select id="selectStaff_InfoById" resultMap="BaseResultMap" parameterType="int">
+		select
+		u.*,l.login_usercode,group_concat(r.r_name)r_name,d.d_name,p.Professional_name
+		from user u
+		LEFT JOIN login l on u.u_id=l.u_id
+		LEFT JOIN user_role ur ON ur.u_id=u.u_id
+		LEFT JOIN role r on ur.r_id=r.r_id
+		LEFT JOIN dept d ON d.d_id=u.d_id
+		LEFT JOIN professional p ON p.Professional_id=u.Professional_id
+		where u.u_id=#{uId}
+		GROUP BY u.u_id
+	</select>
+
+</mapper>
