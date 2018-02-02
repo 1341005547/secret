@@ -14,4 +14,8 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    /**
+     * 通过邮箱查询用户
+     */
+    User getUserByUemal(String uEmail);
 }

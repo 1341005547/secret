@@ -9,7 +9,7 @@ import com.entity.Login;
 import com.service.LoginService;
 
 /**
- * 用户登陆接口实现
+ * 用户登录接口实现
  * @author Administrator
  *
  */
@@ -17,7 +17,7 @@ import com.service.LoginService;
 public class LoginServiceImpl implements LoginService {
    
 	/**
-	 * 登陆业务现实
+	 * 登录业务现实
 	 */
 	@Autowired
 	private  LoginMapper mapper;

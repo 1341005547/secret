@@ -9,13 +9,14 @@
 		<result column="u_phone" property="uPhone" jdbcType="VARCHAR" />
 		<result column="u_sex" property="uSex" jdbcType="VARCHAR" />
 		<result column="u_img" property="uImg" jdbcType="VARCHAR" />
+		<result column="u_email" property="uEmail" jdbcType="VARCHAR" />
 		<result column="u_state" property="uState" jdbcType="VARCHAR" />
 		<result column="d_id" property="dId" jdbcType="INTEGER" />
 		<result column="Professional_id" property="professionalId"
 			jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		u_id, u_name, u_start_time, u_end_time, u_phone, u_sex, u_img, u_state,
+		u_id, u_name, u_start_time, u_end_time, u_phone, u_sex, u_img,u_email, u_state,
 		d_id, Professional_id
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
@@ -32,12 +33,12 @@
 	<insert id="insert" parameterType="User">
 		insert into user (u_id, u_name, u_start_time,
 		u_end_time, u_phone, u_sex,
-		u_img, u_state, d_id,
+		u_img, u_email,u_state, d_id,
 		Professional_id)
 		values (#{uId,jdbcType=INTEGER}, #{uName,jdbcType=VARCHAR},
 		#{uStartTime,jdbcType=TIMESTAMP},
 		#{uEndTime,jdbcType=TIMESTAMP}, #{uPhone,jdbcType=VARCHAR}, #{uSex,jdbcType=VARCHAR},
-		#{uImg,jdbcType=VARCHAR}, #{uState,jdbcType=VARCHAR},
+		#{uImg,jdbcType=VARCHAR},  #{uEmail,jdbcType=VARCHAR},#{uState,jdbcType=VARCHAR},
 		#{dId,jdbcType=INTEGER},
 		#{professionalId,jdbcType=INTEGER})
 	</insert>
@@ -64,6 +65,9 @@
 			</if>
 			<if test="uImg != null">
 				u_img,
+			</if>
+			<if test="uEmail != null">
+				u_email,
 			</if>
 			<if test="uState != null">
 				u_state,
@@ -97,6 +101,9 @@
 			<if test="uImg != null">
 				#{uImg,jdbcType=VARCHAR},
 			</if>
+			<if test="uEmail != null">
+				#{uEmail,jdbcType=VARCHAR},
+			</if>
 			<if test="uState != null">
 				#{uState,jdbcType=VARCHAR},
 			</if>
@@ -129,6 +136,9 @@
 			<if test="uImg != null">
 				u_img = #{uImg,jdbcType=VARCHAR},
 			</if>
+			<if test="uEmail != null">
+				u_img = #{uEmail,jdbcType=VARCHAR},
+			</if>
 			<if test="uState != null">
 				u_state = #{uState,jdbcType=VARCHAR},
 			</if>
@@ -149,9 +159,17 @@
 		u_phone = #{uPhone,jdbcType=VARCHAR},
 		u_sex = #{uSex,jdbcType=VARCHAR},
 		u_img = #{uImg,jdbcType=VARCHAR},
+		u_email = #{uEmail,jdbcType=VARCHAR},
 		u_state = #{uState,jdbcType=VARCHAR},
 		d_id = #{dId,jdbcType=INTEGER},
 		Professional_id = #{professionalId,jdbcType=INTEGER}
 		where u_id = #{uId,jdbcType=INTEGER}
 	</update>
+	<!-- 使用邮箱查询用户 -->
+	<select id="getUserByUemal" resultMap="BaseResultMap" parameterType="java.lang.String">
+	   select 
+	   <include refid="Base_Column_List" /> 
+	   from user
+	   where u_email=#{uEmail,jdbcType=VARCHAR}
+	</select>
 </mapper>

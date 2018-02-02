@@ -15,9 +15,9 @@ public class Scheduledept {
 
     private Date scheduledeptCreateTime;
 
-    private Integer dId;
+    private Integer d_id;
 
-    public Integer getScheduledeptId() {
+	public Integer getScheduledeptId() {
         return scheduledeptId;
     }
 
@@ -65,11 +65,11 @@ public class Scheduledept {
         this.scheduledeptCreateTime = scheduledeptCreateTime;
     }
 
-    public Integer getdId() {
-        return dId;
-    }
+    public Integer getD_id() {
+		return d_id;
+	}
 
-    public void setdId(Integer dId) {
-        this.dId = dId;
-    }
+	public void setD_id(Integer d_id) {
+		this.d_id = d_id;
+	}
 }

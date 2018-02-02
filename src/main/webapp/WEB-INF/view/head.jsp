@@ -32,6 +32,8 @@
    <link rel="stylesheet" href="static/bower_components/manage/css/manage.css">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- 分页 -->
+  <link rel="stylesheet" href="<%=path%>/static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 </head>
   <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
@@ -330,7 +332,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">首页</li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>人事管理</span>
             <span class="pull-right-container">
@@ -338,7 +340,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> 部门管理</a></li>
+            <li><a href="index.html"><i class="fa fa-circle-o"></i> 部门管理</a></li>
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> 员工管理</a></li>
             <li><a href="index3.html"><i class="fa fa-circle-o"></i> 调动管理</a></li>
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> 通讯录管理</a></li>
@@ -346,17 +348,14 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>日程管理</span>
+            <i class="fa fa-files-o"></i> <span>日程管理</span>
             <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
+              <span class="fa fa-angle-left pull-right"></span>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+            <li><a href="/scheduleempl"><i class="fa fa-circle-o"></i>我的日程</a></li>
+            <li><a href="/scheduledept"><i class="fa fa-circle-o"></i>部门日程</a></li>
           </ul>
         </li>
         <li>

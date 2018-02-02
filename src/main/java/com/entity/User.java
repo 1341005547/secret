@@ -17,6 +17,7 @@ public class User {
 
     private String uImg;
 
+    private String uEmail;
     private String uState;
 
     private Integer dId;
@@ -79,7 +80,17 @@ public class User {
         this.uImg = uImg == null ? null : uImg.trim();
     }
 
-    public String getuState() {
+    
+    
+    public String getuEmail() {
+		return uEmail;
+	}
+
+	public void setuEmail(String uEmail) {
+		this.uEmail = uEmail;
+	}
+
+	public String getuState() {
         return uState;
     }
 
