@@ -51,6 +51,7 @@ public class ScheduledeptServiceImpl implements ScheduledeptService {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * 根据u_id获取当天日程
 	 */
 	@Override
@@ -60,6 +61,8 @@ public class ScheduledeptServiceImpl implements ScheduledeptService {
 	}
 	
 	/**
+=======
+>>>>>>> branch 'master' of https://github.com/1341005547/secret.git
 	 * 按主键删除部门日程
 	 */
 	@Override

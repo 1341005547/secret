@@ -1,17 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%String path=request.getContextPath(); %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
-</head>
-<body>
 <!-- ============================================================底部内容================================================== -->
-  <!-- /.content-wrapper -->
-
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
+<footer class="main-footer">
+    <div class="pull-right hidden-xs" style="padding-bottom:0px;">
       <b>Version</b> 2.4.0
     </div>
     <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
@@ -133,7 +123,9 @@
 
       </div>
       <!-- /.tab-pane -->
-
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <!-- /.tab-pane -->
       <!-- Settings tab content -->
       <div class="tab-pane" id="control-sidebar-settings-tab">
         <form method="post">
@@ -245,7 +237,7 @@
 <script src="<%=path %>/static/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<%=path %>/static/dist/js/demo.js"></script>
-	<!-- 分页 -->
+<!-- 分页 -->
 <script src="<%=path%>/static/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script	src="<%=path%>/static/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 </body>

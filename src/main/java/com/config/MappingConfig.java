@@ -11,9 +11,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
+/**
+ * mybatis 配置文件
+ * @author Administrator
+ *
+ */
 @Configuration
 public class MappingConfig {
-     
+     /**
+      * 获取SqlSessionFactory 
+      * @param dataSource
+      * @return
+      */
 	@Bean
 	public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource){
 		SqlSessionFactoryBean ssf=new SqlSessionFactoryBean();
@@ -28,7 +37,10 @@ public class MappingConfig {
 		ssf.setTypeAliasesPackage("com.entity");
 		return ssf;
 	}
-	
+	/**
+	 * 自动生成mybatis dao的实现类
+	 * @return
+	 */
 	@Bean
 	public MapperScannerConfigurer mapperScannerConfigurer(){
 		MapperScannerConfigurer msc=new MapperScannerConfigurer();

@@ -6,12 +6,15 @@
 		<result column="u_id" property="uId" jdbcType="INTEGER" />
 		<result column="dispatch_u_id" property="dispatchUId" jdbcType="INTEGER" />
 		<result column="dispatch_create_time" property="dispatchCreateTime"
-			jdbcType="INTEGER" />
+			jdbcType="TIMESTAMP" />
+		<result column="a_id" property="aId" jdbcType="INTEGER" />
 		<result column="p_id" property="pId" jdbcType="INTEGER" />
 		<result column="dispatch_p_id" property="dispatchPId" jdbcType="INTEGER" />
+		<result column="d_id" property="dId" jdbcType="INTEGER" />
+		<result column="dispatch_d_id" property="dispatchDId" jdbcType="INTEGER" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		dispatch_id, u_id, dispatch_u_id, dispatch_create_time, p_id, dispatch_p_id
+		dispatch_id, u_id, dispatch_u_id, dispatch_create_time,a_id, p_id, dispatch_p_id, d_id, dispatch_d_id
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -26,12 +29,12 @@
 	</delete>
 	<insert id="insert" parameterType="Dispatch">
 		insert into dispatch (dispatch_id, u_id, dispatch_u_id,
-		dispatch_create_time, p_id, dispatch_p_id
+		dispatch_create_time,a_id, p_id, dispatch_p_id, d_id, dispatch_d_id
 		)
 		values (#{dispatchId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER},
 		#{dispatchUId,jdbcType=INTEGER},
-		#{dispatchCreateTime,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER},
-		#{dispatchPId,jdbcType=INTEGER}
+		#{dispatchCreateTime,jdbcType=INTEGER},#{aId,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER},
+		#{dispatchPId,jdbcType=INTEGER}, #{dId,jdbcType=INTEGER},, #{dispatchDId,jdbcType=INTEGER},
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="Dispatch">
@@ -49,11 +52,20 @@
 			<if test="dispatchCreateTime != null">
 				dispatch_create_time,
 			</if>
+			<if test="aId != null">
+				a_id,
+			</if>
 			<if test="pId != null">
 				p_id,
 			</if>
 			<if test="dispatchPId != null">
 				dispatch_p_id,
+			</if>
+			<if test="dId != null">
+				d_id,
+			</if>
+			<if test="dispatchDId != null">
+				dispatch_d_id,
 			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -67,13 +79,22 @@
 				#{dispatchUId,jdbcType=INTEGER},
 			</if>
 			<if test="dispatchCreateTime != null">
-				#{dispatchCreateTime,jdbcType=INTEGER},
+				#{dispatchCreateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="aId != null">
+				#{aId,jdbcType=INTEGER},
 			</if>
 			<if test="pId != null">
 				#{pId,jdbcType=INTEGER},
 			</if>
 			<if test="dispatchPId != null">
 				#{dispatchPId,jdbcType=INTEGER},
+			</if>
+			<if test="dId != null">
+				#{dId,jdbcType=INTEGER},
+			</if>
+			<if test="dispatchDId != null">
+				#{dispatchDId,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>
@@ -87,13 +108,22 @@
 				dispatch_u_id = #{dispatchUId,jdbcType=INTEGER},
 			</if>
 			<if test="dispatchCreateTime != null">
-				dispatch_create_time = #{dispatchCreateTime,jdbcType=INTEGER},
+				dispatch_create_time = #{dispatchCreateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="aId != null">
+				a_id = #{pId,jdbcType=INTEGER},
 			</if>
 			<if test="pId != null">
 				p_id = #{pId,jdbcType=INTEGER},
 			</if>
 			<if test="dispatchPId != null">
 				dispatch_p_id = #{dispatchPId,jdbcType=INTEGER},
+			</if>
+			<if test="dId != null">
+				d_id = #{dId,jdbcType=INTEGER},
+			</if>
+			<if test="dispatchDId != null">
+				dispatch_d_id = #{dispatchDId,jdbcType=INTEGER},
 			</if>
 		</set>
 		where dispatch_id = #{dispatchId,jdbcType=INTEGER}
@@ -103,8 +133,11 @@
 		set u_id = #{uId,jdbcType=INTEGER},
 		dispatch_u_id = #{dispatchUId,jdbcType=INTEGER},
 		dispatch_create_time = #{dispatchCreateTime,jdbcType=INTEGER},
+		a_id = #{aId,jdbcType=INTEGER},
 		p_id = #{pId,jdbcType=INTEGER},
-		dispatch_p_id = #{dispatchPId,jdbcType=INTEGER}
+		dispatch_p_id = #{dispatchPId,jdbcType=INTEGER},
+		d_id = #{dId,jdbcType=INTEGER},
+		dispatch_d_id = #{dispatchDId,jdbcType=INTEGER}
 		where dispatch_id = #{dispatchId,jdbcType=INTEGER}
 	</update>
 </mapper>

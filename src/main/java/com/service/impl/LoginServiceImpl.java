@@ -28,4 +28,28 @@ public class LoginServiceImpl implements LoginService {
 		return mapper.selectByloginUsercode(usercode);
 	}
 
+	@Override
+	public Login selectByPrimaryKey(Integer loginId) {
+		// TODO Auto-generated method stub
+		return mapper.selectByPrimaryKey(loginId);
+	}
+
+	
+	@Override
+	public int addLogin(Login login) {
+		// TODO Auto-generated method stub
+		return mapper.insert(login);
+	}
+
+	@Override
+	public Login getLoginByUsercode(String usercode) {
+		// TODO Auto-generated method stub
+		return mapper.selectByloginUsercode(usercode);
+	}
+
+	@Override
+	public int updateLoginByUid(Login login) {
+		// TODO Auto-generated method stub
+		return mapper.updateByPrimaryKeySelective(login);
+	}
 }

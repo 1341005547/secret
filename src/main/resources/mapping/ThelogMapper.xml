@@ -16,22 +16,44 @@
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
-		<include refid="Base_Column_List" />
-		from thelog
-		where thelog_id = #{thelogId,jdbcType=INTEGER}
+		u.u_name as uname,t.thelog_id, t.u_id, t.thelog_login_time, t.thelog_out_time, t.thelog_ip
+		from thelog t left join user u on t.u_id=u.u_id where t.thelog_id = #{thelogId,jdbcType=INTEGER}
 	</select>
+	
+	<select id="selectLog" resultMap="BaseResultMap">
+		select
+		u.u_name as uname,t.thelog_id, t.u_id, t.thelog_login_time, t.thelog_out_time, t.thelog_ip
+		from thelog t left join user u on t.u_id=u.u_id order by t.thelog_id
+	</select>
+	
+	<!-- 根据logId查询信息 -->
+	<select id="selectAllLog" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		thelog_id, u_id, thelog_login_time, thelog_out_time, thelog_ip
+		from thelog  where thelog_id = #{thelogId,jdbcType=INTEGER} 
+	</select>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from thelog
 		where thelog_id = #{thelogId,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="Thelog">
-		insert into thelog (thelog_id, u_id, thelog_login_time,
+		<!-- keyProperty是实体bean中的属性，这个方法是。。。。。。。。。。。 -->
+		 <selectKey keyProperty="thelogId" resultType="int">  
+            select LAST_INSERT_ID()  
+        </selectKey> 
+	
+		insert into thelog (u_id, thelog_login_time,
 		thelog_out_time, thelog_ip)
-		values (#{thelogId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER},
+		values (#{uId,jdbcType=INTEGER},
 		#{thelogLoginTime,jdbcType=TIMESTAMP},
 		#{thelogOutTime,jdbcType=TIMESTAMP}, #{thelogIp,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="Thelog">
+		<selectKey keyProperty="thelogId" resultType="int">  
+            select LAST_INSERT_ID()  
+        </selectKey> 
+	
 		insert into thelog
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="thelogId != null">
@@ -68,6 +90,18 @@
 			</if>
 		</trim>
 	</insert>
+	
+	<!-- 根据日志登陆时间设置退出时间 -->
+	<update id="updateByKey" parameterType="Thelog">
+		update thelog 
+		<set>
+			<if test="thelogOutTime != null">
+				thelog_out_time = #{thelogOutTime,jdbcType=TIMESTAMP}
+			</if>
+		</set>
+		  where thelog_id = #{thelogId,jdbcType=INTEGER}
+	</update>
+	
 	<update id="updateByPrimaryKeySelective" parameterType="Thelog">
 		update thelog
 		<set>
@@ -94,4 +128,15 @@
 		thelog_ip = #{thelogIp,jdbcType=VARCHAR}
 		where thelog_id = #{thelogId,jdbcType=INTEGER}
 	</update>
+	
+	<!-- 根据id更新退出时间 -->
+	<update id="updatetime" parameterType="Thelog">
+		update thelog
+		set thelog_out_time = #{thelogOutTime,jdbcType=TIMESTAMP},
+		thelog_login_time = #{thelogLoginTime,jdbcType=TIMESTAMP},
+		thelog_out_time = #{thelogOutTime,jdbcType=TIMESTAMP},
+		thelog_ip = #{thelogIp,jdbcType=VARCHAR}
+		where thelog_id = #{thelogId,jdbcType=INTEGER}
+	</update>
+	
 </mapper>

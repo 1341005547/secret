@@ -2,6 +2,10 @@ package com.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Thelog {
     private Integer thelogId;
 
@@ -12,8 +16,18 @@ public class Thelog {
     private Date thelogOutTime;
 
     private String thelogIp;
+    
+    private String uname;
 
-    public Integer getThelogId() {
+    public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+	public Integer getThelogId() {
         return thelogId;
     }
 
@@ -29,6 +43,8 @@ public class Thelog {
         this.uId = uId;
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getThelogLoginTime() {
         return thelogLoginTime;
     }
@@ -37,6 +53,8 @@ public class Thelog {
         this.thelogLoginTime = thelogLoginTime;
     }
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss") 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public Date getThelogOutTime() {
         return thelogOutTime;
     }

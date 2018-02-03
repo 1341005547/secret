@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
 	String path = request.getContextPath();
 %>
@@ -94,9 +95,11 @@
 
 								<button type="submit" class="btn btn-primary btn-sm"
 									data-toggle="modal" onclick="return Check('save')" name="save"
-									id="save">提交</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-primary btn-sm"
-									href="showscheduleempl">查看日程</a>
+									id="save">提交</button><br><br>
+							</center>
+							<center>
+								<a class="btn btn-primary btn-sm"
+									href="showscheduleempl">查看日程详情</a>
 							</center>
 						</form>
 					</div>

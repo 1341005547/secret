@@ -56,4 +56,10 @@
 		set c_d_name = #{cDName,jdbcType=VARCHAR}
 		where c_d_id = #{cDId,jdbcType=INTEGER}
 	</update>
+	
+		<select id="getAllCategotyDispatch" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from category_dispatch
+	</select>
 </mapper>

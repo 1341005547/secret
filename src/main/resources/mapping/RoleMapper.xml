@@ -5,9 +5,11 @@
 		<id column="r_id" property="rId" jdbcType="INTEGER" />
 		<result column="r_name" property="rName" jdbcType="VARCHAR" />
 		<result column="r_user" property="rUser" jdbcType="INTEGER" />
+		<result column="r_content" property="r_Content" jdbcType="VARCHAR" />
+		<result column="r_create_time" property="r_Create_Time" jdbcType="DATE" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		r_id, r_name, r_user
+		r_id, r_name, r_user,r_content,r_create_time
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -16,15 +18,44 @@
 		from role
 		where r_id = #{rId,jdbcType=INTEGER}
 	</select>
+	
+	
+	<!-- 按uid和create_id查找到c_id有，而uid没有的角色对象 -->
+	<select id="selectRoleListByUidCreate_uid" resultMap="BaseResultMap"
+		>
+		
+		select 
+		<include refid="Base_Column_List" />
+		FROM role 
+		where r_id not in (select r_id from user_role where u_id = #{uId})
+			and r_id in (select r_id from role where r_user = #{rUser})
+		
+	</select>
+	<select id="selectCreateRoleListByUid" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from role
+		where r_user = #{rUser,jdbcType=INTEGER}
+	</select>
+	<select id="selectByRoleNameUid" resultMap="BaseResultMap" >
+		select <include refid="Base_Column_List" /> 
+		from role 
+		where r_name = #{rName} and 
+			r_user = #{rUser}
+	</select>
+	
+	
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from role
 		where r_id = #{rId,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="Role">
-		insert into role (r_id, r_name, r_user
+		insert into role (r_id, r_name, r_user,r_content,r_create_time
 		)
 		values (#{rId,jdbcType=INTEGER}, #{rName,jdbcType=VARCHAR},
-		#{rUser,jdbcType=INTEGER}
+		#{rUser,jdbcType=INTEGER},#{r_Content,jdbcType=VARCHAR},#{r_Create_Time,jdbcType=DATE}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="Role">
@@ -39,6 +70,12 @@
 			<if test="rUser != null">
 				r_user,
 			</if>
+			<if test="r_Content != null">
+				r_content,
+			</if>
+			<if test="r_Create_Time != null">
+				r_create_time,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="rId != null">
@@ -49,6 +86,12 @@
 			</if>
 			<if test="rUser != null">
 				#{rUser,jdbcType=INTEGER},
+			</if>
+			<if test="r_Content != null">
+				#{r_content,jdbcType=VARCHAR},
+			</if>
+			<if test="r_Create_Time != null">
+				#{r_create_time,jdbcType=DATE},
 			</if>
 		</trim>
 	</insert>
@@ -61,13 +104,21 @@
 			<if test="rUser != null">
 				r_user = #{rUser,jdbcType=INTEGER},
 			</if>
+			<if test="r_Content != null">
+				r_content = #{r_Content,jdbcType=VARCHAR},
+			</if>
+			<if test="r_Create_Time != null">
+				r_create_time = #{r_Create_Time,jdbcType=DATE},
+			</if>
 		</set>
 		where r_id = #{rId,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="Role">
 		update role
 		set r_name = #{rName,jdbcType=VARCHAR},
-		r_user = #{rUser,jdbcType=INTEGER}
+		r_user = #{rUser,jdbcType=INTEGER},
+		r_content = #{r_Content,jdbcType=VARCHAR},
+		r_create_time = #{r_Create_Time,jdbcType=DATE}
 		where r_id = #{rId,jdbcType=INTEGER}
 	</update>
 

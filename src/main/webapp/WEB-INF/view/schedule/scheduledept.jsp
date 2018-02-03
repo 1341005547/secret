@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -73,13 +74,16 @@
 		<!-- Main content -->
 		<section class="content">
 		<div class="row">
+		
 			<div class="col-md-3">
 				<div class="box box-solid">
-					<div class="box-header with-border">
-						<h4 class="box-title">新建日程</h4>
-					</div>
+					<shiro:hasPermission name="部门经理权限">
+						<div class="box-header with-border">
+							<h4 class="box-title">新建日程</h4>
+						</div>
+					</shiro:hasPermission>
 					<div class="box-body">
-
+						<shiro:hasPermission name="部门经理权限">
 						<form name="create_calender" id="create_calender" action=""
 							method="post" onsubmit="return Check()">
 							日程内容：<input type="text" style="height: 30px; width: 70%"
@@ -94,11 +98,14 @@
 
 								<button type="submit" class="btn btn-primary btn-sm"
 									data-toggle="modal" onclick="return Check('save')" 
-									name="save" id="save" >提交</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-primary btn-sm"
-									href="showscheduledept">查看日程</a>
+									name="save" id="save" >提交</button><br><br>
 							</center>
 						</form>
+						</shiro:hasPermission>
+							<center>
+								 <a class="btn btn-primary btn-sm"
+									href="showscheduledept">查看日程详情</a>
+							</center>
 					</div>
 				</div>
 			</div>

@@ -19,7 +19,11 @@ import org.springframework.context.annotation.PropertySource;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-
+/**
+ * 数据库链接配置文件
+ * @author Administrator
+ *
+ */
 
 @Configuration
 @PropertySource("classpath:jdbc.properties")//使用c3p0时使用jdbc.properties属性文件

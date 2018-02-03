@@ -10,6 +10,10 @@
 	<sql id="Base_Column_List">
 		r_p_id, r_id, permission_id
 	</sql>
+	<select id="sesectByRid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select <include refid="Base_Column_List"/>
+		from role_permission where r_id = #{rId,jdbcType=INTEGER}
+	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
@@ -21,6 +25,16 @@
 		delete from role_permission
 		where r_p_id = #{rPId,jdbcType=INTEGER}
 	</delete>
+	
+	
+	
+	<!-- 按rid删除 -->
+	<delete id="deleteRolePermissionByRid" parameterType="java.lang.Integer">
+		delete from role_permission
+		where r_id = #{rId,jdbcType=INTEGER}
+	</delete>
+	
+	
 	<insert id="insert" parameterType="Role_permission">
 		insert into role_permission (r_p_id, r_id, permission_id
 		)

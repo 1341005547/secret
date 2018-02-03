@@ -1,5 +1,7 @@
 package com.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +21,17 @@ public class ProfessionalServiceImpl implements ProfessionalService {
 		// TODO Auto-generated method stub
 		return professionalMapper.selectByPrimaryKey(pid);
 	}
+	@Override
+	public Professional getProfessionalByUId(Integer uId) {
+		// TODO Auto-generated method stub
+		return professionalMapper.getProfessionalByUId(uId);
+	}
 
+
+	@Override
+	public List<Professional> getAllPro() {
+		// TODO Auto-generated method stub
+		return professionalMapper.getAllPro();
+	}
+	
 }

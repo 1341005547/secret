@@ -58,4 +58,14 @@
 		set Professional_name = #{professionalName,jdbcType=VARCHAR}
 		where Professional_id = #{professionalId,jdbcType=INTEGER}
 	</update>
+	<!-- 申请流程 -->
+		<select id="getProfessionalByUId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		SELECT p.*, u.u_id uId FROM professional p INNER JOIN USER u ON p.professional_id = u.Professional_id WHERE u.u_id = #{uId}
+	</select>
+	
+	<select id="getAllPro" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List"/>
+		from professional
+	</select>
 </mapper>

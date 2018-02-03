@@ -19,13 +19,32 @@
 		u_id, u_name, u_start_time, u_end_time, u_phone, u_sex, u_img,u_email, u_state,
 		d_id, Professional_id
 	</sql>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+<!-- 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
 		from user
 		where u_id = #{uId,jdbcType=INTEGER}
+	</select> -->
+	<!-- 权限需加SQL语句 -->
+	<select id="selectByDept_id" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where d_id = #{dId,jdbcType=INTEGER}
 	</select>
+	<!-- 调动 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select p.Professional_name professionalName,	
+		u.u_id, u.u_name, u.u_start_time, u.u_end_time, u.u_phone, u.u_sex, u.u_img, u.u_state,
+		u.d_id,u.Professional_id
+		from user u INNER JOIN professional p ON u.Professional_id=p.Professional_id
+		where u_id = #{uId,jdbcType=INTEGER}
+	</select>
+	
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from user
 		where u_id = #{uId,jdbcType=INTEGER}
@@ -172,4 +191,15 @@
 	   from user
 	   where u_email=#{uEmail,jdbcType=VARCHAR}
 	</select>
+	
+	<!-- 下面为自己添加的方法 -->
+	<select id="selectUserByPhone" parameterType="String" resultMap="BaseResultMap">
+		select * from user where u_phone=#{uPhone}
+	</select>
+	
+	<!-- 删除用户信息 -->
+	<delete id="deleteUserAndLoginByUid" parameterType="int">
+		delete user ,login  from user LEFT JOIN login  on user.u_id=login.u_id
+		where user.u_id=#{uId}
+	</delete>
 </mapper>

@@ -5,6 +5,7 @@
 %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,9 @@
 										<th>结束时间</th>
 										<th>创建时间</th>
 										<th>状态</th>
-										<th>操作</th>
+										<shiro:hasPermission name="部门经理权限">
+											<th>操作</th>
+										</shiro:hasPermission>
 									</tr>
 								</thead>
 								<tbody>
@@ -68,7 +71,8 @@
 														未完成
 													</c:otherwise>
 												</c:choose></td>
-											<td><c:choose>
+											<shiro:hasPermission name="部门经理权限">
+												<td><c:choose>
 													<c:when
 														test="${nowDate - scheduledept.scheduledeptEndTime.time > 0}">
 														<a class="btn btn-primary btn-xs" data-toggle="modal"
@@ -80,9 +84,11 @@
 															>修改</a>&nbsp;
 													</c:otherwise>
 												</c:choose> 
-												<a class="btn btn-primary btn-xs" data-toggle="modal"
-												href="delScheduledept/${scheduledept.scheduledeptId}" class="more"
-												onclick="if(confirm('确定删除?')==false)return false;">删除</a></td>
+													<a class="btn btn-primary btn-xs" data-toggle="modal"
+													href="delScheduledept/${scheduledept.scheduledeptId}" class="more"
+													onclick="if(confirm('确定删除?')==false)return false;">删除</a>
+												</td>
+											</shiro:hasPermission>	
 										</tr>
 									</c:forEach>
 								</tbody>

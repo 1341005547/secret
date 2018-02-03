@@ -1,7 +1,11 @@
 package com.entity;
 
 import java.util.Date;
-
+/**
+ * 考勤
+ * @author Administrator
+ *
+ */
 public class Oa_manual_sign {
     private Integer omsId;
 
@@ -12,8 +16,73 @@ public class Oa_manual_sign {
     private Date omsEndTime;
 
     private String omsState;
+    
+    private User user;
+    
+    private Professional professional;
+    
+    private String deptName;
+    //查询出来的月份
+    private String month;
+    //查询出来的出勤天数
+    private Integer quantity;
+    //出勤率
+    private int per;
+    
+    
+    
+  
 
-    public Integer getOmsId() {
+
+	public int getPer() {
+		return per;
+	}
+
+	public void setPer(int per) {
+		this.per = per;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public Professional getProfessional() {
+		return professional;
+	}
+
+	public void setProfessional(Professional professional) {
+		this.professional = professional;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getOmsId() {
         return omsId;
     }
 

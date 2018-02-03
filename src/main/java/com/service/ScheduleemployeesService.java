@@ -32,6 +32,7 @@ public interface ScheduleemployeesService {
 	List showcalendar(Integer u_id);
 	
 	/**
+<<<<<<< HEAD
 	 * 根据u_id获取当天日程
 	 * @param u_id
 	 * @return
@@ -39,6 +40,8 @@ public interface ScheduleemployeesService {
     List getTodayScheduleempl(Integer u_id);
 	
 	/**
+=======
+>>>>>>> branch 'master' of https://github.com/1341005547/secret.git
 	 * 按主键删除个人日程
 	 * @param s_id
 	 * @return

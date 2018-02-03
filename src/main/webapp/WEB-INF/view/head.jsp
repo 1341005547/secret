@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
+
 <%String path=request.getContextPath(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,21 +23,90 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<%=path %>/static/dist/css/skins/_all-skins.min.css">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="static/bower_components/morris.js/morris.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/morris.js/morris.css">
   <!-- jvectormap -->
-  <link rel="stylesheet" href="static/bower_components/jvectormap/jquery-jvectormap.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/jvectormap/jquery-jvectormap.css">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="static/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="static/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="<%=path %>/static/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- 管理模块样式 -->
-   <link rel="stylesheet" href="static/bower_components/manage/css/manage.css">
+   <link rel="stylesheet" href="<%=path %>/static/bower_components/manage/css/manage.css">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <!-- 分页 -->
-  <link rel="stylesheet" href="<%=path%>/static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+
+<script type="text/javascript">
+
+	function inreg() {
+		$.ajax({
+			type : "post",
+			url : "statisticsinreg", //向springboot请求数据的url
+			data : {},
+			dataType : "json",
+			success : function(data) {
+				if($("#spanqq").text().trim()=="[未签到] [未签退]"){	
+					$("#spanqq").text("[已签到] [未签退]");				
+					$("#signIn").addClass('btn btn-primary btn-xs');				
+					$("#signIn").attr('data-toggle', 'modal');			
+					$("#signIn").attr('disabled', 'disabled');
+					return false;
+					}
+				if (data.msg == "已签到") {
+					
+					alert("您今天已经签过到了");
+					
+					
+					return false;
+				}
+				return true;
+			}
+		})
+
+	};
+	function outreg() {
+		$.ajax({
+			type : "post",
+			url : "statisticsoutreg", //向springboot请求数据的url
+			data : {},
+			dataType : "json",
+			success : function(data) {
+				if($("#spanqq").text().trim()=="[已签到] [未签退]"){
+					$("#spanqq").text("[已签到] [已签退]");
+					$("#signBack").addClass('btn btn-primary btn-xs');				
+					$("#signBack").attr('data-toggle', 'modal');			
+					$("#signBack").attr('disabled', 'disabled');
+					return false;
+					}
+				if (data.msg =="未签到") {
+					alert('您还没签到，请先签到');
+					return false;
+				} else if (data.msg =="已签退") {
+					alert('您已经签过退了！');
+									
+					return false;
+				}
+				return true;
+			}
+		});
+	};
+</script>
+<script type="text/javascript">
+	function Check(obj){
+		if(obj.loginUsercode.value==''){
+			alert("工号不能为空！");
+			return false;
+		}
+		if(obj.loginPassword.value==''){
+			alert("员工密码不能为空！");
+			return false;
+		}
+		return true;
+	}
+</script>
+
 </head>
   <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
@@ -46,7 +119,7 @@
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>第二组</b>OA</span>
     </a>
-    <!-- Header Navbar: style can be found in header.less -->
+    <!-- Header Navbar: style can be found in header.less  判断邮件提醒-->
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -56,11 +129,12 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+         <c:if test="${!empty usercode}">
+           <li class="dropdown messages-menu">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
               <span class="label label-success">4</span>
-            </a>
+            </a> 
             <ul class="dropdown-menu">
               <li class="header">You have 4 messages</li>
               <li>
@@ -71,193 +145,67 @@
                       <div class="pull-left">
                         <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                       </div>
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
                     </a>
                   </li>
                   <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<%=path %>static/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
                 </ul>
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
+              </li>            
+              </ul>
           </li>
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">40% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Some task I need to do
-                        <small class="pull-right">60%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Make beautiful transitions
-                        <small class="pull-right">80%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">80% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
+         </c:if>
+         <!-- 签到图标和跳转 -->
+       <c:if test="${!empty usercode}">
+       				<li class="dropdown notifications-menu"><a href="#"
+					class="dropdown-toggle" data-toggle="dropdown"> <i
+						class="fa fa-bell-o"></i> <span class="label label-warning">签到</span>
+				</a>
+					<ul class="dropdown-menu">
+
+						<li>
+							<!-- inner menu: contains the actual data -->
+							<ul class="menu">
+								<li><p align="center"></p></li>
+								<li><p align="center">签到信息</p></li>
+								<li>
+									<p align="center">
+										<strong>状态</strong>：
+										<span id="spanqq">
+										<c:if test="${outmasi==null}">[未签到] [未签退]</c:if>
+										<c:if test="${outmasi.omsState==1}">[已签到] [未签退]</c:if>
+										<c:if
+											test="${outmasi.omsState==0 || outmasi.omsState==2 || outmasi.omsState==3 || outmasi.omsState==4}">[已签到] [已签退]</c:if>
+										</span>	  
+									</p>
+								</li>
+								<li>
+									<div id="newsletter" align="center">
+										<input type="submit" value="签到" title="我要签到" id="signIn"
+										<c:if
+											test="${outmasi.omsState==1||outmasi.omsState==0 || outmasi.omsState==2 || outmasi.omsState==3 || outmasi.omsState==4}">class="btn btn-primary btn-xs" data-toggle="modal" disabled
+										</c:if>							
+											style="border-right: #FFF solid 2px" onclick="return inreg()" />
+											
+										<input type="submit" value="签退" title="我要签退" id="signBack" 
+										<c:if
+											test="${outmasi.omsState==0 || outmasi.omsState==2 || outmasi.omsState==3 || outmasi.omsState==4}">class="btn btn-primary btn-xs" data-toggle="modal" disabled</c:if>
+											class="subscribebtn" style="border-right: #FFF solid 2px;"
+											onclick="return outreg();" />
+
+									</div>
+								</li>
+
+							</ul>
+						</li>
+						<li class="footer"><a href="#">View all</a></li>
+					</ul></li>
+       </c:if>
+   <!-- _____________________________________________________________________ -->
           <!-- User Account: style can be found in dropdown.less -->
           <!--  -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">员工登录</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -265,32 +213,24 @@
                 <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
+                <c:if test="${empty login }">
+                <a data-toggle="modal" data-target="#myModal_Delete">请先登录</a>  
+               </c:if> 
+                <c:if test="${!empty login }">
+                  <a  data-toggle="modal" data-target="#myModal_user"> ${login.loginUsercode }</a>
+               </c:if> 
+
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
+               <!--  <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">配置文件</a>
+                </div> -->
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                 <c:if test="${!empty login}">
+                 <a  class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal_password">修改密码</a>
+                 <a href="logout" class="btn btn-default btn-flat">退出</a>
+                 </c:if>
+                  
                 </div>
               </li>
             </ul>
@@ -308,45 +248,27 @@
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="<%=path %>/static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>Alexander Pierce</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      <!-- /.search form -->
+
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">首页</li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>人事管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="index.html"><i class="fa fa-circle-o"></i> 部门管理</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> 员工管理</a></li>
-            <li><a href="index3.html"><i class="fa fa-circle-o"></i> 调动管理</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> 通讯录管理</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
+   	<li class="treeview"><a href="#"> <i
+					class="fa fa-dashboard"></i> <span>人事管理</span> <span
+					class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu" id="menu">
+					<li><a href="department.html"><i class="fa fa-circle-o"></i>
+							部门管理</a></li>
+					<li><a href="staff.html"><i class="fa fa-circle-o"></i>
+							员工管理</a></li>
+					<li><a href="post.html"><i class="fa fa-circle-o"></i>
+							调动管理</a></li>
+					<li><a href="address.html"><i class="fa fa-circle-o"></i>
+							通讯录管理</a></li>
+				</ul></li>
+     <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i> <span>日程管理</span>
             <span class="pull-right-container">
@@ -358,29 +280,35 @@
             <li><a href="/scheduledept"><i class="fa fa-circle-o"></i>部门日程</a></li>
           </ul>
         </li>
-        <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-th"></i> <span>申报管理</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
-          </a>
-        </li>
-        <li class="treeview">
+      <!-- 申报管理 -->
+             <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>考勤管理</span>
+            <span>申请管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            <li ><a href="myapply"><i class="fa fa-circle-o"></i> 我的申请</a></li>
+            <li><a href="applymanage"><i class="fa fa-circle-o"></i>申请管理</a></li>
+            <li><a href="reimburseapplymanage"><i class="fa fa-circle-o"></i>报销管理</a></li>
+          
           </ul>
         </li>
+      <!--  -->
+        <!-- 考勤管理 -->
+			<li class="treeview"><a href="#"> <i class="fa fa-pie-chart"></i>
+					<span>考勤管理</span> <span class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu">
+					<li ><a href="toinline.html"><i class="fa fa-circle-o"></i>考勤记录</a></li>
+					<li><a href="statistics_main"><i class="fa fa-circle-o"></i>部门统计情况</a></li>
+					<li><a href="excel_print"><i class="fa fa-circle-o"></i>统计结果导出</a></li>
+				</ul></li>
+				<!-- 考勤管理 -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
@@ -389,29 +317,34 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+          <ul class="treeview-menu">           
+            <li><a href="toemail.html"><i class="fa fa-circle-o"></i> 邮箱</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <!-- 授权管理 -->
+       
+         <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>授权管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
+          
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+            <li><a href="power_look.html"><i class="fa fa-circle-o"></i> 我的权限</a></li>
+            <shiro:hasPermission name="角色设定和分配">
+            <li><a href="power_set.html"><i class="fa fa-circle-o"></i> 角色设定</a></li>
+            <li><a href="power_give.html"><i class="fa fa-circle-o"></i> 权限分配</a></li>
+            </shiro:hasPermission>
           </ul>
+       
         </li>
-        <li class="treeview">
+        
+        
+
+    <!-- 系统管理 -->
+      <li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>系统管理</span>
             <span class="pull-right-container">
@@ -419,11 +352,17 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+          
+             <li><a href="adver.html">公告管理</a></li>
+             <li><a href="loglogin.html">登录日志</a></li>
+             <li><a href="operate.html">操作日志</a></li>
+             <li><a href="rules.html">守则管理</a></li>
           </ul>
-        </li>
+          </ul>
+         </li>
         <li>
+    <!-- 系统管理 -->
+<!--         <li>
           <a href="pages/calendar.html">
             <i class="fa fa-calendar"></i> <span>关于</span>
             <span class="pull-right-container">
@@ -431,10 +370,128 @@
               <small class="label pull-right bg-blue">17</small>
             </span>
           </a>
-        </li>
+        </li> -->
+
       </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
+  
+   <!-- 弹出框 -->
+   
+	<div class="modal fade" id="myModal_Delete" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				    <div class="widget-user-header bg-blue">
+<%-- 					<div class="widget-user-image">
+						<img class="img-circle" src="<%=path %>/static/dist/img/user2-160x160.jpg"
+							alt="User Avatar">
+					</div> --%>
+					<h3 class="widget-user-username">请登录</h3>
+				</div>
+				<div class="modal-body">
+              <form class="form-login" name="form-login" action="tologin" method="post" onsubmit="return Check(this)">
+		        <div class="login-wrap">
+		            <input type="text" class="form-control" placeholder="工号" name="loginUsercode">
+		            <br>
+		            <input type="password" class="form-control" placeholder="密码" name="loginPassword">
+		            <button class="btn btn-theme btn-block" href="index.html" type="submit" ><i class="fa fa-lock"></i> 登录</button>		
+		        </div>
+		      </form>	  			     
+				    
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<!-- <button type="button" class="btn btn-primary">Save</button> -->
+				</div>
+			</div>
+		</div>
+	</div> 
+	
+	<!-- 修改密码 ；弹出框-->
+  	<div class="modal fade" id="myModal_password" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+	<!-- 修改密码内容 -->
+			<div class="register-logo">
+				<a href="staff.html"><b>修改密码</b>ADMIN</a>
+			</div>
+
+			<div class="register-box-body" >
+				<form
+					action=""
+					method="post">
+					<div class="form-group has-feedback">
+						<input type="text" class="form-control" placeholder="Full name">
+						<span class="glyphicon glyphicon-user form-control-feedback"></span>
+					</div>
+
+					<div class="form-group has-feedback">
+						<input type="password" class="form-control" placeholder="Password">
+						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						<input type="password" class="form-control"
+							placeholder="Retype password"> <span
+							class="glyphicon glyphicon-log-in form-control-feedback"></span>
+					</div>
+
+					<div class="row">
+						<!-- /.col -->
+						<input type="submit" href="#"
+							class="btn btn-block btn-facebook btn-flat"> <input
+							type="reset" href="#" class="btn btn-block btn-google btn-flat">
+						<!-- /.col -->
+					</div>
+				</form>
+			</div>
+			<!-- /.form-box -->
+	<!-- 结束-->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div> 
+
+<!-- 个人详情 -->
+  	<div class="modal fade" id="myModal_user" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+	<!-- 内容-->
+				<div class="widget-user-header bg-yellow">
+					<div class="widget-user-image">
+						<img class="img-circle" src="<%=path %>/static/dist/img/user7-128x128.jpg"
+							alt="User Avatar">
+					</div>
+				</div>
+				<div class="box-footer">
+					 <ul class="nav nav-stacked">
+						<li><a href="#">员工：${login.loginUsercode}</a></li>
+						<li><a href="#">姓名：${user.uName }</a></li>
+						<li><a href="#">性别：${user.uSex }</a></li>
+						<li><a href="#">部门：${dept.dName }</a></li>
+						<li><a href="#">职位：${professional.professionalName }</a></li>
+						<%-- <li><a href="#">角色：
+						<c:forEach items="${roles}" var="r">${r.rName },</c:forEach>
+						</a></li> --%>
+						<li><a href="#">状态：${user.uState }</a></li>
+						<li><a href="#">入职时间：<fmt:formatDate value="${user.uStartTime}"/></a></li>
+<!-- 						<a href="staff.html"><button type="button"
+								class="btn btn-default btn-block"
+								style="background: #FF7F50; color: #FFFFFF">返回列表</button></a> -->
+					</ul>
+				 	
+				</div>
+			<!-- 内容-->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div> 
   </body>
 </html>

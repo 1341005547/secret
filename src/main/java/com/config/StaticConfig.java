@@ -11,7 +11,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 
 public class StaticConfig extends WebMvcConfigurerAdapter {
-
+     
+	/**
+	 * springmvc 静态资源配置
+	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/static/**").addResourceLocations("/static/");

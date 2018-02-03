@@ -6,7 +6,7 @@ public class Msg_info {
     private Integer msgId;
 
     private Integer uId;
-
+    
     private String msgTitle;
 
     private String msgContent;
@@ -27,7 +27,10 @@ public class Msg_info {
         this.msgId = msgId;
     }
 
-    public Integer getuId() {
+    
+    
+
+	public Integer getuId() {
         return uId;
     }
 

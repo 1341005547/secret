@@ -27,4 +27,52 @@ public class UserServiceImpl implements UserService {
 		return usermapper.getUserByUemal(uEmail);
 	}
 
+	@Override
+	public int insert(User record) {
+		// TODO Auto-generated method stub
+		return usermapper.insert(record);
+	}
+
+	@Override
+	public int insertSelective(User record) {
+		// TODO Auto-generated method stub
+		return usermapper.insertSelective(record);
+	}
+
+	@Override
+	public User selectByPrimaryKey(Integer uId) {
+		// TODO Auto-generated method stub
+		return usermapper.selectByPrimaryKey(uId);
+	}
+	
+	@Override
+	public int addUser(User user) {
+		// TODO Auto-generated method stub
+		return usermapper.insert(user);
+	}
+
+	@Override
+	public User getUserByPhone(String uPhone) {
+		// TODO Auto-generated method stub
+		return usermapper.selectUserByPhone(uPhone);
+	}
+
+	@Override
+	public int delUserByid(Integer uid) {
+		// TODO Auto-generated method stub
+		return usermapper.deleteByPrimaryKey(uid);
+	}
+
+	@Override
+	public int delUserAndLoginByid(Integer uid) {
+		// TODO Auto-generated method stub
+		return usermapper.deleteUserAndLoginByUid(uid);
+	}
+
+	@Override
+	public int updateUser(User user) {
+		// TODO Auto-generated method stub
+		return usermapper.updateByPrimaryKeySelective(user);
+	}
+
 }

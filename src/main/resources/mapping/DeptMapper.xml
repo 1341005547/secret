@@ -14,6 +14,12 @@
     from dept
     where d_id = #{dId,jdbcType=INTEGER}
   </select>
+
+  <!-- 获取所有 -->
+  <select id="selectList" resultType="Dept">
+  	select d_id dId,d_name dName from dept
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from dept
     where d_id = #{dId,jdbcType=INTEGER}
@@ -55,4 +61,20 @@
     set d_name = #{dName,jdbcType=VARCHAR}
     where d_id = #{dId,jdbcType=INTEGER}
   </update>
+  
+ <!-- 申请流程 -->
+ 	<select id="getDeptPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		d.*,
+		u.u_id as uId
+		from dept
+		d INNER JOIN user u ON u.d_id=d.d_id where u.u_id=#{uId}
+	</select>
+	<select id="getAllDept" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List"/>
+		from dept
+	</select>
+  
 </mapper>

@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import com.entity.Operation;
 
 public interface OperationMapper {
@@ -14,4 +16,6 @@ public interface OperationMapper {
     int updateByPrimaryKeySelective(Operation record);
 
     int updateByPrimaryKey(Operation record);
+    
+    List<Operation> selectOperation();
 }
