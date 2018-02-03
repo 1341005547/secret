@@ -13,7 +13,7 @@ public class Constants {
 
     public static final String POSITION_SM = "销售部经理";
     
-    public static final String POSITION_RDM = "研发部经理";
+    public static final String POSITION_RDM = "项目开发部经理";
     
     public static final String POSITION_PM = "人事部经理";
 

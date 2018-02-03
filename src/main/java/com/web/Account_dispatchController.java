@@ -29,7 +29,7 @@ public class Account_dispatchController {
 	@RequestMapping("account_dispatchAdd")
 	public String insert(Account_dispatch account_dispatch,String aEven){
 		
-		User user =(User) SecurityUtils.getSubject().getSession().getAttribute("User");
+		User user =(User) SecurityUtils.getSubject().getSession().getAttribute("user");
 		
 		Apply apply = new Apply();
 		
@@ -50,7 +50,7 @@ public class Account_dispatchController {
 		account_dispatch.setuId(user.getuId());
 		account_dispatchService.insert(account_dispatch);
 
-		return "apply/applymanage";
+		return "redirect:reimburseapplymanage";
 	}
 	@RequestMapping("accountdispathDealByaId/{applyaId}" )
 	@ResponseBody

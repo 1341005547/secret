@@ -362,3 +362,15 @@
 	
 	
 </script>
+<<<<<<< HEAD
+</body>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>
+=======
+>>>>>>> branch 'master' of https://github.com/1341005547/secret.git
