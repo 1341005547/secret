@@ -30,13 +30,15 @@ CREATE TABLE `account_dispatch` (
   PRIMARY KEY (`a_d_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- ----------------------------
 -- Records of account_dispatch
 -- ----------------------------
 INSERT INTO `account_dispatch` VALUES ('2', '5', '1', '123', '大风车', '2018-01-25 17:11:49', '23');
 INSERT INTO `account_dispatch` VALUES ('3', '5', '2', '456', '发的萨菲', '2018-01-07 14:20:58', '17');
 INSERT INTO `account_dispatch` VALUES ('4', '5', '4', '153', '割发代首', '2018-01-26 14:21:53', '18');
 INSERT INTO `account_dispatch` VALUES ('5', '5', '3', '7663', '与他人', '2018-01-18 14:21:56', '19');
+INSERT INTO `account_dispatch` VALUES ('6', '5', '1', '10110', '整合测试', '2018-01-29 15:07:32', '39');
+INSERT INTO `account_dispatch` VALUES ('7', '6', '1', '8888', '外出公干报销路费', '2018-01-31 10:56:12', '44');
+INSERT INTO `account_dispatch` VALUES ('8', '6', '1', '10110', '外出公干报销礼品费 ', '2018-01-31 12:09:48', '45');
 
 -- ----------------------------
 -- Table structure for `announcement`
@@ -95,43 +97,48 @@ CREATE TABLE `apply` (
   `a_submit` int(11) NOT NULL,
   `u_id` int(11) NOT NULL,
   PRIMARY KEY (`a_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of apply
 -- ----------------------------
-INSERT INTO `apply` VALUES ('1', '1', '升职', '', '2018-01-18 09:18:24', '已提交', '1', '3');
 INSERT INTO `apply` VALUES ('2', '3', '出差消费', null, '2018-01-22 10:45:23', '新创建', '0', '2');
 INSERT INTO `apply` VALUES ('3', '4', '合同到期，申请离职', null, '2018-01-08 11:26:30', '已终止', '1', '1');
 INSERT INTO `apply` VALUES ('4', '2', '婚假', '两天', '2018-01-21 14:20:42', '已提交', '1', '5');
 INSERT INTO `apply` VALUES ('5', '2', '婚假', '七天', '2018-01-24 16:27:46', '已提交', '0', '9');
-INSERT INTO `apply` VALUES ('6', '3', '外出培训', '', '2018-01-23 16:57:52', '已提交', '1', '7');
-INSERT INTO `apply` VALUES ('7', '3', '外出培训', '', '2018-01-17 16:59:24', '已提交', '1', '6');
+INSERT INTO `apply` VALUES ('6', '2', '外出培训', '', '2018-01-23 16:57:52', '未审核', '0', '1');
+INSERT INTO `apply` VALUES ('7', '2', '外出培训', '', '2018-01-17 16:59:24', '已提交', '1', '6');
 INSERT INTO `apply` VALUES ('8', '5', '缺少办公用品', null, '2018-01-15 17:00:38', '待审批', '1', '4');
 INSERT INTO `apply` VALUES ('9', '1', '不能胜任当前工作', null, '2018-01-23 17:03:07', '已审批', '1', '8');
 INSERT INTO `apply` VALUES ('10', '2', '大姨妈来了', '三天', '2018-01-02 17:08:21', '已终止', '1', '9');
-INSERT INTO `apply` VALUES ('17', '3', '发挥技术的考核分', null, '2018-01-25 16:25:31', '已提交', '1', '5');
-INSERT INTO `apply` VALUES ('18', '3', '付款即可', null, '2018-01-25 16:27:03', '已提交', '1', '5');
-INSERT INTO `apply` VALUES ('19', '3', '法师打发啊', null, '2018-01-25 16:34:39', '待审批', '1', '5');
-INSERT INTO `apply` VALUES ('20', '3', '几个号放假', null, '2018-01-25 16:35:38', '已提交', '1', '5');
-INSERT INTO `apply` VALUES ('21', '3', '拉开了；看', null, '2018-01-25 16:37:18', '已提交', '1', '5');
-INSERT INTO `apply` VALUES ('22', '3', 'qqqqq', null, '2018-01-25 16:58:48', '已提交', '1', '5');
-INSERT INTO `apply` VALUES ('23', '3', '哈哈看见好看', null, '2018-01-25 17:11:49', '已提交', '1', '5');
+INSERT INTO `apply` VALUES ('17', '2', '发挥技术的考核分', null, '2018-01-25 16:25:31', '未审核', '0', '1');
+INSERT INTO `apply` VALUES ('18', '2', '付款即可', null, '2018-01-25 16:27:03', '已提交', '1', '5');
+INSERT INTO `apply` VALUES ('19', '2', '法师打发啊', null, '2018-01-25 16:34:39', '待审批', '1', '5');
+INSERT INTO `apply` VALUES ('20', '2', '几个号放假', null, '2018-01-25 16:35:38', '已提交', '1', '5');
+INSERT INTO `apply` VALUES ('21', '2', '拉开了；看', null, '2018-01-25 16:37:18', '已提交', '1', '5');
+INSERT INTO `apply` VALUES ('22', '2', 'qqqqq', null, '2018-01-25 16:58:48', '未审核', '0', '1');
+INSERT INTO `apply` VALUES ('23', '2', '哈哈看见好看', null, '2018-01-25 17:11:49', '已提交', '1', '5');
 INSERT INTO `apply` VALUES ('24', '2', '为公司做贡献', null, '2018-01-26 14:07:04', '已提交', '1', '9');
 INSERT INTO `apply` VALUES ('25', '2', '房价快速点击付款啦', null, '2018-01-21 14:11:57', '待审批', '1', '9');
-INSERT INTO `apply` VALUES ('26', '2', '科技管理卡技术的管理', null, '2018-01-26 14:12:46', '已提交', '1', '8');
+INSERT INTO `apply` VALUES ('26', '2', '科技管理卡技术的管理', null, '2018-01-26 14:12:46', '未审核', '0', '1');
 INSERT INTO `apply` VALUES ('27', '2', '觉得是国家爱死了', null, '2018-01-26 14:13:08', '待审批', '1', '8');
 INSERT INTO `apply` VALUES ('28', '5', '几点撒房间爱', null, '2018-01-21 14:13:38', '已提交', '1', '7');
-INSERT INTO `apply` VALUES ('29', '5', '空调格', null, '2018-01-01 14:15:54', '待审批', '1', '7');
+INSERT INTO `apply` VALUES ('29', '5', '空调格', null, '2018-01-01 14:15:54', '已审批', '0', '1');
 INSERT INTO `apply` VALUES ('30', '5', '偶一跳', null, '2018-01-26 14:16:37', '已提交', '1', '6');
 INSERT INTO `apply` VALUES ('31', '5', '加咖啡蛋糕', null, '2018-01-26 14:17:03', '已提交', '1', '6');
-INSERT INTO `apply` VALUES ('32', '5', '忙不开了； ', null, '2018-01-26 14:17:55', '已提交', '1', '4');
 INSERT INTO `apply` VALUES ('33', '5', '可见到了撒娇', null, '2018-01-26 14:18:24', '已提交', '1', '4');
 INSERT INTO `apply` VALUES ('34', '5', '进口红酒', null, '2018-01-26 14:19:04', '已提交', '1', '3');
 INSERT INTO `apply` VALUES ('35', '5', '你看的复合弓', null, '2018-01-26 14:19:24', '已提交', '1', '3');
 INSERT INTO `apply` VALUES ('36', '1', '想换个部门', null, '2018-01-27 09:32:58', '已提交', '1', '4');
-INSERT INTO `apply` VALUES ('37', '1', '换个环境', null, '2018-01-27 09:34:27', '已提交', '1', '2');
+INSERT INTO `apply` VALUES ('37', '1', '换个环境', null, '2018-01-27 09:34:27', '待审批', '1', '2');
 INSERT INTO `apply` VALUES ('38', '1', '跳跳跳跳', null, '2018-01-08 09:35:29', '待审批', '1', '10');
+INSERT INTO `apply` VALUES ('39', '3', '整合测试整合测试', null, '2018-01-29 15:06:57', '已提交', '1', '5');
+INSERT INTO `apply` VALUES ('40', '3', '申请调任', null, '2018-01-29 15:20:49', '未审核', '1', '5');
+INSERT INTO `apply` VALUES ('41', '3', '申请调任', null, '2018-01-29 15:22:21', '未审核', '1', '5');
+INSERT INTO `apply` VALUES ('42', '3', '报销', null, '2018-01-29 16:46:54', '未审核', '1', '1');
+INSERT INTO `apply` VALUES ('43', '5', '请假', null, '2018-01-29 16:47:12', '未审核', '1', '1');
+INSERT INTO `apply` VALUES ('44', '2', '弹框报销单添加测试', null, '2018-01-31 10:56:11', '已提交', '1', '6');
+INSERT INTO `apply` VALUES ('45', '2', '弹框报销单添加测试2', null, '2018-01-31 12:09:45', '已提交', '1', '6');
 
 -- ----------------------------
 -- Table structure for `base_statistics`
@@ -270,7 +277,7 @@ CREATE TABLE `dispatch` (
   `dispatch_d_id` int(11) DEFAULT NULL,
   `a_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`dispatch_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dispatch
@@ -279,6 +286,7 @@ INSERT INTO `dispatch` VALUES ('1', '8', null, '2018-01-27 09:43:37', '1', '1', 
 INSERT INTO `dispatch` VALUES ('2', '4', null, '2018-01-27 09:43:35', '1', '1', '3', '2', '36');
 INSERT INTO `dispatch` VALUES ('3', '2', null, '2018-01-27 09:43:33', '1', '1', '2', '3', '37');
 INSERT INTO `dispatch` VALUES ('4', '10', null, '2018-01-27 09:43:30', '1', '1', '1', '2', '38');
+INSERT INTO `dispatch` VALUES ('5', '5', null, '2018-01-29 15:20:49', '1', '1', '1', '2', '40');
 
 -- ----------------------------
 -- Table structure for `dispatch_apply`
@@ -504,7 +512,7 @@ CREATE TABLE `permission` (
   `permission_id` int(11) NOT NULL AUTO_INCREMENT,
   `permission_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of permission
@@ -513,6 +521,7 @@ INSERT INTO `permission` VALUES ('1', 'admin');
 INSERT INTO `permission` VALUES ('2', 'admin');
 INSERT INTO `permission` VALUES ('3', 'admin');
 INSERT INTO `permission` VALUES ('4', 'admin');
+INSERT INTO `permission` VALUES ('5', '申请管理页面权限');
 
 -- ----------------------------
 -- Table structure for `process`
@@ -525,7 +534,7 @@ CREATE TABLE `process` (
   `process_next_u_id` int(11) DEFAULT NULL,
   `process_state` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`process_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of process
@@ -536,6 +545,7 @@ INSERT INTO `process` VALUES ('3', '8', '3', '5', '未完成');
 INSERT INTO `process` VALUES ('5', '19', '6', '5', '已审核');
 INSERT INTO `process` VALUES ('6', '38', '7', '5', '未完成');
 INSERT INTO `process` VALUES ('7', '9', '6', '5', '已审批');
+INSERT INTO `process` VALUES ('8', '37', null, '5', '待审批');
 
 -- ----------------------------
 -- Table structure for `professional`
@@ -568,7 +578,7 @@ CREATE TABLE `result_apply` (
   `r_a_opinion` varchar(255) DEFAULT NULL,
   `r_a_deal_time` datetime DEFAULT NULL,
   PRIMARY KEY (`r_a_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of result_apply
@@ -583,6 +593,8 @@ INSERT INTO `result_apply` VALUES ('8', '38', '7', '通过', '调度测试', '20
 INSERT INTO `result_apply` VALUES ('9', '9', '6', '通过', '撒旦飞洒地方', '2018-01-28 12:04:07');
 INSERT INTO `result_apply` VALUES ('10', '9', '1', '通过', '结果看了撒娇的了国家爱丽丝；的结果', '2018-01-28 12:09:48');
 INSERT INTO `result_apply` VALUES ('11', '9', '1', '通过', '法撒旦法师', '2018-01-28 12:14:52');
+INSERT INTO `result_apply` VALUES ('12', '37', null, '通过', '项目开发部经理调度测试通过', '2018-01-29 15:39:19');
+INSERT INTO `result_apply` VALUES ('13', '29', null, '拒绝', '几个路口附近嘎多死了；过分了客户；鲁大师', '2018-01-29 16:26:14');
 
 -- ----------------------------
 -- Table structure for `role`
@@ -612,7 +624,7 @@ CREATE TABLE `role_permission` (
   `r_id` int(11) DEFAULT NULL,
   `permission_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`r_p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role_permission
@@ -620,6 +632,7 @@ CREATE TABLE `role_permission` (
 INSERT INTO `role_permission` VALUES ('1', '1', '1');
 INSERT INTO `role_permission` VALUES ('2', '1', '2');
 INSERT INTO `role_permission` VALUES ('3', '1', '3');
+INSERT INTO `role_permission` VALUES ('4', '1', '5');
 
 -- ----------------------------
 -- Table structure for `scheduledept`
@@ -873,14 +886,15 @@ CREATE TABLE `type_apply` (
   `t_id` int(11) NOT NULL AUTO_INCREMENT,
   `t_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`t_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of type_apply
 -- ----------------------------
-INSERT INTO `type_apply` VALUES ('1', '请假');
+INSERT INTO `type_apply` VALUES ('1', '调度');
 INSERT INTO `type_apply` VALUES ('2', '报销');
 INSERT INTO `type_apply` VALUES ('3', '离职');
+INSERT INTO `type_apply` VALUES ('4', '请假');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -899,14 +913,21 @@ CREATE TABLE `user` (
   `d_id` int(11) DEFAULT NULL,
   `Professional_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`u_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '张小花', '2017-11-07 14:01:56', null, '13111111111', '女', 'img/1.jpg', '在职', '', '1', '5');
-INSERT INTO `user` VALUES ('2', '管理员', '2009-01-11 14:07:31', null, '13100000000', '男', 'img/a.jpg', '在职', '120596045@qq.com', '2', '1');
-INSERT INTO `user` VALUES ('5', '大牛', '2018-01-16 17:06:29', null, '13111111111', '男', 'img/1.jpg', '在职', '333@qq.com', '2', '1');
+INSERT INTO `user` VALUES ('1', '张小花', '2017-11-07 14:01:56', null, '13111111111', '女', 'img/1.jpg', '在职', null, '0', '5');
+INSERT INTO `user` VALUES ('2', '管理员', '2009-01-11 14:07:31', null, '13100000000', '男', 'img/a.jpg', '在职', null, '2', '1');
+INSERT INTO `user` VALUES ('3', '张三', '2018-01-22 18:09:38', null, '13566661142', '男', 'img/1.jpg', '在职', null, '3', '4');
+INSERT INTO `user` VALUES ('4', '牛魔王', '2018-01-01 14:21:36', null, '13544548787', '男', 'img/1.jpg', '在职', null, '3', '1');
+INSERT INTO `user` VALUES ('5', '七仙女', '2018-01-08 14:23:07', null, '17777774456', '女', null, '在职', null, '1', '1');
+INSERT INTO `user` VALUES ('6', '太乙真人', '2018-01-07 14:24:40', null, '23445412367', '男', null, '在职', null, '2', '3');
+INSERT INTO `user` VALUES ('7', '德玛西亚', '2018-01-14 14:26:51', null, '12301214576', '男', null, '在职', null, '1', '2');
+INSERT INTO `user` VALUES ('8', '兔子女王', '2018-01-03 15:20:35', null, '14547845475', '女', null, '在职', null, '2', '1');
+INSERT INTO `user` VALUES ('9', '小翠', '2018-01-19 15:24:30', null, '45454152471', '女', null, '在职', null, '2', '1');
+INSERT INTO `user` VALUES ('10', '郑爽', '2018-01-27 18:06:40', null, '13562324578', '女', '/img/2.jpg', '在职', null, '1', '1');
 
 -- ----------------------------
 -- Table structure for `user_role`
@@ -917,7 +938,7 @@ CREATE TABLE `user_role` (
   `u_id` int(11) DEFAULT NULL,
   `r_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`u_r_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_role
@@ -926,3 +947,4 @@ INSERT INTO `user_role` VALUES ('1', '2', '2');
 INSERT INTO `user_role` VALUES ('2', '2', '3');
 INSERT INTO `user_role` VALUES ('3', '2', '1');
 INSERT INTO `user_role` VALUES ('4', '1', '2');
+INSERT INTO `user_role` VALUES ('5', '1', '1');

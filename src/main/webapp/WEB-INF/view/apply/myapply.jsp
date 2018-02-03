@@ -1,3 +1,4 @@
+<%@page import="org.springframework.ui.Model"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%
@@ -16,46 +17,28 @@
     <%-- <link href="<%=path %>/static/bower_components/fonts/css/font-awesome.min.css" rel="stylesheet"> --%>
     <link href="<%=path %>/static/bower_components/css/animate.min.css" rel="stylesheet">
 
-    <!-- Custom styling plus plugins -->
-    <%-- <link href="<%=path %>/static/bower_components/css/custom.css" rel="stylesheet" type="text/css" /> --%>
-    <%-- <link rel="<%=path %>/static/bower_components/stylesheet" type="text/css" href="css/maps/jquery-jvectormap-2.0.1.css" />
-    <link href="<%=path %>/static/bower_components/css/icheck/flat/green.css" rel="stylesheet"> --%>
-    <%-- <link href="<%=path %>/static/bower_components/css/floatexamples.css" rel="stylesheet" /> --%> 
+    
 
-<!-- <SCRIPT LANGUAGE="JavaScript">
-      $(document).ready(function() {
-        $("#chk_SelectALL").click(function(){
-                  if($(this).is(":checked")){
-                  $("tbody :checkbox").prop("checked",true);
-              }
-              else{
-                  $("tbody :checkbox").prop("checked",false);
-              }
-    }); 
-  });
-</SCRIPT> -->
-<!-- <style type="text/css">
-  table{
-      line-height: 30px;
 
-  }
-</style> -->
 <script type="text/javascript">
 	function Check(name) {
 
 		//点击我要提交跳转的路径
 		if (name == 'submit') {
 			document.contact.action = "submitOrSava";
+			alert("提交成功！");
 		}
 
 		//点击我要保存跳转的路径
 		if (name == 'stype') {
 			document.contact.action = "savaOrsubmit";
+			alert("保存成功！");
 		}
 
 		//点击调度，并进行提交跳转的路径
 		if (name == 'submits') {
 			document.contact.action = "dispatchToSubmit";
+			alert("提交成功！");
 		}
 	}
 </script>
@@ -63,6 +46,16 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
 
+	
+ 
+ <c:if test="${!empty message }">
+ 	<script type="text/javascript">  
+           alert("${message}");
+           
+    </script>
+    <c:remove var="message"/>
+ </c:if>
+ 
 
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper"

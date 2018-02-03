@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.alibaba.druid.stat.TableStat.Mode;
 import com.common.Constants;
 import com.common.DateUtil;
 import com.dao.Account_dispatchMapper;
@@ -74,7 +76,7 @@ public class MyApplyController {
 	 * @return
 	 */
 	@RequestMapping(value = "submitOrSava")
-	public String submitOrSava(Apply record, Integer select, String apply,Integer id) {
+	public String submitOrSava(Apply record, Integer select, String apply,Integer id,Model model) {
 		System.out.println("aaaaaaaa");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -90,13 +92,16 @@ public class MyApplyController {
 		try {
 			flag = myApplyService.insertSelective(record);
 		} catch (Exception e) {
-			if (flag = true) {
-				map.put("error", "成功！");
-			} else {
-				map.put("error", "失败！");
-			}
+			if(flag=true){
+				  
+	                model.addAttribute("message", "提交成功！");
+	                
+	            }else{
+	               
+	            	model.addAttribute("message", "提交失败！");
+	            }
 		}
-		return "redirect:applymanage";
+		return "redirect:myapply";
 	}
 
 	/**
@@ -167,7 +172,7 @@ public class MyApplyController {
 	 * @return
 	 */
 	@RequestMapping("dispatchToSubmit")
-	public String dispatchToSubmit(Dispatch record,Integer dept,Integer pro,Integer deptid,Integer profess){
+	public String dispatchToSubmit(Dispatch record,Integer dept,Integer pro,Integer deptid,Integer profess,Model model){
 		Apply apply = new Apply();
 		Login login=(Login) SecurityUtils.getSubject().getSession().getAttribute("login");
 		apply.setaSubmit(1);   //已经提交
@@ -193,7 +198,13 @@ public class MyApplyController {
 		//获取最大申报id
 		record.setaId(x);
 		
-		dispatchservice.insertSelective(record);
+		int i=dispatchservice.insertSelective(record);
+		
+		if(i>0){
+			model.addAttribute("diaodu", 1);
+		}else {
+			model.addAttribute("diaodu", "");
+		}
 		
 		return "redirect:myapply";
 	}
@@ -207,11 +218,18 @@ public class MyApplyController {
 	 * @return
 	 */
 	@RequestMapping("toSubmit")
-	public String submit(Apply record,Integer aId) {
-			
-			myApplyService.updateSaveToSubmit(aId);
+	public String submit(Apply record,Integer aId,Model model) {
+		Session session=SecurityUtils.getSubject().getSession();
 		
-		return "redirect:applymanage";
+			myApplyService.updateSaveToSubmit(aId);
+			
+			String message = "";  
+			  
+			message = "提交数据成功！";  
+			session.setAttribute("message", message);  
+			
+		return "redirect:myapply";
+		
 	}
 
 	/**
@@ -338,10 +356,9 @@ public class MyApplyController {
 		request.setAttribute("category_dispatchs", category_dispatchs);
 		Professional Professional =(Professional) SecurityUtils.getSubject().getSession().getAttribute("professional");
 		User user =(User) SecurityUtils.getSubject().getSession().getAttribute("user");
-		System.out.println(user.getuId());
-		if(Professional.getProfessionalName().equals(Constants.POSITION_STAFF)){
+		
 			applies = account_dispatchMapper.accountdispathDealByuId(user.getuId());
-		}
+		
 		
 		session.setAttribute("reimburseapplies", applies);
 		

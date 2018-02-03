@@ -50,7 +50,7 @@ public class Account_dispatchController {
 		account_dispatch.setuId(user.getuId());
 		account_dispatchService.insert(account_dispatch);
 
-		return "apply/applymanage";
+		return "redirect:reimburseapplymanage";
 	}
 	@RequestMapping("accountdispathDealByaId/{applyaId}" )
 	@ResponseBody

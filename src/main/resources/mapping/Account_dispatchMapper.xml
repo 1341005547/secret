@@ -44,7 +44,7 @@
 		
 		INNER JOIN (SELECT * from category_dispatch) cd ON cd.c_d_id = ad.c_d_id INNER JOIN 
 		
-		(SELECT * from apply) a  ON a.a_id = ad.a_id INNER JOIN 
+		(SELECT * from apply where a_state != "已终止") a  ON a.a_id = ad.a_id INNER JOIN 
 		
 		
 		 (SELECT * FROM `user` WHERE `user`.u_id = #{uId,jdbcType=INTEGER}) u ON u.u_id=ad.u_id 

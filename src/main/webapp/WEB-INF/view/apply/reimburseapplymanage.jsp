@@ -85,8 +85,8 @@
                             </select>
                          </h4>
                         </td>
-                        <td width="30%"><input type="text" name="aDPrice" id="aDPrice" /><span class=notice>*</span></td>
-                        <td width="30%"><input type="text" name="aDExplain" id="desc" /><span class=notice>*</span></td>
+                        <td width="30%"><input type="text" name="aDPrice" id="aDPrice10" /><span class=notice>*</span></td>
+                        <td width="30%"><input type="text" name="aDExplain" id="desc10" /><span class=notice>*</span></td>
                     </tr>
                     
                     <tr >
@@ -94,7 +94,7 @@
                                 
                                 <td ><h4>*申请事件：</h4></td>
                                 <td>
-                                	<textarea rows="" cols="" name="aEven"></textarea>
+                                	<textarea rows="" cols="" name="aEven" id="aEven10"></textarea>
                                 </td>  	
                                 
                             </tr>
@@ -103,7 +103,7 @@
                                
                                 <td >
                                 <h4>
-                                    <input type="submit" id="2" name="2" value="提交"   />
+                                    <input type="submit" id="2" name="2" value="提交"  onclick="return qwe()" />
 										
 									<input type="reset" id="1" name="1" value="重置"  />
                           		 
@@ -125,6 +125,34 @@
       </div>
       <!-- /.row -->
 </section>
+      
+      
+      <script type="text/javascript">
+      function qwe() {
+    	  var aDPrice = document.getElementById("aDPrice10").value;
+    	  var desc =  document.getElementById("desc10").value;
+    	  var aEven =  document.getElementById("aEven10").value;
+  
+    	  
+    	  if(aDPrice==""||aDPrice==null){
+    		  alert("项目金额不能为空！");
+    		 return false; 
+    	  }
+    	  if(desc==""||desc==null){
+    		  alert("费用说明不能为空!");
+    		  return false; 
+    	  }
+    	  if(aEven==null||aEven==""){
+    		  alert("申请事件不能为空！");
+    		  return false; 
+    	  }
+    	  return true;
+		
+	}
+      
+      
+      
+      </script>
       
  <!-- /.box-header -->
             <div class="box-body">
@@ -150,23 +178,17 @@
                 <c:forEach items="${reimburseapplies }" var="account_dispatch">
 	                	
 	         			
-	                			<tr>
-			                	
-					                <td>${account_dispatch.aId }</td>
-					                
+	                				<tr>
+					                <td>${account_dispatch.aId }</td>   
 					                <td><a onclick="accountdispathDeal(${account_dispatch.aId})"
 					                  data-toggle="modal" data-target="#myapply_deal">${account_dispatch.uName }</a></td>
 					                <td><fmt:formatDate pattern="yyyy-MM-dd" value="${account_dispatch.aDTime}" type="time"/></td>
 					                <td> ${account_dispatch.cdName }</td>
 					                <td>${account_dispatch.aState }</td>
-					                <td>
-					                	<c:if test="${user.professionalName!='员工' }">
-					                		<a href="applyexamine?uId=${account_dispatch.uId }&aId=${account_dispatch.aId}" class="more">审核</a>&nbsp;
-					                	 </c:if>
-					                	
+					                <td>	
 					                	<a href="result_applydelete?aaa=${account_dispatch.aId}" class="more">删除</a>
 					               	</td>
-	                			</tr>	
+	                			</tr>
 
                		</c:forEach>
 

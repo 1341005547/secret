@@ -121,7 +121,6 @@
                     <select name="rAResult" class="required input_field">
                       <option selected="selected">-请选择-</option>
                       	<option value="通过">通过</option>
-                      	<option value="付款">付款</option>
                         <option value="打回">打回</option>
                         <option value="拒绝">拒绝</option>
                     </select><em style="color:#F00">&nbsp;*</em>

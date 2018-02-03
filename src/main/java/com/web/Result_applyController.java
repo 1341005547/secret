@@ -129,7 +129,7 @@ public class Result_applyController {
 		apply.setaId(aaa);
 		apply.setaState("已终止");	
 		applyService.updateByPrimaryKeySelective(apply);
-		return "redirect:applymanage";
+		return "redirect:reimburseapplymanage";
 		
 	}
 	
