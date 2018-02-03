@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 
 <%String path=request.getContextPath(); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -319,8 +320,10 @@
           
           <ul class="treeview-menu">
             <li><a href="power_look.html"><i class="fa fa-circle-o"></i> 我的权限</a></li>
+            <shiro:hasPermission name="角色设定和分配">
             <li><a href="power_set.html"><i class="fa fa-circle-o"></i> 角色设定</a></li>
             <li><a href="power_give.html"><i class="fa fa-circle-o"></i> 权限分配</a></li>
+            </shiro:hasPermission>
           </ul>
        
         </li>
