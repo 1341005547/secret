@@ -44,7 +44,7 @@ public class ShiroRealm extends AuthorizingRealm {
     @Autowired
     private User_roleService urs;//用户角色中间表
     @Autowired
-	private RoleService rs;//角色表
+	private RoleService roleService;//角色表
     @Autowired
     private UserService us;//用户表
     @Autowired
@@ -52,8 +52,6 @@ public class ShiroRealm extends AuthorizingRealm {
     @Autowired
     private ProfessionalService ps;//职位表
     
-    @Autowired
-	private RoleService roleService;
     
 	//授权
 	@Override
@@ -65,7 +63,6 @@ public class ShiroRealm extends AuthorizingRealm {
 		Integer uid= login.getuId();
 		//System.out.println(uid);
 		List<String> per_name_list =new ArrayList<String>();
-		List<User_role>  userRoles=urs.getUserRoles(uid);
 		
 		List<Permission> per_list = roleService.getPerNameListByUid(uid);
 		/*for (User_role user_role : userRoles) {
