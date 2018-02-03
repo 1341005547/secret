@@ -10,6 +10,7 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -67,7 +68,6 @@ public class LoginController {
 		Session session=SecurityUtils.getSubject().getSession();
 		session.setAttribute("login", login);
 		session.setAttribute("outmasi",oa_manual_sign);
-
 	    return "home";
 	}
 	

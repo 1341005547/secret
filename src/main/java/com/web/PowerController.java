@@ -56,13 +56,15 @@ public class PowerController {
 		// 获得登陆用户创建的角色对象集合
 		List<Role> role_list = roleService.getCreateRolesList(uid);
 		// 获得用户角色中间表
-		List<User_role> user_role_list = roleService.getUserRoleByUid(uid);
+		//List<User_role> user_role_list = roleService.getUserRoleByUid(uid);
 
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
 		/* if(role_list!=null && user_role_list.get(0)!=null){ */
 		for (User i : user_list) {
 			Map<String, Object> map = new HashMap<String, Object>();
+			
+			List<User_role> user_role_list = roleService.getUserRoleByUid(i.getuId());
 			// 获得授权时间
 			Date give_power_time = user_role_list.get(0).getGive_power_time();
 			List<String> role_name_list = roleService.getRoleNameListByUid(i.getuId());
@@ -164,7 +166,7 @@ public class PowerController {
 		List<User_role> u_r_list = roleService.getUserRoleByUid(uId);
 		List<Role> role_list = roleService.getRoleListByUid(uId);
 		// 部门’职位
-		List<String> r_name_list = new ArrayList();
+		List<String> r_name_list = new ArrayList<String>();
 		for (Role i : role_list) {
 			r_name_list.add(i.getrName());
 			
@@ -173,7 +175,16 @@ public class PowerController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("user", user);
 		map.put("r_name_list", r_name_list);
-		Date give_Time = u_r_list.get(0).getGive_power_time();
+		
+		Date date = user.getuStartTime();
+		SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");  
+	    String start_Time = formatter1.format(date); 
+		map.put("ustart_Time", start_Time);
+	    
+		
+		Date give_Time1 = u_r_list.get(0).getGive_power_time();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+	    String give_Time = formatter.format(give_Time1); 
 		map.put("give_Time", give_Time);
 
 		return map;
@@ -190,14 +201,28 @@ public class PowerController {
 		// ModelAndView mav = new ModelAndView("powermgr/power_set");
 		// 获取登录对象的id
 		Session session = SecurityUtils.getSubject().getSession();
-		Login login = (Login) session.getAttribute("login");
-		Integer uid = login.getuId();
+		User user = (User) session.getAttribute("user");
+		Integer uid = user.getuId();
 		// 获得登陆用户的权限对象集合
 		List<Permission> per_list = roleService.getPerNameListByUid(uid);
 		// 获得登陆用户创建的角色对象集合
 		List<Role> r_list = roleService.getCreateRolesList(uid);
 		// 放入model，供前端调取
 		model.addAttribute("per_list", per_list);
+		
+		
+		String create_name = roleService.getUser(uid).getuName();
+		model.addAttribute("create_name", create_name);
+		/*List role_list = new ArrayList();
+		Map map = new HashMap();
+		for (Role i : r_list) {
+			map.put("r_id", i.getrId());
+			map.put("r_name", i.getrName());
+			map.put("r_create_time", i.getR_Create_Time());
+			map.put(", value)
+			
+		}
+		*/
 		model.addAttribute("r_list", r_list);
 
 		return "powermgr/power_set";
@@ -240,6 +265,13 @@ public class PowerController {
 	public Map<String, Object> power_setLookAjax(Integer role_rId) {
 
 		Role role = roleService.getRoles(role_rId);
+		Date date = role.getR_Create_Time();
+		SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");  
+	    String r_create_time = formatter1.format(date);
+	    
+	    
+	    String uName = roleService.getUser(role.getrUser()).getuName();
+		
 		Session session = SecurityUtils.getSubject().getSession();
 		session.removeAttribute("map");
 		// session.setAttribute("qqq","qqq");
@@ -247,6 +279,9 @@ public class PowerController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("role", role);
 		map.put("perList", perList);
+		map.put("uName", uName);
+		map.put("r_create_time", r_create_time);
+		
 		// session.setAttribute("map", map);
 		return map;
 	}

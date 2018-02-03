@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -47,8 +48,10 @@
 							<!-- <li class="active"><a href="#"><i class="fa fa-inbox"></i>收件箱 </a></li> -->
 							<li><a data-toggle="modal" data-target="#myModal_email"><i
 									class="fa fa-envelope-o"></i>发件箱</a></li>
-							<!-- <li><a href="#"><i class="fa fa-envelope-o"></i>已读件箱</a></li>
-							<li><a href="#"><i class="fa fa-envelope-o"></i>未件箱</a></li> -->
+							
+							 <li><a href="#"><i class="fa fa-envelope-o"></i>已读件箱</a></li>
+							<li><a href="#"><i class="fa fa-envelope-o"></i>未件箱</a></li>
+							
 						</ul>
 					</div>
 					<!-- /.box-body -->

@@ -30,32 +30,46 @@ public class StatisticsUtil {
      */
     public static int MonthWorkingDay(List<Calendar> calendars,String monthtime){
         int days = 0;
-
+        DateFormat df = new SimpleDateFormat("yyyy-MM");  
         //截取年份
-        int year =Integer.parseInt(monthtime.substring(0,4));
+        //int year =Integer.parseInt(monthtime.substring(0,4));
         //截取月份
-        int month =Integer.parseInt(monthtime.substring(5,7));
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR,year);
-        cal.set(Calendar.MONTH, month);
-        cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.add(Calendar.DAY_OF_MONTH, -1);
-        Date date = cal.getTime();
-        Calendar lastDate=Calendar.getInstance();
-        lastDate.setTime(date);
-        cal.set(Calendar.DAY_OF_MONTH, 1);
-        Date date1 = cal.getTime();
-        Calendar firstDate=Calendar.getInstance();
-        firstDate.setTime(date1);
-
-        while (firstDate.compareTo(lastDate) <= 0){
-            firstDate = getNextDay(firstDate);
-            if(calendars.contains(firstDate) || (Calendar.SUNDAY) == firstDate.get(Calendar.DAY_OF_WEEK) ||(Calendar.SATURDAY) == firstDate.get(Calendar.DAY_OF_WEEK)){
-                continue;
-            }
-            days++;
-        }
+        //int month =Integer.parseInt(monthtime.substring(5,7));
+    
+		try {
+			 Date date = df.parse(monthtime);
+			//获取当前月最后一天
+			 Calendar lastDate=Calendar.getInstance();
+		      lastDate.setTime(date);
+		      lastDate.set(Calendar.DAY_OF_MONTH, lastDate.getActualMaximum(Calendar.DAY_OF_MONTH));   
+		        //获取当月第一天
+		        Calendar firstDate=Calendar.getInstance();
+		        firstDate.setTime(date);
+		        firstDate.add(Calendar.MONTH, 0);
+		        firstDate.set(Calendar.DAY_OF_MONTH,1);//设置为1号,当前日期既为本月第一天       
+		        while (firstDate.compareTo(lastDate) <= 0){
+		           
+		            if(calendars.contains(firstDate) || (Calendar.SUNDAY) == firstDate.get(Calendar.DAY_OF_WEEK) ||(Calendar.SATURDAY) == firstDate.get(Calendar.DAY_OF_WEEK)){
+		            	//不进行操作
+		            }else{
+		            	//天数加一
+		            	days++;
+		            }
+		            firstDate = getNextDay(firstDate);
+		            
+		        }
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
         return days;
+    }
+    
+    public static void main(String[] args) {
+    	List<Calendar> calendars = new ArrayList<Calendar>();
+    	int i=MonthWorkingDay(calendars,"2018-02");
+    	System.out.println(i);
     }
 
     /**
@@ -219,9 +233,7 @@ public class StatisticsUtil {
         return days;
     }
 
-    public static void main(String[] args) {
-        getCurrentMonthWorkDay(getWhiteList());
-    }
+   
     /**
      * 计算获得旷工人数
      */

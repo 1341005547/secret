@@ -4,6 +4,7 @@
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -95,7 +96,7 @@
 												//$("#selectLeft option[value=3]").before("<option value=" + $(this).val() + ">" + $(this).html() + "</option>"); //此种方法是在selectt指定某一行加内容
 												$(this).remove();
 											});
-						var obj = document.getElementById(selectRight);
+						var obj = document.getElementById("selectRight");
 						for(i=0;i<obj.length;i++){
 						 /*  if(obj[i].value == something) */
 						    obj[i].selected = true;
@@ -179,11 +180,11 @@
 				$("#li3").append("<span>"+map.give_Time+"</span>");
 				$("#li1").append("<span>"+map.user.uName+"</span>");
 				for (var x of map.r_name_list) {
-					$("#li2").append("<span>"+x+"&nbsp"+"</span>");
+					$("#li2").append("<span>"+x+"&nbsp;&nbsp;"+"</span>");
 					//alert("x.rName");
 				};
 				$("#li4").append("<span>"+map.user.uState+"</span>");
-				$("#li5").append("<span>"+map.user.uStartTime+"</span>");
+				$("#li5").append("<span>"+map.ustart_Time+"</span>");
 
 				
 			},
@@ -206,6 +207,7 @@ table {
 </style>
 
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 
@@ -346,7 +348,7 @@ table {
 										<th width="60" align="left"></th>
 										<th width="100" align="left">编号</th>
 										<th width="100" align="left">用户名</th>
-										<th width="100" align="left">角色名称</th>
+										<th width="265" align="left">角色名称</th>
 										<th width="100" align="left">授权时间</th>
 										<th width="150" align="left">操作</th>
 									</tr>
@@ -362,10 +364,19 @@ table {
 											<td>${obj.user.uName}</td>
 											<td><c:forEach items="${obj.role_name_list }"
 													var="r_name">
-													${r_name}
+													${r_name}&nbsp;&nbsp;
 												</c:forEach></td>
-											<td>${obj.giva_power_time }</td>
-											<td><a href="#" class="more" data-toggle="modal" data-target="#myModal_user"  onclick="lookUser(${obj.user.uId})">查看</a></td>
+											<td>
+											
+											<fmt:formatDate pattern="yyyy-MM-dd"
+													value="${obj.give_power_time }" type="time" />
+													
+													</td>
+											<td>
+											
+											<a href="#" class="more" data-toggle="modal" data-target="#myModal_user2"  onclick="lookUser(${obj.user.uId})">查看</a>
+											
+											</td>
 										</tr>
 									</c:forEach>
 									</tbody>
@@ -380,7 +391,7 @@ table {
 
 
 	<!-- 个人详情 -->
-		<div class="modal fade" id="myModal_user" tabindex="-1" role="dialog"
+		<div class="modal fade" id="myModal_user2" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
 			<div class="modal-dialog modal-sm" role="document">
 				<div class="modal-content">
@@ -394,17 +405,17 @@ table {
 					</div>
 					<div class="box-footer">
 						<ul class="nav nav-stacked" id="ul_look">
-							
-							<li><div >员工姓名：<a id="li1"></a></div></li>
-							<li><div >拥有角色：<a id="li2"></a></div></li>
+							<br/>
+							<li><div >员工姓名：<a id="li1"></a></div></li><br/>
+							<li><div >拥有角色：<a id="li2"></a></div></li><br/>
 							<%-- <li><a href="#">所在部门：${dept.dName }</a></li> --%>
 							<%-- <li><a href="#">目前职位：${professional.professionalName }</a></li> --%>
-							<li><div >授权时间：<a id="li3"></a></div></li>
+							<li><div >授权时间：<a id="li3"></a></div></li><br/>
 							<%-- <li><a href="#">角色：
 						<c:forEach items="${roles}" var="r">${r.rName },</c:forEach>
 						</a></li> --%>
-							<li><div >目前状态：<a id="li4"></a></div></li>
-							<li><div >入职时间：<a id="li5"></a></div></li>
+							<li><div >目前状态：<a id="li4"></a></div></li><br/>
+							<li><div >入职时间：<a id="li5"></a></div></li><br/>
 						</ul>
 							
 					</div>
@@ -557,8 +568,8 @@ table {
 			})
 		})
 	</script>
-	</ body>
-	
+</body>
+
 	
 	<script>
  $(function () {

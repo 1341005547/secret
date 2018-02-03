@@ -1,32 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%
 	String path = request.getContextPath();
 %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!-- Tell the browser to be responsive to screen width -->
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<!-- Bootstrap 3.3.7 -->
-<link rel="stylesheet"
-	href="<%=path%>/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="<%=path%>/static/bower_components/font-awesome/css/font-awesome.min.css">
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="<%=path%>/static/bower_components/Ionicons/css/ionicons.min.css">
-<!-- Theme style -->
-<link rel="stylesheet"
-	href="<%=path%>/static/dist/css/AdminLTE.min.css">
-<!-- AdminLTE Skins. Choose a skin from the css/skins
+
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<%=path %>/static/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+
        folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet"
 	href="<%=path%>/static/dist/css/skins/_all-skins.min.css">
@@ -64,11 +59,20 @@
 			data : {},
 			dataType : "json",
 			success : function(data) {
+<<<<<<< HEAD
 				if ($("#spanqq").text().trim() == "[未签到] [未签退]") {
 					$("#spanqq").text("[已签到] [未签退]");
+=======
+				if($("#spanqq").text().trim()=="[未签到] [未签退]"){	
+					$("#spanqq").text("[已签到] [未签退]");				
+					$("#signIn").addClass('btn btn-primary btn-xs');				
+					$("#signIn").attr('data-toggle', 'modal');			
+					$("#signIn").attr('disabled', 'disabled');
+>>>>>>> branch 'master' of https://github.com/1341005547/secret.git
 					return false;
 				}
 				if (data.msg == "已签到") {
+					
 					alert("您今天已经签过到了");
 
 					return false;
@@ -85,15 +89,27 @@
 			data : {},
 			dataType : "json",
 			success : function(data) {
+<<<<<<< HEAD
 				if ($("#spanqq").text().trim() == "[已签到] [未签退]") {
 					$("#spanqq").text("[已签到] [已签退]");
+=======
+				if($("#spanqq").text().trim()=="[已签到] [未签退]"){
+					$("#spanqq").text("[已签到] [已签退]");
+					$("#signBack").addClass('btn btn-primary btn-xs');				
+					$("#signBack").attr('data-toggle', 'modal');			
+					$("#signBack").attr('disabled', 'disabled');
+>>>>>>> branch 'master' of https://github.com/1341005547/secret.git
 					return false;
 				}
 				if (data.msg == "未签到") {
 					alert('您还没签到，请先签到');
 					return false;
+<<<<<<< HEAD
 				} else if (data.msg == "已签退") {
 
+=======
+				} else if (data.msg =="已签退") {
+>>>>>>> branch 'master' of https://github.com/1341005547/secret.git
 					alert('您已经签过退了！');
 
 					return false;
@@ -200,6 +216,7 @@
 							src="<%=path%>static/dist/img/user2-160x160.jpg"
 							class="img-circle" alt="User Image">
 
+<<<<<<< HEAD
 							<p>
 								<c:if test="${empty usercode }">
 									<a data-toggle="modal" data-target="#myModal_Delete">请先登陆</a>
@@ -208,6 +225,37 @@
 									<a data-toggle="modal" data-target="#myModal_user">
 										${usercode }</a>
 								</c:if>
+=======
+						<li>
+							<!-- inner menu: contains the actual data -->
+							<ul class="menu">
+								<li><p align="center"></p></li>
+								<li><p align="center">签到信息</p></li>
+								<li>
+									<p align="center">
+										<strong>状态</strong>：
+										<span id="spanqq">
+										<c:if test="${outmasi==null}">[未签到] [未签退]</c:if>
+										<c:if test="${outmasi.omsState==1}">[已签到] [未签退]</c:if>
+										<c:if
+											test="${outmasi.omsState==0 || outmasi.omsState==2 || outmasi.omsState==3 || outmasi.omsState==4}">[已签到] [已签退]</c:if>
+										</span>	  
+									</p>
+								</li>
+								<li>
+									<div id="newsletter" align="center">
+										<input type="submit" value="签到" title="我要签到" id="signIn"
+										<c:if
+											test="${outmasi.omsState==1||outmasi.omsState==0 || outmasi.omsState==2 || outmasi.omsState==3 || outmasi.omsState==4}">class="btn btn-primary btn-xs" data-toggle="modal" disabled
+										</c:if>							
+											style="border-right: #FFF solid 2px" onclick="return inreg()" />
+											
+										<input type="submit" value="签退" title="我要签退" id="signBack" 
+										<c:if
+											test="${outmasi.omsState==0 || outmasi.omsState==2 || outmasi.omsState==3 || outmasi.omsState==4}">class="btn btn-primary btn-xs" data-toggle="modal" disabled</c:if>
+											class="subscribebtn" style="border-right: #FFF solid 2px;"
+											onclick="return outreg();" />
+>>>>>>> branch 'master' of https://github.com/1341005547/secret.git
 
 								<!-- Menu Footer-->
 						<li class="user-footer">
@@ -221,6 +269,7 @@
 									<a href="logout" class="btn btn-default btn-flat">退出</a>
 								</c:if>
 
+<<<<<<< HEAD
 							</div>
 						</li>
 					</ul></li>
@@ -280,6 +329,57 @@
 				</ul></li>
 			<!--  -->
 			<!-- 考勤管理 -->
+=======
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">首页</li>
+   	<li class="treeview"><a href="#"> <i
+					class="fa fa-dashboard"></i> <span>人事管理</span> <span
+					class="pull-right-container"> <i
+						class="fa fa-angle-left pull-right"></i>
+				</span>
+			</a>
+				<ul class="treeview-menu" id="menu">
+					<li><a href="department.html"><i class="fa fa-circle-o"></i>
+							部门管理</a></li>
+					<li><a href="staff.html"><i class="fa fa-circle-o"></i>
+							员工管理</a></li>
+					<li><a href="post.html"><i class="fa fa-circle-o"></i>
+							调动管理</a></li>
+					<li><a href="address.html"><i class="fa fa-circle-o"></i>
+							通讯录管理</a></li>
+				</ul></li>
+     <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i> <span>日程管理</span>
+            <span class="pull-right-container">
+              <span class="fa fa-angle-left pull-right"></span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/scheduleempl"><i class="fa fa-circle-o"></i>我的日程</a></li>
+            <li><a href="/scheduledept"><i class="fa fa-circle-o"></i>部门日程</a></li>
+          </ul>
+        </li>
+      <!-- 申报管理 -->
+             <li class="treeview">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>申请管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li ><a href="myapply"><i class="fa fa-circle-o"></i> 我的申请</a></li>
+            <li><a href="applymanage"><i class="fa fa-circle-o"></i>申请管理</a></li>
+            <li><a href="reimburseapplymanage"><i class="fa fa-circle-o"></i>报销管理</a></li>
+          
+          </ul>
+        </li>
+      <!--  -->
+        <!-- 考勤管理 -->
+>>>>>>> branch 'master' of https://github.com/1341005547/secret.git
 			<li class="treeview"><a href="#"> <i class="fa fa-pie-chart"></i>
 					<span>考勤管理</span> <span class="pull-right-container"> <i
 						class="fa fa-angle-left pull-right"></i>
@@ -290,6 +390,7 @@
 					<li><a href="statistics_main"><i class="fa fa-circle-o"></i>部门统计情况</a></li>
 					<li><a href="excel_print"><i class="fa fa-circle-o"></i>统计结果导出</a></li>
 				</ul></li>
+<<<<<<< HEAD
 			<!-- 考勤管理 -->
 			<li class="treeview"><a href="#"> <i class="fa fa-laptop"></i>
 					<span>邮件传递</span> <span class="pull-right-container"> <i
@@ -329,6 +430,63 @@
 		</li>
 		<li>
 			<!-- 系统管理 --> <!--         <li>
+=======
+				<!-- 考勤管理 -->
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>邮件传递</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">           
+            <li><a href="toemail.html"><i class="fa fa-circle-o"></i> 邮箱</a></li>
+          </ul>
+        </li>
+        <!-- 授权管理 -->
+       
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-edit"></i> <span>授权管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          
+          <ul class="treeview-menu">
+            <li><a href="power_look.html"><i class="fa fa-circle-o"></i> 我的权限</a></li>
+            <shiro:hasPermission name="角色设定和分配">
+            <li><a href="power_set.html"><i class="fa fa-circle-o"></i> 角色设定</a></li>
+            <li><a href="power_give.html"><i class="fa fa-circle-o"></i> 权限分配</a></li>
+            </shiro:hasPermission>
+          </ul>
+       
+        </li>
+        
+        
+
+    <!-- 系统管理 -->
+      <li class="treeview">
+          <a href="#">
+            <i class="fa fa-table"></i> <span>系统管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          
+             <li><a href="adver.html">公告管理</a></li>
+             <li><a href="loglogin.html">登录日志</a></li>
+             <li><a href="operate.html">操作日志</a></li>
+             <li><a href="rules.html">守则管理</a></li>
+          </ul>
+          </ul>
+         </li>
+        <li>
+    <!-- 系统管理 -->
+<!--         <li>
+>>>>>>> branch 'master' of https://github.com/1341005547/secret.git
           <a href="pages/calendar.html">
             <i class="fa fa-calendar"></i> <span>关于</span>
             <span class="pull-right-container">

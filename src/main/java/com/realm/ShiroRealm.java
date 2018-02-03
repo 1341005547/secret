@@ -51,7 +51,11 @@ public class ShiroRealm extends AuthorizingRealm {
     private DeptService ds;//部门表
     @Autowired
     private ProfessionalService ps;//职位表
-    @Override
+
+    
+    
+	//授权
+	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		// TODO Auto-generated method stub
 		SimpleAuthorizationInfo info=new SimpleAuthorizationInfo();
@@ -60,7 +64,6 @@ public class ShiroRealm extends AuthorizingRealm {
 		Integer uid= login.getuId();
 		//System.out.println(uid);
 		List<String> per_name_list =new ArrayList<String>();
-
 		
 		List<Permission> per_list = roleService.getPerNameListByUid(uid);
 		/*for (User_role user_role : userRoles) {

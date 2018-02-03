@@ -4,6 +4,7 @@
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -144,21 +145,24 @@ table {
         function lookRole(rid){
         	//alert(rid);
         	var permissionName;
+        	//alert("进入lookRole()方法");
         	$.ajax({
     			url:"power_set_lookAjax",
     			type:"POST",
     			dateType:"json",
     			data:"role_rId="+rid,
     			success:function(map){
+    				//alert("success");
     				$('#ul_look li span').remove();
     				$("#li1").append("<span>"+map.role.rName+"</span>");
+    				//alert(map.role.rName);
 					for (var x of map.perList) {
 						permissionName = x.permissionName;
-    					$("#li2").append("<span>"+permissionName+"&nbsp"+"</span>");
+    					$("#li2").append("<span>"+permissionName+"&nbsp;&nbsp;"+"</span>");
 					};
-    				$("#li3").append("<span>"+map.role.r_Create_Time+"</span>");
+    				$("#li3").append("<span>"+map.r_create_time+"</span>");
     				$("#li4").append("<span>"+map.role.r_Content+"</span>");
-    				$("#li5").append("<span>"+map.role.rUser+"</span>");
+    				$("#li5").append("<span>"+map.uName+"</span>");
 
     				//window.location.href = "power_set.html";//跳转到主页 
     				//alert(rr);
@@ -179,7 +183,6 @@ table {
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 
-		<header class="main-header"> </header>
 		<jsp:include page="../head.jsp" />
 
 
@@ -327,13 +330,14 @@ table {
 												</td>
 												<td>${role.rId}</td>
 												<td>${role.rName}</td>
-												<td>${role.rUser}</td>
+												<td>${create_name}</td>
 												<td><fmt:formatDate pattern="yyyy-MM-dd"
 														value="${role.r_Create_Time}" type="time" /></td>
-												<td><a href="#" class="more" data-toggle="modal"
-													data-target="#myModal_user" onclick="lookRole(${role.rId})">查看</a>&nbsp;
-													<a href="power_set_delAjax${role.rId}" class="more"
-													onclick="return delectRole(${role.rId})"> 删除 </a></td>
+												<td><a href="#" class="more" data-toggle="modal" data-target="#myModal_user1" onclick="lookRole(${role.rId})">查看</a>&nbsp;
+													<shiro:hasPermission name="权限表格删除操作">
+														<a href="power_set_delAjax${role.rId}" class="more" onclick="return delectRole(${role.rId})"> 删除 </a>
+													</shiro:hasPermission>	
+												</td>
 											</tr>
 										</c:forEach>
 
@@ -344,7 +348,7 @@ table {
 
 
 							<!-- 角色详情弹出框 -->
-							<div class="modal fade" id="myModal_user" tabindex="-1"
+							<div class="modal fade" id="myModal_user1" tabindex="-1"
 								role="dialog" aria-labelledby="myModalLabel">
 								<div class="modal-dialog modal-sm" role="document">
 									<div class="modal-content">
@@ -357,12 +361,12 @@ table {
 											</div>
 										</div>
 										<div class="box-footer">
-											<ul class="nav nav-stacked" id="ul_look">
-												<li><div>角色名称：<a id="li1"></a></div></li>
-												<li><div>拥有权限：<a id="li2"></a></div></li>
-												<li><div>创建时间： <a id="li3"></a></div></li>
-												<li><div>角色描述：<a id="li4"></a></div></li>
-												<li><div>创建人：<a id="li5"></a></div></li>
+											<ul class="nav nav-stacked" id="ul_look"><br/>
+												<li><div>角色名称：<a id="li1"></a></div></li><br/>
+												<li><div>拥有权限：<a id="li2"></a></div></li><br/>
+												<li><div>创建时间： <a id="li3"></a></div></li><br/>
+												<li><div>角色描述：<a id="li4"></a></div></li><br/>
+												<li><div>创建人：<a id="li5"></a></div></li><br/>
 											</ul>
 
 										</div>
