@@ -3,6 +3,9 @@
 <%
 	String path = request.getContextPath();
 %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +26,7 @@
 <link rel="stylesheet"
 	href="<%=path%>/static/bower_components/Ionicons/css/ionicons.min.css">
 <!-- Theme style -->
-<link rel="stylesheet"
-	href="<%=path%>/static/dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="<%=path%>/static/dist/css/AdminLTE.min.css">
 <!-- iCheck -->
 <link rel="stylesheet"
 	href="<%=path%>/static/plugins/iCheck/square/blue.css">
@@ -48,7 +50,7 @@
 		</div>
 
 		<div class="register-box-body">
-			<p class="login-box-msg">创建一个新的部门</p>
+			<p class="login-box-msg">创建一个新的员工</p>
 
 			<form action="staff_doAdd.html" method="post">
 				<!-- <div class="form-group has-feedback">
@@ -82,7 +84,8 @@
 						class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
-					<input type="password" class="form-control" name="loginPassword"
+
+					<input type="password" class="form-control" name="loginPassword1"
 						placeholder="重复密码"> <span
 						class="glyphicon glyphicon-log-in form-control-feedback"></span>
 				</div>
@@ -112,47 +115,29 @@
 				<div class="form-group has-feedback">
 					<!-- 单选的下拉框 -->
 					<select class="form-control select2" name="dId"
-						style="width: 100%;">
+						style="width: 100%;" id="dept_select">
+						<!-- 遍历 -->
 						<option value='' disabled selected style='display: none;'>所属部门</option>
-						<option value="1">研发部</option>
-						<option value="2">人力资源部</option>
-						<option value="3">计划营销部</option>
-						<option value="4">行政部</option>
-						<option value="5">财务部</option>
+					
+
 					</select>
 				</div>
 
 				<div class="form-group has-feedback">
 					<!-- 单选的下拉框 -->
 					<select class="form-control select2" name="professionalId"
-						style="width: 100%;">
+						style="width: 100%;" id="pro_select">
 						<option value='' disabled selected style='display: none;'>所属职位</option>
-						<option value="1">员工</option>
-						<option value="2">营销部经理</option>
-						<option value="3">项目开发部经理</option>
-						<option value="4">人事部经理</option>
-						<option value="5">总经理</option>
 					</select>
 				</div>
-				<!--  <div class="form-group has-feedback">
-          单选的下拉框
-          <select class="form-control select2" style="width: 100%;">
-                  
-            <option value='' disabled selected style='display:none;'>员工的权限(预览)</option>
-            <option>普通用户</option>
-            <option>部门经理</option>
-            <option>管理员</option>
-            <option>Tennessee</option>
-            <option>Texas</option>
-            <option>Washington</option>
-          </select>
-      </div> -->
+
 				<div class="form-group has-feedback">
 					<!-- 单选的下拉框 -->
 					<select class="form-control select2" name="uState"
 						style="width: 100%;">
 						<!-- <option selected="selected" ><span color=#7b7b7b7b>员工的状态(预览)</span></option> -->
 						<option value='' disabled selected style='display: none;'>员工的状态(预览)</option>
+						<!-- 遍历 -->
 						<option>在职</option>
 						<option>请假</option>
 						<option>休假</option>
@@ -162,11 +147,20 @@
 				<div class="row">
 					<!-- /.col -->
 					<input type="submit" href="staff.html"
-						class="btn btn-block btn-facebook btn-flat"> <input
-						type="reset" href="#" class="btn btn-block btn-google btn-flat">
+						class="btn btn-block btn-facebook btn-flat"> 
+					<input type="reset" href="#" class="btn btn-block btn-google btn-flat">
+					
 					<!-- /.col -->
 				</div>
 			</form>
+			<!-- 返回按钮 -->
+			<div class="row" style="margin-top: 5px">
+			<a href="back_staff.html">
+			<input type="button"  value="返回" 
+			class="btn btn-block btn-success btn-flat" >
+			</a> 			
+			</div>
+						
 		</div>
 		<!-- /.form-box -->
 	</div>
@@ -193,7 +187,31 @@
 				increaseArea : '20%' /* optional */
 			});
 		});
+		
+		
+		/*通过ajax给修改的下拉框赋值**/
+		function option(){
+			 $.ajax({
+		         url:"option",
+		         type:"post",
+		         dataType:"json",
+		         success:function(data){
+		        	 
+		        	 var prolist= data.prolist;
+		        	 var deplist= data.deplist;
+		        	 for(var i=0;i<prolist.length;i++){
+		        		 $("#pro_select").append("<option value='"+prolist[i].professionalId+"'>"+prolist[i].professionalName+"</option>");        		 
+		        	 }  
+		       	 	 for(var j=0;j<deplist.length;j++){
+		        		 $("#dept_select").append("<option value='"+deplist[j].dId+"'>"+deplist[j].dName+"</option>");
+		        	 }  
+		        	 
+		         }
+			  })	  
+		}
+		window.onload=option;
 	</script>
+
 </body>
 </html>
 

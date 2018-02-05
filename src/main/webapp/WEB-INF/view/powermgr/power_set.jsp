@@ -308,18 +308,18 @@ table {
 								<h5>
 									<strong>角色列表</strong>
 								</h5>
-								<table width="700px" cellspacing="0" cellpadding="5"
+								<table width="1140px" cellspacing="0" cellpadding="5"
 									id="example1">
 									<thead>
 										<tr bgcolor="#CCCCCC">
-											<th width="60" align="left"><input id="chk_SelectALL"
-												type="checkbox" />
+											<th width="100" align="left"><!-- <input id="chk_SelectALL"
+												type="checkbox" /> -->
 											<!-- 全选 --></th>
-											<th width="30" align="left">编号</th>
-											<th width="120" align="left">角色名称</th>
-											<th width="120" align="left">创建者</th>
-											<th width="120" align="left">创建时间</th>
-											<th width="150" align="left">操作</th>
+											<th width="100" align="center">编号</th>
+											<th width="240" align="center">角色名称</th>
+											<th width="220" align="center">创建者</th>
+											<th width="240" align="center">创建时间</th>
+											<th width="240" align="center">操作</th>
 										</tr>
 									</thead>
 									<tbody id="tbody001">

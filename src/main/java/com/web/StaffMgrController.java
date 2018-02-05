@@ -1,6 +1,7 @@
 package com.web;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -16,11 +17,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.entity.Dept;
 import com.entity.Login;
+import com.entity.Professional;
 import com.entity.Staff;
 import com.entity.Staff_Info;
 import com.entity.User;
+import com.service.DeptService;
 import com.service.LoginService;
+import com.service.ProfessionalService;
 import com.service.StaffService;
 import com.service.Staff_InfoService;
 import com.service.UserService;
@@ -41,6 +46,10 @@ public class StaffMgrController {
 	private LoginService lService;
 	@Resource
 	private Staff_InfoService s_infoService;
+	@Resource
+	private DeptService deptService;
+	@Resource
+	private ProfessionalService proService;
 	
 	
 	
@@ -88,6 +97,7 @@ public class StaffMgrController {
 	/**添加员工信息*/
 	@RequestMapping("/staff_doAdd.html")
 	public String doStaffAdd(User user,Login login){
+		Session session=SecurityUtils.getSubject().getSession();
 //		必须保证电话号码的唯一
 //		向user添加用户信息	
 		user.setuStartTime(new Date());
@@ -104,8 +114,10 @@ public class StaffMgrController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			session.setAttribute("msg_add", 2);
 			return "rsmgr/staff_add";
 		}
+		session.setAttribute("msg_add", 1);
 		return "redirect:/staff.html";
 			
 		/**
@@ -119,16 +131,28 @@ public class StaffMgrController {
 		 * */
 	}
 	
+	/**
+	 * 返回到列表
+	 * @return
+	 */
+	@RequestMapping("/back_staff.html")
+	public String back(){
+		return "redirect:/staff.html";	
+	}
+	
 	/**删除选中用户的信息*/
 	@RequestMapping("/staff_delete.html")
 	public String doDelete(Integer uid){
-		/*通过uid对用户和登录信息进行删除*/	
+		Session session=SecurityUtils.getSubject().getSession();
+		/*通过uid对用户和登陆信息进行删除*/	
 		int i=uService.delUserAndLoginByid(uid);
 		if(i>0){
 			System.out.println("删除成功");
+			session.setAttribute("msg_del", 1);
 			return "redirect:/staff.html";
 		}else{
 			System.out.println("删除失败");
+			session.setAttribute("msg_del", 2);
 			return "rsmgr/staff";
 		}
 	
@@ -147,7 +171,6 @@ public class StaffMgrController {
 //		model.addAttribute("staff_info", staff_info);	
 		Map map=new HashMap();
 		map.put("staff_info", staff_info);
-		System.out.println("========我进来了========");
 		return map;	
 		
 		/**
@@ -181,22 +204,24 @@ public class StaffMgrController {
 	 */
 	@RequestMapping("/staff_doUpdate.html")
 	public String doUpdateStaff(Integer uid,User user,Login login){
-		/*Session session=SecurityUtils.getSubject().getSession();
-		Integer uid=(Integer) session.getAttribute("updateId");*/
-		System.out.println("==========="+uid);
+		Session session=SecurityUtils.getSubject().getSession();
+		Login lg=(Login) session.getAttribute("login");
 		user.setuId(uid);
-		login.setuId(uid);	
+		login.setuId(uid);
+		login.setLoginId(lg.getLoginId());
 		int i=uService.updateUser(user);
-		//王楠杰，检查更新登录信息
+		//王楠杰，检查更新登陆信息
 		int j=lService.updateLoginByUid(login);	
 		/**
 		 * 通过返回的值判断操作是否完成
 		 */
 		if(i>0 && j>0){
-			System.out.println("更新成功");
+			//System.out.println("更新成功");
+			session.setAttribute("msg_update", 1);
 			return "redirect:/staff.html";
 		}else{
-			System.out.println("更新失败");
+			//System.out.println("更新失败");
+			session.setAttribute("msg_update", 2);
 			return "rsmgr/staff";
 		}
 		
@@ -208,11 +233,51 @@ public class StaffMgrController {
 		 */
 	}
 	
+	/**密码的修改*/
+	@RequestMapping("update_pwd.html")
+	public String updatepwd(Login login){
+		Session session=SecurityUtils.getSubject().getSession();
+		Login lg=(Login) session.getAttribute("login");
+		//Integer uid=lg.getLoginId();
+		String credentials =login.getLoginPassword();
+        String  usercode=login.getLoginUsercode();
+        String password= new SimpleHash("MD5", credentials, usercode).toString();
+		login.setuId(lg.getuId());
+		login.setLoginId(lg.getLoginId());
+		login.setLoginPassword(password);
+		int i=lService.updateLoginByUid(login);
+		if(i>0){
+			//System.out.println("更新成功");
+			//session.setAttribute("message","密码修改成功");
+			return "home";
+		}else{
+			//System.out.println("更新失败");
+			//session.setAttribute("message","密码修改失败");
+			return "home";
+		}
+		
+	}
+	
 	 
 	
 	/**
 	 * 总结：只完成了查看和删除的功能
 	 * 	修改和员工详情查看方法已经写好了，但是无法将数据传到前段。
 	 */
+	
+	/**
+	 * 下拉框
+	 * @return
+	 */
+	@RequestMapping("option")
+	@ResponseBody
+	public Map option(){
+		Map map=new HashMap();
+		List<Dept> deplist=deptService.getAllDept();
+		List<Professional> prolist=proService.getAllPro();
+		map.put("deplist", deplist);
+		map.put("prolist", prolist);
+		return map;
+	}
 	
 }

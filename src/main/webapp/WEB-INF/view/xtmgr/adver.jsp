@@ -68,31 +68,14 @@ function Check(name){
   	resize:none;
   }
 </style>
-<script type="text/javascript">
-function outTo(){
-		 $.ajax({
-	         url:"outTo",
-	         type:"post",
-	         dataType:"json",
-	         success:function(data){
-	        	window.location.href="logout";
-	         }
-		  })	  
-	}
-</script>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  
-
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style='overflow:auto ! important;'>
-    <!-- Content Header (Page header) -->
     
-  
-  
-  <div id = "content" style="width:750px;">
+  <div id = "content" style="width:800px;">
   <section class="content-header">
   <div class="container">
   <div class="row clearfix">
@@ -166,7 +149,7 @@ function outTo(){
                 <br/> <br/><br/>
                 
             <h5><strong>草稿箱</strong></h5>
-                <table width="700px" cellspacing="0" cellpadding="5" id="example1">
+                <table width="1500px" cellspacing="0" cellpadding="5" id="example1">
                 <thead>
                      <tr bgcolor="#CCCCCC">
                         <th width="60" align="left"><input id="chk_SelectALL" type="checkbox"  />全选</th> 
@@ -201,12 +184,6 @@ function outTo(){
                     </tbody>
               </table>
             </div>
-      
-      
-      
-      
-      
-      <!-- a onclick="outTo()" class="btn btn-default btn-flat">退出</a> -->
       
             <!-- /.box-body -->
         </div>

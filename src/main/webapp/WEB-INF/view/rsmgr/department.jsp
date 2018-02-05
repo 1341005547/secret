@@ -19,7 +19,7 @@
 	<!-- ==========模块说明模板============ -->
 	<div class="row" style="margin-left: 5px;">
 		<h2 class="page-header" style="margin-left: 50px; width: 1500px"></h2>
-		<div class="col-md-6" style="width: 1660px">
+		<div class="col-md-6" style="width: 1680px">
 			<div class="box box-solid">
 				<div class="box-header with-border">
 					<h3 class="box-title">管理模块功能说明</h3>
@@ -48,10 +48,9 @@
 							</div>
 							<div id="collapseTwo" class="panel-collapse collapse">
 								<div class="box-body">
-								[我要提交] -该方案用来提交用户的表单信息 <br>
-								[重置] -该方案用来重置用户的表单信息 <br>
-								[编辑] -该方案用来编辑部门信息 <br>
-								[删除] -该方案用来删除部门信息</div>
+									[我要提交] -该方案用来提交用户的表单信息 <br> [重置] -该方案用来重置用户的表单信息 <br>
+									[编辑] -该方案用来编辑部门信息 <br> [删除] -该方案用来删除部门信息
+								</div>
 							</div>
 						</div>
 						<div class="panel box box-success">
@@ -87,7 +86,7 @@
 			<div class="col-xs-12">
 				<div class="box">
 					<div class="box-header">
-						<h3 class="box-title">部门列表 Date</h3>
+						<h3 class="box-title">部门列表 Data</h3>
 					</div>
 					<!-- /.box-header -->
 					<div class="box-body">
@@ -116,24 +115,23 @@
 										<td>
 											<div class="btn-group">
 												<button type="button" class="btn btn-info">
-													<a href="todepartment_add.html"><font color=FFFFFF>添加</a>
+													<a href="todepartment_add.html"><font color=FFFFFF>添加</font></a>
 												</button>
 												<button type="button" class="btn btn-info">
 													<a onclick="updateDept(${matterDept.deptId })"
-														data-toggle="modal" data-target="#myModal_password"><font
-														color=FFFFFF>修改</a>
+														data-toggle="modal" data-target="#myModal_password_dept"><font
+														color=FFFFFF>修改</font></a>
 												</button>
 												<button type="button" class="btn btn-info">
-													<a href="dept_delete.html?deptId=${matterDept.deptId }"><font
-														color=FFFFFF>删除</a>
+													<a href="dept_delete.html?deptId=${matterDept.deptId }"
+														onclick="return staff_del()"><font
+														color=FFFFFF>删除</font></a>
 												</button>
 											</div>
 										</td>
 									</tr>
 								</c:forEach>
-
 							</tbody>
-
 						</table>
 					</div>
 					<!-- /.box -->
@@ -141,13 +139,14 @@
 				<!-- /.col -->
 			</div>
 			<!-- /.row -->
+		</div>
 	</section>
 	<!-- /.content -->
 </div>
 
 
 <!-- 修改部门管理员信息 ；弹出框-->
-<div class="modal fade" id="myModal_password" tabindex="-1"
+<div class="modal fade" id="myModal_password_dept" tabindex="-1"
 	role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" style="width: 400px" role="document">
 		<div class="modal-content">
@@ -181,19 +180,7 @@
 							</c:forEach>
 						</select>
 					</div>
-					<!-- 暂时没有机构 -->
-					<!-- <div class="form-group has-feedback">
-						单选的下拉框
-						<select class="form-control select2" style="width: 100%;">
-							<option selected="selected"><span color=#7b7b7b7b>所属机构</span></option>
-							<option>Alaska</option>
-							<option>California</option>
-							<option>Delaware</option>
-							<option>Tennessee</option>
-							<option>Texas</option>
-							<option>Washington</option>
-						</select>
-					</div> -->
+				
 					<!-- =================提交按钮部分================ -->
 					<div class="row">
 						<!-- /.col -->
@@ -246,7 +233,7 @@
 	})
 	
 	
-	/* function updateDept(dispatchId){
+	function updateDept(dispatchId){
 		 $.ajax({
 	         url:"post_info",
 	         type:"post",
@@ -267,7 +254,7 @@
 	        	 var shijian=new Date(data.date*1000).toLocaleString();
 	         }
 		  })	  
-	} */
+	} 
 	/* 完成部门更新 */
 	
 	
@@ -283,6 +270,42 @@
 	         }
 		  })	  
 	}
+
+	
+	/* 确认提示框 */
+	function staff_del(){
+        	var con = confirm("是否删除？");
+        	//var role_rId = document.getElementById("role_rId").value;
+        	//alert(rid);
+        	if(con){
+        		return true;//如果是true自动进行url跳转
+        		
+        	}else{
+        		return false//如果是false自动取消跳转
+        	}
+        }
+
 </script>
+<c:if test="${msg_del ==1 }">
+	<script type="text/javascript">alert("删除成功");</script>
+</c:if>
+<c:if test="${msg_del ==2 }">
+	<script type="text/javascript">alert("删除失败");</script>
+</c:if>
+<c:if test="${msg_update ==1 }">
+	<script type="text/javascript">alert("更新成功");</script>
+</c:if>
+<c:if test="${msg_update ==2 }">
+	<script type="text/javascript">alert("更新失败");</script>
+</c:if>
+<c:if test="${msg_add ==1 }">
+	<script type="text/javascript">alert("添加成功");</script>
+</c:if>
+<c:if test="${msg_add ==2 }">
+	<script type="text/javascript">alert("添加失败");</script>
+</c:if>
+<c:remove var="msg_del" />
+<c:remove var="msg_update" />
+<c:remove var="msg_add" />
 
 

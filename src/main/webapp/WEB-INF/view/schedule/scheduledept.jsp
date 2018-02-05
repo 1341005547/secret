@@ -77,13 +77,13 @@
 		
 			<div class="col-md-3">
 				<div class="box box-solid">
-					<shiro:hasPermission name="部门经理权限">
+					<shiro:hasPermission name="部门经理日程权限">
 						<div class="box-header with-border">
 							<h4 class="box-title">新建日程</h4>
 						</div>
 					</shiro:hasPermission>
 					<div class="box-body">
-						<shiro:hasPermission name="部门经理权限">
+						<shiro:hasPermission name="部门经理日程权限">
 						<form name="create_calender" id="create_calender" action=""
 							method="post" onsubmit="return Check()">
 							日程内容：<input type="text" style="height: 30px; width: 70%"

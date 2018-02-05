@@ -40,7 +40,7 @@
 										<th>结束时间</th>
 										<th>创建时间</th>
 										<th>状态</th>
-										<shiro:hasPermission name="部门经理权限">
+										<shiro:hasPermission name="部门经理日程权限">
 											<th>操作</th>
 										</shiro:hasPermission>
 									</tr>
@@ -71,7 +71,7 @@
 														未完成
 													</c:otherwise>
 												</c:choose></td>
-											<shiro:hasPermission name="部门经理权限">
+											<shiro:hasPermission name="部门经理日程权限">
 												<td><c:choose>
 													<c:when
 														test="${nowDate - scheduledept.scheduledeptEndTime.time > 0}">

@@ -28,7 +28,7 @@
 </SCRIPT>
 <style type="text/css">
   table{
-      line-height: 30px;
+      line-height: 50px;
 
   }
 </style>
@@ -44,7 +44,7 @@
     
 
 
- <div id = "content">
+ <div id = "content" style="width:800px;">
  <section class="content-header">
   <div class="container">
   <div class="row clearfix">
@@ -94,26 +94,10 @@
 
 <br/> <br/> 
 
-             
-          <!--    <h4><strong>登陆日志搜索操作</strong></h4>
-        <div id="contact_form">
-               <form method="post" name="contact" action="#">
-            
-          <label for="email">搜索日期的上限  ?</label><br> <input type="text" name="email" class="Wdate" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',lang:'zh-cn'})" onclick="WdatePicker();" size="33"/>  
-          <div class="cleaner h10"></div>
-              
-          <label for="subject">搜索日期下限 ?</label> <br><input type="text" class="Wdate" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',lang:'zh-cn'})" size="33" /><br>
-          <div class="cleaner h10"></div><br>
-                              
-          <input type="submit" value="我要提交" id="submit" name="submit" class="submit_btn float_l" />
-          <input type="reset" value="重置" id="reset" name="reset" class="submit_btn float_r" />
-          
-        </form>
-        </div> -->
           
           <br><br>
            <h5><strong>登陆日志列表</strong></h5>
-        <table width="700px" cellspacing="0" cellpadding="5" id="example1">
+        <table width="1500px" cellspacing="0" cellpadding="5" id="example1">
         <thead>
                       <tr bgcolor="#CCCCCC">
                         <th width="60" align="left"><input id="chk_SelectALL" type="checkbox"  />全选</th> 

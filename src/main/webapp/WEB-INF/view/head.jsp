@@ -105,7 +105,12 @@
 		return true;
 	}
 </script>
-
+<c:if test="${!empty message }">
+	<script type="text/javascript">
+	   alert("账户或密码错误，请重新登陆");
+	</script>
+</c:if>
+<c:remove var="message"/>
 </head>
   <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
@@ -128,7 +133,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-         <c:if test="${!empty usercode}">
+ <%--         <c:if test="${!empty login}">
            <li class="dropdown messages-menu">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
@@ -151,7 +156,7 @@
               </li>            
               </ul>
           </li>
-         </c:if>
+         </c:if> --%>
          <!-- 签到图标和跳转 -->
        <c:if test="${!empty login}">
        				<li class="dropdown notifications-menu"><a href="#"
@@ -351,15 +356,15 @@
             </span>
           </a>
           <ul class="treeview-menu">
-          
+          <shiro:hasPermission name="系统管理">
              <li><a href="adver.html">公告管理</a></li>
              <li><a href="loglogin.html">登录日志</a></li>
              <li><a href="operate.html">操作日志</a></li>
              <li><a href="rules.html">守则管理</a></li>
+          </shiro:hasPermission>
           </ul>
           </ul>
          </li>
-        <li>
     <!-- 系统管理 -->
 <!--         <li>
           <a href="pages/calendar.html">
@@ -415,20 +420,18 @@
 			<div class="modal-content">
 	<!-- 修改密码内容 -->
 			<div class="register-logo">
-				<a href="staff.html"><b>修改密码</b>ADMIN</a>
+				<a href="#"><b>修改密码</b>ADMIN</a>
 			</div>
 
 			<div class="register-box-body" >
-				<form
-					action=""
-					method="post">
+				<form action="update_pwd.html" method="post">
 					<div class="form-group has-feedback">
-						<input type="text" class="form-control" placeholder="Full name">
+						<input type="text" class="form-control" placeholder="Full name" name="loginUsercode">
 						<span class="glyphicon glyphicon-user form-control-feedback"></span>
 					</div>
 
 					<div class="form-group has-feedback">
-						<input type="password" class="form-control" placeholder="Password">
+						<input type="password" class="form-control" placeholder="Password" name="loginPassword">
 						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 					</div>
 					<div class="form-group has-feedback">

@@ -124,7 +124,7 @@
 										<tr>
 											<td height="40">授权角色：</td>
 											<td><c:forEach items="${roleList }" var="rlist">
-													<c:out value="${rlist.rName }" />
+													<c:out value="${rlist.rName }" />&nbsp;&nbsp;
 												</c:forEach></td>
 										</tr>
 										<tr>
@@ -139,7 +139,7 @@
 										<tr>
 											<td height="40">角色描述：</td>
 											<td><c:forEach items="${roleList }" var="rlist">
-													<c:out value="${rlist.r_Content }" />
+													<c:out value="${rlist.r_Content }" /><br>
 												</c:forEach></td>
 										</tr>
 										<tr>

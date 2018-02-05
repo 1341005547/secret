@@ -341,16 +341,16 @@ table {
 								<h5>
 									<strong>权限结果</strong>
 								</h5>
-								<table width="700px" cellspacing="0" cellpadding="5"
+								<table width="1140px" cellspacing="0" cellpadding="5"
 									id="table111">
 									<thead>
 									<tr bgcolor="#CCCCCC">
-										<th width="60" align="left"></th>
-										<th width="100" align="left">编号</th>
-										<th width="100" align="left">用户名</th>
-										<th width="265" align="left">角色名称</th>
-										<th width="100" align="left">授权时间</th>
-										<th width="150" align="left">操作</th>
+										<th width="100" align="center"></th>
+										<th width="100" align="center">编号</th>
+										<th width="200" align="center">用户名</th>
+										<th width="340" align="center">角色名称</th>
+										<th width="200" align="center">授权时间</th>
+										<th width="200" align="center">操作</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -429,39 +429,7 @@ table {
 
 
 
-					<div class="data"
-						style="position: fixed; bottom: 10px; right: 20px; z-index: 10;">
-						<button class="btn tip" title="该方案用于返回该页面顶部">顶部</button>
-						<button class="btn tip" title="该方案用于快速查看公告">公告</button>
-						<button class="btn tip" title="该方案用于快速查看信箱">邮箱</button>
-
-					</div>
-
-					<div class="data "
-						style="position: fixed; bottom: 10px; left: 20px; z-index: 10;">
-						<button class="btn tip" title="当前时间: 2013-02-20 14:24 星期五">当前时间</button>
-						<button class="btn tip" title="该方案用于快速查看通讯录"
-							id="jDialog_default_button">通讯录</button>
-					</div>
-
-					<div class="dialog" id="jDialog_default"
-						style="display: none; z-index: 5;" title="公司通讯录">
-						<p>
-							<em>*&nbsp; [部门] 职位-姓名-联系电话</em>
-						</p>
-						<ul class="sidebar_menu">
-							<li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
-							<li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
-							<li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
-							<li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
-							<li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
-							<li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
-							<li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
-							<li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
-							<li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
-							<li><strong>[项目部]</strong> 部门经理-张三-13213052102</li>
-						</ul>
-					</div>
+					
 
 
 
@@ -475,9 +443,9 @@ table {
 					<!-- /.box-body -->
 				</div>
 				</section>
-			</div>
+			</>
 		</div>
-		<jsp:include page="../foot.jsp" />
+		
 	</div>
 
 	<script>
@@ -599,4 +567,5 @@ table {
   })
     
 </script>
+<jsp:include page="../foot.jsp" />
 </html>

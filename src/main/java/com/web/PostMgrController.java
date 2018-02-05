@@ -1,5 +1,6 @@
 package com.web;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.entity.matters.PostDispatch;
 import com.entity.matters.PostDispatchDetail;
 import com.service.matters.PostService;
 
@@ -39,9 +41,13 @@ public class PostMgrController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("rsmgr/post");
-		List list = postService.selectStaffMsg();
-		
-		
+		List<PostDispatch> list = postService.selectStaffMsg();
+		/*for (PostDispatch l : list) {
+			
+			SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+			String date=simpleDateFormat.format(l.getDispatchCreateTime());
+			modelAndView.addObject("date", date);
+		}*/
 		modelAndView.addObject("list",list);
 		return modelAndView;		
 	}

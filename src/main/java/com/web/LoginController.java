@@ -66,6 +66,7 @@ public class LoginController {
 			} catch (Exception e) {
 				//e.printStackTrace();
 				session.removeAttribute("login");
+				session.setAttribute("message", "账户或密码错误");
 				return "index";
 			}
 		}
@@ -76,18 +77,20 @@ public class LoginController {
 		Date date=new Date();
 		String time=df.format(date);
 		Oa_manual_sign oa_manual_sign=oa_manualService.selectEndTime(login.getuId(),time);
-		
-		//session.setAttribute("login", login);
 		session.setAttribute("outmasi",oa_manual_sign);
+		//存储user对象
 		User user=us.getUserByUid(login.getuId());
 		session.setAttribute("user", user);//用户存到session中
+		//存储部门对象
 		Dept dept=ds.getDeptById(user.getdId());
 		session.setAttribute("dept", dept);
+		//存储职位
 		Professional professional=ps.getProfessionalById(user.getProfessionalId());
 		session.setAttribute("professional", professional);
-		
+		//session.setAttribute("message", "登陆成功");
 	    return "home";
 	}
+
 
 	/**
 	 * 用户角色查询

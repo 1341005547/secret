@@ -73,7 +73,7 @@
   
   
   
-  <div id = "content">
+  <div id = "content" style="width:800px;">
   <section class="content-header" > 
   <div class="container">
   <div class="row clearfix">
@@ -160,7 +160,7 @@
 					<h5>
 						<strong>守则列表</strong>
 					</h5>
-					<table width="700px" cellspacing="0" cellpadding="5" id="example1">
+					<table width="1500px" cellspacing="0" cellpadding="5" id="example1">
 					<thead>
 						<tr bgcolor="#CCCCCC">
 							<th width="70" align="left"><input id="chk_SelectALL"

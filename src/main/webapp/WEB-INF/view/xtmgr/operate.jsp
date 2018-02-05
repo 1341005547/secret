@@ -45,7 +45,7 @@ $(document).ready(function() {
 </SCRIPT>
 <style type="text/css">
 table {
-	line-height: 30px;
+	line-height: 50px;
 }
 
 input {
@@ -112,28 +112,6 @@ input {
 
 									<br /> <br />
 
-									<!-- <div id="contact_form">
-										<h4>
-											<strong>操作日志搜索操作</strong>
-										</h4>
-										<form method="post" name="contact" action="#">
-
-											<label for="email">搜索日期的上限 ?</label><br> <input
-												type="text" id="startDate" name="email"
-												class="validate-email required input_field datepicker" />
-											<div class="cleaner h10"></div>
-
-											<label for="subject">搜索日期的下限 ?</label> <br>
-											<input type="text" name="subject" id="endDate"
-												class="input_field datepicker" />
-											<div class="cleaner h10"></div>
-											<br> <input type="submit" value="我要提交" id="submit"
-												name="submit" class="submit_btn float_l" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											<input type="reset" value="重置" id="reset" name="reset"
-												class="submit_btn float_r" />
-
-										</form>
-									</div> -->
 								</div>
 								<br /> <br />
 								<br />
@@ -164,7 +142,7 @@ input {
 												<td><fmt:formatDate pattern="yyyy-MM-dd"
 														value="${operation.operationTime }" type="time" /></td>
 												<td><a onclick="operatelook(${operation.operationId})"
-													data-toggle="modal" data-target="#myModal_user"
+													data-toggle="modal" data-target="#myModal_user5"
 													class="more">查看</a>&nbsp; <a
 													href="deloper/${operation.operationId }" class="more"
 													onclick="if(confirm('确定删除?')==false)return false;">删除</a></td>
@@ -208,7 +186,7 @@ function operatelook(uid){
 </script>
 
 	<!-- 操作日志详情弹出框 -->
-	<div class="modal fade" id="myModal_user" tabindex="-1" role="dialog"
+	<div class="modal fade" id="myModal_user5" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog role=" document" style="width: 450px">
 			<div class="modal-content">
