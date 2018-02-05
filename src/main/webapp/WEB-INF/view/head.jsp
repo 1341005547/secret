@@ -153,7 +153,7 @@
           </li>
          </c:if>
          <!-- 签到图标和跳转 -->
-       <c:if test="${!empty usercode}">
+       <c:if test="${!empty login}">
        				<li class="dropdown notifications-menu"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"> <i
 						class="fa fa-bell-o"></i> <span class="label label-warning">签到</span>
