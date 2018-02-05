@@ -60,7 +60,7 @@ public class AopTest {
 	}
 	
 	/**
-	 * 后置增强--登陆日志
+	 * 后置增强--登录日志
 	 * @param joinPoint
 	 * @throws UnknownHostException 
 	 * @AfterReturning 中的参数( value="切入点表达式或命名切入点", 
@@ -68,7 +68,7 @@ public class AopTest {
 	 * argNames="参数列表参数名",
 	 * returning="返回值对应参数名")
 	 * 
-	 * 在服务器启动后第一次登陆时会有两次记录
+	 * 在服务器启动后第一次登录时会有两次记录
 	 */
     @AfterReturning(value = "execution(* com.service.*.login*(..))",argNames = "object", returning = "object")  
     public void doAfterReturningAdvice1(JoinPoint joinPoint,Object object) throws UnknownHostException{  
@@ -85,7 +85,7 @@ public class AopTest {
     	//String mname=joinPoint.getSignature().getName();
     	//获取操作内容
     	//String opContent=optionContent(joinPoint.getArgs(), mname);
-    	//获取登陆IP
+    	//获取登录IP
     	InetAddress myip = InetAddress.getLocalHost();
     	
     	Thelog thelog=new Thelog();
@@ -101,7 +101,7 @@ public class AopTest {
     	Session session=SecurityUtils.getSubject().getSession();
     	session.setAttribute("thelog", thelog);
     	
-        System.out.println("登陆触发了=============="); 
+        System.out.println("登录触发了=============="); 
     }  
 	
     /**
@@ -161,7 +161,7 @@ public class AopTest {
     		operation.setOperationEven("删除操作日志");
     	}
     	if(mname.equals("deleteByThelogPrimaryKey")){
-    		operation.setOperationEven("删除登陆日志");
+    		operation.setOperationEven("删除登录日志");
     	}
     	int i=operationService.addSelective(operation);
     	
@@ -196,7 +196,7 @@ public class AopTest {
     		operation.setOperationEven("修改操作日志");
     	}
     	if(mname.equals("updateByThelogPrimaryKey")){
-    		operation.setOperationEven("修改登陆日志");
+    		operation.setOperationEven("修改登录日志");
     	}
     	int i=operationService.addSelective(operation);
     	

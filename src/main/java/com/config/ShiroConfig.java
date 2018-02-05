@@ -31,8 +31,8 @@ public class ShiroConfig {
 	public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
 		ShiroFilterFactoryBean sff=new ShiroFilterFactoryBean();
 		sff.setSecurityManager(securityManager);//加载安全管理器
-		sff.setLoginUrl("/login.html");//登陆url
-		sff.setSuccessUrl("/home");//登陆成功url
+		sff.setLoginUrl("/login.html");//登录url
+		sff.setSuccessUrl("/home");//登录成功url
 		//创建过滤器练的map参数对象
 		LinkedHashMap<String, String> filterChainDefinitionMap=new LinkedHashMap<>();
 	    filterChainDefinitionMap.put("/login.html", "anon"); //表示可以匿名访问
