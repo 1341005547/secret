@@ -122,7 +122,7 @@ public class StaffMgrController {
 	/**删除选中用户的信息*/
 	@RequestMapping("/staff_delete.html")
 	public String doDelete(Integer uid){
-		/*通过uid对用户和登陆信息进行删除*/	
+		/*通过uid对用户和登录信息进行删除*/	
 		int i=uService.delUserAndLoginByid(uid);
 		if(i>0){
 			System.out.println("删除成功");
@@ -187,7 +187,7 @@ public class StaffMgrController {
 		user.setuId(uid);
 		login.setuId(uid);	
 		int i=uService.updateUser(user);
-		//王楠杰，检查更新登陆信息
+		//王楠杰，检查更新登录信息
 		int j=lService.updateLoginByUid(login);	
 		/**
 		 * 通过返回的值判断操作是否完成

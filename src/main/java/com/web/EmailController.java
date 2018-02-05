@@ -41,7 +41,7 @@ public class EmailController {
     */
 	@RequestMapping("toemail.html")
 	public String doEmail(){
-		//根据登陆账户取id，根据接受查询他下边的邮件List
+		//根据登录账户取id，根据接受查询他下边的邮件List
 		//把集合存到session中
 		Session session=SecurityUtils.getSubject().getSession();
 		User user=(User) session.getAttribute("user");

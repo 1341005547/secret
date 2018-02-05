@@ -291,7 +291,7 @@ public class MyApplyController {
 	@RequestMapping("myapply")
 	public String myapply(Model model) {
 		Login login=(Login) SecurityUtils.getSubject().getSession().getAttribute("login");
-		//获取登陆用户所有草稿
+		//获取登录用户所有草稿
 		Integer uId=login.getuId();
 		List<Apply> list = myApplyService.listGetASubmit(uId);
 		model.addAttribute("list", list);

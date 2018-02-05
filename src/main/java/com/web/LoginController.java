@@ -38,7 +38,7 @@ import com.service.User_roleService;
 public class LoginController {
 
 	@Autowired
-	private LoginService loginService; // 用户登陆业务接口
+	private LoginService loginService; // 用户登录业务接口
 	@Autowired
 	private RoleService roleService;
 	@Autowired
@@ -53,7 +53,7 @@ public class LoginController {
     private ProfessionalService ps;//职位表
 	
 	/**
-	 * 用户登陆
+	 * 用户登录
 	 */
 	@RequestMapping("tologin")
 	public String userLogin(String loginUsercode,String loginPassword){

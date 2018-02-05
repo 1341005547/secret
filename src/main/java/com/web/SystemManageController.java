@@ -42,7 +42,7 @@ public class SystemManageController {
 	@Autowired
 	AnnouncementService anService;// 系统管理业务类
 	@Autowired
-	ThelogService theService;//登陆日志业务类
+	ThelogService theService;//登录日志业务类
 	@Autowired
 	CounductService counService;//操作日志业务类
 	@Autowired
@@ -159,16 +159,16 @@ public class SystemManageController {
 		return "xtmgr/adver";
 	}
 	
-	//显示登陆日志
+	//显示登录日志
 	@RequestMapping("loglogin.html")
 	public String showLoglogin(Map<String, Object> map) {
 		List<Thelog> theList=theService.selectLog();
 		map.put("theList", theList);
-		System.out.println("进入登陆管理。。。。。。");
+		System.out.println("进入登录管理。。。。。。");
 		return "xtmgr/loglogin";
 	}
 
-	//根据id显示登陆日志的详细信息
+	//根据id显示登录日志的详细信息
 	@RequestMapping("/log_look/{id}")
 	public String showLogLook(@PathVariable Integer id,Model model) {
 		Thelog log=theService.selectByPrimaryKey(id);
@@ -177,7 +177,7 @@ public class SystemManageController {
 		return "xtmgr/log_look";
 	}
 	
-	//根据id删除登陆日志
+	//根据id删除登录日志
 	@RequestMapping("/delLog/{id}")
 	public String delLog(@PathVariable Integer id,Model model) {
 		int i=theService.deleteByThelogPrimaryKey(id);

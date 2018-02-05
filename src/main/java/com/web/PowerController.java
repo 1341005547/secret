@@ -53,7 +53,7 @@ public class PowerController {
 		Integer uid = login.getuId();
 		// 得到该用户所在部门下的所有员工
 		List<User> user_list = roleService.getUserListByUid(uid);
-		// 获得登陆用户创建的角色对象集合
+		// 获得登录用户创建的角色对象集合
 		List<Role> role_list = roleService.getCreateRolesList(uid);
 		// 获得用户角色中间表
 		//List<User_role> user_role_list = roleService.getUserRoleByUid(uid);
@@ -101,7 +101,7 @@ public class PowerController {
 		// 按uid查询的角色对象集合
 		List<Role> uIdRole_list = roleService.getRoleListByUid(select_user);
 		// roleService.getRoleListByUid(uid);
-		// 按登陆用户id和按uid查询的角色对象的差集集合
+		// 按登录用户id和按uid查询的角色对象的差集集合
 		List<Role> different_Role_list = roleService.getRoleListByUidCreate_uid(select_user, uid);
 		Map<String, List<Role>> map = new HashMap<String, List<Role>>();
 		map.put("role_list", different_Role_list);
@@ -203,9 +203,9 @@ public class PowerController {
 		Session session = SecurityUtils.getSubject().getSession();
 		User user = (User) session.getAttribute("user");
 		Integer uid = user.getuId();
-		// 获得登陆用户的权限对象集合
+		// 获得登录用户的权限对象集合
 		List<Permission> per_list = roleService.getPerNameListByUid(uid);
-		// 获得登陆用户创建的角色对象集合
+		// 获得登录用户创建的角色对象集合
 		List<Role> r_list = roleService.getCreateRolesList(uid);
 		// 放入model，供前端调取
 		model.addAttribute("per_list", per_list);
@@ -244,9 +244,9 @@ public class PowerController {
 
 		roleService.deleteRoleByRid(rId);
 
-		// 获得登陆用户创建的角色对象集合
+		// 获得登录用户创建的角色对象集合
 		List<Role> r_list = roleService.getCreateRolesList(uid);
-		// 获得登陆用户的权限对象集合
+		// 获得登录用户的权限对象集合
 		List<Permission> per_list = roleService.getPerNameListByUid(uid);
 		
 		model.addAttribute("r_list", r_list);
@@ -336,9 +336,9 @@ public class PowerController {
 		// toPower_set(model);
 
 		// Map<String, List<Role>> map = new HashMap<String, List<Role>>(); //
-		// 获得登陆用户的角色对象集合
+		// 获得登录用户的角色对象集合
 		List<Role> r_list = roleService.getCreateRolesList(uid);
-		// 获得登陆用户的权限对象集合
+		// 获得登录用户的权限对象集合
 		List<Permission> per_list = roleService.getPerNameListByUid(uid);
 
 		// map.put("r_list", r_list);

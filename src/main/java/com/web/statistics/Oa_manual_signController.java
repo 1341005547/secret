@@ -168,7 +168,7 @@ public ModelAndView toOa_manual_sign(String search){
 		//获取当前时间
 	 Date getTime=now.getTime();
 	Map<String,Object> map = new HashMap<String,Object>();
-	//判断如果第一次登陆默认查看当前时间的考勤
+	//判断如果第一次登录默认查看当前时间的考勤
 			if(search==null||search.equals("")){
 				search=Integer.toString(year);
 			}
