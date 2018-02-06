@@ -121,7 +121,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>第二组</b>OA</span>
+      <span class="logo-lg"><b>办公管理系统</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less  判断邮件提醒-->
     <nav class="navbar navbar-static-top">
@@ -208,13 +208,13 @@
           <!--  -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<%=path %>static/dist/img/user7-128x128.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">员工登录</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<%=path %>static/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<%=path %>static/dist/img/user7-128x128.jpg" class="img-circle" alt="User Image">
 
                 <p>
                 <c:if test="${empty login }">
@@ -267,7 +267,7 @@
 							部门管理</a></li>
 					<li><a href="staff.html"><i class="fa fa-circle-o"></i>
 							员工管理</a></li>
-					<li><a href="post.html"><i class="fa fa-circle-o"></i>
+					 <li><a href="post.html"><i class="fa fa-circle-o"></i>
 							调动管理</a></li>
 					<li><a href="address.html"><i class="fa fa-circle-o"></i>
 							通讯录管理</a></li>

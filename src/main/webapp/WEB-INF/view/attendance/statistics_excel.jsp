@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -52,20 +53,12 @@
                                         <td>${baseStatisticsEntry.deptId}</td>
                                         <td>${baseStatisticsEntry.uname}</td>
                                         <td>${baseStatisticsEntry.manualResult}</td>
-                                        <td>${baseStatisticsEntry.time}</td>
+                                        <td><fmt:formatDate value="${baseStatisticsEntry.time}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
-                                <!-- =============表尾============= -->
-                                <tfoot>
-                                <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
-                                </tr>
-                                </tfoot>
+
+
                             </table>
                         </div>
                     </div>
@@ -88,16 +81,31 @@
 <!-- page script -->
 <script>
     $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging': true,
-            'lengthChange': false,
-            'searching': false,
-            'ordering': true,
-            'info': true,
-            'autoWidth': false
+        $('#example1').DataTable({
+            "pagingType": "simple_numbers",//设置分页控件的模式
+            searching: false,//屏蔽datatales的查询框
+            aLengthMenu:[5,10],//设置一页展示10条记录
+
+            "oLanguage": {  //对表格国际化
+                "sLengthMenu": "每页显示 _MENU_条",
+                "sZeroRecords": "没有找到符合条件的数据",
+                //  "sProcessing": "&lt;img src=’./loading.gif’ /&gt;",
+                "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                "sInfoEmpty": "木有记录",
+                "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                "sSearch": "搜索：",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页"
+
+                }
+            },
+
         })
     })
+
 </script>
 </body>
 </html>

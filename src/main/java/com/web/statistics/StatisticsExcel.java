@@ -1,12 +1,10 @@
 package com.web.statistics;
 
-import com.entity.User;
 import com.entity.statistics.BaseStatisticsEntry;
 import com.entity.statistics.StatisticsCondition;
 import com.service.StatisticsExcelService;
 import com.util.StatisticsUtil;
 import com.util.ExcelOutput;
-
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,24 +17,27 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Administrator on 2018/1/15.
+ * Created by 王楠杰 on 2018/1/15.
  */
 @Controller
 public class StatisticsExcel extends BaseControl {
     /**
-     * 注入
+     * 注入excel业务层
      */
     @Autowired
     private StatisticsExcelService statisticsExcelService;
     /**
      * 获取部门月统计数据
-     */
+     * @date 2018/1/28 15:34
+     * @methodName  index
+     * @param  []  
+     * @return org.springframework.web.servlet.ModelAndView  
+     */  
     @RequestMapping("excel_print")
     public ModelAndView index(){
         //获得上个月部门的统计数据
         StatisticsCondition statisticsCondition = new StatisticsCondition();
-        User user=(User) SecurityUtils.getSubject().getSession().getAttribute("user");
-        statisticsCondition.setDeptId(user.getdId());
+        statisticsCondition.setDeptId(1);
         List<BaseStatisticsEntry> list = statisticsExcelService.selectData(statisticsCondition);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("attendance/statistics_excel");
@@ -47,7 +48,11 @@ public class StatisticsExcel extends BaseControl {
 
     /**
      * excel导入table
-     */
+     * @date 2018/1/28 15:34
+     * @methodName  getExcel
+     * @param  [response]  
+     * @return void  
+     */  
     @RequestMapping("printExcel")
     public void  getExcel( HttpServletResponse response){
         List<BaseStatisticsEntry> list = statisticsExcelService.selectData(new StatisticsCondition());

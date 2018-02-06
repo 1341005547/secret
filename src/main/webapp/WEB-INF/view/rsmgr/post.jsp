@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>	
 <jsp:include page="../head.jsp"></jsp:include>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- ==========================================主显示区=========================================== -->
@@ -21,7 +20,7 @@
 
 	<div class="row" style="margin-left: 5px;">
 		<h2 class="page-header" style="margin-left: 50px; width: 1500px"></h2>
-		<div class="col-md-6" style="width: 1680px">
+		<div class="col-md-6" style="width: 1660px">
 			<div class="box box-solid">
 				<div class="box-header with-border">
 					<h3 class="box-title">调用模块功能说明</h3>
@@ -49,7 +48,7 @@
 								</h4>
 							</div>
 							<div id="collapseTwo" class="panel-collapse collapse">
-								<div class="box-body">[查看信息详情] -该方案用来查看员工调度信息详情</div>
+								<div class="box-body">[查看信息详情] -该方案用来查看员工调度信息详情 </div>
 							</div>
 						</div>
 						<div class="panel box box-success">
@@ -96,38 +95,41 @@
 									<th>创建时间</th>
 									<th>调动前职位</th>
 									<th>调动后职位</th>
-									<th>操作</th>
+									<!-- <th>操作</th> -->
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${list}" var="postDispatch">
 									<tr>
-										<td>${postDispatch.loginUsercode}</td>
-										<td>${postDispatch.uname }</td>
-										<td> <fmt:formatDate value="${postDispatch.dispatchCreateTime}" pattern="yyyy年MM月dd日-HH:mm:ss"/></td>
-										<td>${postDispatch.beforePost}</td>
-										<td>${postDispatch.afterPost}</td>
-										<td>
-											<div class="btn-group">
-												<button type="button" class="btn btn-info">
-													<!-- 添加弹框的样式 -->
-													<!-- href="post_info.html" -->
-													<a class="staffinfo"
-														onclick="staffinfo(${postDispatch.dispatchId})"
-														data-toggle="modal" data-target="#myModal_user_post"><font
-														color=FFFFFF>查看详细信息</font></a>
-												</button>
-												<%-- <button type="button" class="btn btn-info">
-													<a href="delPost?id=${postDispatch.dispatchId}"
-														onclick="return staff_del()">
-														<font color=FFFFFF>删除</font></a>
-												</button> --%>
-											</div>
-										</td>
-									</tr>
-
+									<td>${postDispatch.loginUsercode}</td>
+									<td>${postDispatch.uname }</td>
+									<td>${postDispatch.dispatchCreateTime}</td>
+									<td>${postDispatch.beforePost}</td>
+									<td>${postDispatch.afterPost}</td>
+									<td>
+										<div class="btn-group">
+											<%-- <button type="button" class="btn btn-info">
+												<!-- 添加弹框的样式 -->
+												<!-- href="post_info.html" -->
+												<a class="staffinfo" 
+												onclick="staffinfo(${postDispatch.dispatchId})"
+												data-toggle="modal" data-target="#myModal_users"><font color=FFFFFF>查看详细信息</a>
+											</button> --%>
+											<!-- <button type="button" class="btn btn-info">
+												<a href="#"><font color=FFFFFF>修改</a>
+											</button> -->
+											<%-- <button type="button" class="btn btn-info">
+												<a href="delPost?id=${postDispatch.dispatchId}"><font color=FFFFFF>删除</a>
+											</button> --%>
+										</div>
+									</td>
+								</tr>
+								
+								
+								
 								</c:forEach>
-							</tbody>
+								
+							</tfoot>
 
 						</table>
 					</div>
@@ -136,7 +138,6 @@
 				<!-- /.col -->
 			</div>
 			<!-- /.row -->
-		</div>
 	</section>
 	<!-- /.content -->
 </div>
@@ -146,7 +147,7 @@
 
 
 
-<div class="modal fade" id="myModal_user_post" tabindex="-1" role="dialog"
+<div class="modal fade" id="myModal_users" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel">
 	<div class="modal-dialog role=" document" style="width: 450px">
 		<div class="modal-content">
@@ -168,9 +169,9 @@
 						</div>
 						<div class="box-footer">
 							<ul class="nav nav-stacked">
-
+							
 								<!-- 把写死的内容通过ajax -->
-
+							
 								<li><a href="#" id="dispatchId"></a></li>
 								<li><a href="#" id="uname"></a></li>
 								<li><a href="#" id="loginUsercode"></a></li>
@@ -181,8 +182,8 @@
 								<li><a href="#" id="dispatchResult"></a></li>
 								<li><a href="#" id="dispatchOpinion"></a></li>
 								<li><a href="#" id="dispatchNote"></a></li>
-
-
+								
+	
 							</ul>
 						</div>
 					</div>
@@ -203,24 +204,7 @@
 <!-- page script -->
 <script>
 	$(function() {
-		$('#example1').DataTable({
-			aLengthMenu : [ 5, 10, 20, 50, 100 ],//设置一页展示10条记录  
-			"oLanguage" : { //对表格国际化  
-				"sLengthMenu" : "每页显示 _MENU_条",
-				"sZeroRecords" : "没有找到符合条件的数据",
-				//  "sProcessing": "&lt;img src=’./loading.gif’ /&gt;",    
-				"sInfo" : "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
-				"sInfoEmpty" : "木有记录",
-				"sInfoFiltered" : "(从 _MAX_ 条记录中过滤)",
-				"sSearch" : "搜索：",
-				"oPaginate" : {
-					"sFirst" : "首页",
-					"sPrevious" : "前一页",
-					"sNext" : "后一页",
-					"sLast" : "尾页"
-				}
-			}
-		})
+		$('#example1').DataTable()
 		$('#example2').DataTable({
 			'paging' : true,
 			'lengthChange' : false,
@@ -245,33 +229,13 @@
 	        	 $("#beforePost").html("调动前职务："+data.staf_info.beforePost);
 	        	 $("#afterPost").html("调动后职位："+data.staf_info.afterPost);
 	        	 $("#dispatchName").html("调动处理人名字："+data.staf_info.dispatchName);
-	        	 var shijian=new Date(data.staf_info.dispatchCreateTime).toLocaleString();
 	        	 $("#dispatchCreateTime").html("调动申请创建时间："+data.staf_info.dispatchCreateTime);
 	        	 $("#dispatchResult").html("调动审批结果："+data.staf_info.dispatchResult);
 	        	 $("#dispatchOpinion").html("调动处理人意见："+data.staf_info.dispatchOpinion);
 	        	 $("#dispatchNote").html("调动请求标注："+data.staf_info.dispatchNote);
+	
+	        	 var shijian=new Date(data.date*1000).toLocaleString();
 	         }
 		  })	  
 	}
-	
-	
-	/* 确认提示框 */
-	function staff_del(){
-        	var con = confirm("是否删除？");
-        	//var role_rId = document.getElementById("role_rId").value;
-        	//alert(rid);
-        	if(con){
-        		return true;//如果是true自动进行url跳转
-        		
-        	}else{
-        		return false//如果是false自动取消跳转
-        	}
-        }
 </script>
-<c:if test="${msg_del ==1 }">
-	<script type="text/javascript">alert("删除成功");</script>
-</c:if>
-<c:if test="${msg_del ==2 }">
-	<script type="text/javascript">alert("删除失败");</script>
-</c:if>
-<c:remove var="msg_del" />

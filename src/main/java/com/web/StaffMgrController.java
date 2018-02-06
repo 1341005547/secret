@@ -107,6 +107,7 @@ public class StaffMgrController {
 		login.setuId(u.getuId());
 //		加密		
 		String credentials =login.getLoginPassword();//对密码进行加密
+		System.out.println(login.getLoginUsercode());
         String  usercode=login.getLoginUsercode();//使用usercode对密码进行加盐
 		login.setLoginPassword(new SimpleHash("MD5", credentials, usercode).toString());//密码
 		try {
@@ -115,7 +116,7 @@ public class StaffMgrController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			session.setAttribute("msg_add", 2);
-			return "rsmgr/staff_add";
+			return "redirect:/staff.html";
 		}
 		session.setAttribute("msg_add", 1);
 		return "redirect:/staff.html";
@@ -222,7 +223,7 @@ public class StaffMgrController {
 		}else{
 			//System.out.println("更新失败");
 			session.setAttribute("msg_update", 2);
-			return "rsmgr/staff";
+			return "redirect:/staff.html";
 		}
 		
 		/**

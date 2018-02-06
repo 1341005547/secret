@@ -52,22 +52,12 @@
                             <label for="inputPassword3" class="col-sm-2 control-label">部门名称</label>
                             <div class="col-sm-10">
                                 <select name="deptId" class="form-control select2" style="width: 100%;">
-                                    <option selected="selected" value="">部门名称</option>
-                                    <option value="1">人事部</option>
+                                    <option value="3">人事部</option>
                                     <option value="2">研发部</option>
-                                    <option value="3">管理部</option>
+                                    <option value="1">管理部</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">时间区间</label>
-                            <div class="col-sm-10">
-                                <input name="time_zones" class="form-control" id="test8"
-                                       placeholder="时间区间">
-                            </div>
-                        </div>
-
-
                 </div>
                 <!-- ================================时间选择=================================== -->
                 <div class="box-footer">
@@ -106,8 +96,8 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <p class="text-center">
-                                        <strong>2017年度部门考勤率统计</strong>
+                                    <p class="text-center" id="title">
+
                                     </p>
                                     <div class="chart">
                                         <!-- Sales Chart Canvas -->
@@ -123,28 +113,31 @@
                                     </p>
 
                                     <div class="progress-group">
-                                        <span class="progress-text">部门1正常出勤人数/总人数</span>
-                                        <span class="progress-number"><b>${viewDateMain.dept1NumNormal}/${viewDateMain.dept1Num}</b></span>
+                                        <span class="progress-text">管理部正常出勤人次/总出勤人次</span>
+                                        <span class="progress-number"><b>${viewDateMain.deptManagerNumNormal }/${viewDateMain.deptManagerNum}</b></span>
 
                                         <div class="progress sm">
-                                            <div class="progress-bar progress-bar-aqua" style="width: 50%"></div>
+                                            <div class="progress-bar progress-bar-aqua"
+                                                 style="width: ${viewDateMain.managerRate}%"></div>
                                         </div>
                                     </div>
                                     <!-- /.progress-group -->
                                     <div class="progress-group">
-                                        <span class="progress-text">部门2正常出勤人数/总人数</span>
-                                        <span class="progress-number"><b>${viewDateMain.dept2NumNormal}/${viewDateMain.dept2Num}</b></span>
+                                        <span class="progress-text">研发部正常出勤人次/总出勤人次</span>
+                                        <span class="progress-number"><b>${viewDateMain.deptSearchNumNormal}/${viewDateMain.deptSearchNum}</b></span>
 
                                         <div class="progress sm">
-                                            <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                                            <div class="progress-bar progress-bar-green"
+                                                 style="width: ${viewDateMain.searchRate}%"></div>
                                         </div>
                                     </div>
                                     <!-- /.progress-group -->
                                     <div class="progress-group">
-                                        <span class="progress-text">部门3正常出勤人数/总人数</span>
-                                        <span class="progress-number"><b>${viewDateMain.dept3NumNormal}/${viewDateMain.dept3Num}</b></span>
+                                        <span class="progress-text">销售部正常出勤人次/总出勤人次</span>
+                                        <span class="progress-number"><b>${viewDateMain.deptSaleNumNormal}/${viewDateMain.deptSaleNum}</b></span>
                                         <div class="progress sm">
-                                            <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
+                                            <div class="progress-bar progress-bar-yellow"
+                                                 style="width: ${viewDateMain.saleRate}%"></div>
                                         </div>
                                     </div>
                                     <!-- /.progress-group -->
@@ -209,57 +202,96 @@
 
             <!-- /.row -->
     </div>
+
+
     <script>
-        $(function () {
+        var i = 0;
+        function getfromdata() {
+
+            var lab1 = null;
+            var lab = null;
             $.ajax({
                 url: "getCharjsData",
                 dateTpye: "json",
                 success: function (data) {
-                    /*alert(data.lable);*/
+                    lab = data.lab;
+                    lab1 = data.lab1;
+                    var ctx = document.getElementById("myChart").getContext("2d");
+                    var data = {
+
+                        labels: lab,
+                        datasets: [
+                            {
+                                fillColor: "rgba(220,220,220,0.5)",
+                                strokeColor: "rgba(220,220,220,1)",
+                                pointColor: "rgba(220,220,220,1)",
+                                pointStrokeColor: "#fff",
+                                data: lab1
+
+                            }
+                        ]
+                    }
+                    var myNewChart = new Chart(ctx).Line(data);
+                    new Chart(ctx).Line(data, options);
+                    Line.defaults = {
+                        segmentShowStroke: true,
+                        segmentStrokeColor: "#fff",
+                        segmentStrokeWidth: 2,
+                        animation: true,
+                        animationSteps: 100,
+                        animationEasing: "easeOutBounce",
+                        animateRotate: true,
+                        animateScale: false,
+                        onAnimationComplete: null
+                    }
                 }
-            })
-        });
-        laydate.render({
-            elem: '#test8'
-            , type: 'month'
-            , range: true
-        });
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ["1", "2", "3", "4", "5", "6"],
-                datasets: [{
-                    label: '1月到6月各月的考勤率',
-                    data: [1, 1, 1, 1, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+            });
+        }
+
+
+        $(document).ready(function () {
+
+
+            var lab1 = null;
+            var lab = null;
+            $.ajax({
+                url: "getCharjsData",
+                dateTpye: "json",
+                success: function (data) {
+                    lab = data.lab;
+                    lab1 = data.lab1;
+                    var ctx = document.getElementById("myChart").getContext("2d");
+                    var data = {
+
+                        labels: lab,
+                        datasets: [
+                            {
+                                fillColor: "rgba(220,220,220,0.5)",
+                                strokeColor: "rgba(220,220,220,1)",
+                                pointColor: "rgba(220,220,220,1)",
+                                pointStrokeColor: "#fff",
+                                data: lab1
+
+                            }
+                        ]
+                    }
+                    var myNewChart = new Chart(ctx).Line(data);
+                    new Chart(ctx).Line(data, options);
+                    Line.defaults = {
+                        segmentShowStroke: true,
+                        segmentStrokeColor: "#fff",
+                        segmentStrokeWidth: 2,
+                        animation: true,
+                        animationSteps: 100,
+                        animationEasing: "easeOutBounce",
+                        animateRotate: true,
+                        animateScale: false,
+                        onAnimationComplete: null
+                    }
                 }
-            }
+            });
+
+
         });
     </script>
     <script src="<%=path %>/static/bower_components/chart.js/Chart.js"></script>

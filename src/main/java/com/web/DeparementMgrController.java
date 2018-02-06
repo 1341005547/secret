@@ -2,6 +2,9 @@ package com.web;
 
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,15 +54,31 @@ public class DeparementMgrController {
 	 */
 	@RequestMapping("department_add.html")
 	public String toDepartmentAddIntoDept(Dept dept) {
+		Session session=SecurityUtils.getSubject().getSession();
 		try {
 			matterService.insertDept(dept);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("添加操作失败");
+			session.setAttribute("msg_add", 2);
 			e.printStackTrace();
 		}
+		session.setAttribute("msg_add", 1);
 		return "redirect:department.html";
 	}
+	
+	/**
+	 * 返回到列表
+	 * @return
+	 */
+	@RequestMapping("/back_department.html")
+	public String back_department(){
+		
+	return "redirect:/department.html";	
+	}
+	
+	
+	
 	/**
 	 * 部门更新
 	 * @param deptUser
@@ -67,13 +86,16 @@ public class DeparementMgrController {
 	 */
 	@RequestMapping("department_update.html")
 	public String updateDepartment(User deptUser) {
+		Session session=SecurityUtils.getSubject().getSession();
 		try {
 			matterService.addDeptManager(deptUser);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("添加操作失败");
+			System.out.println("更新操作失败");
+			session.setAttribute("msg_update", 2);
 			e.printStackTrace();
 		}
+		session.setAttribute("msg_update", 1);
 		return "redirect:department.html";
 	}
 	/**
@@ -81,13 +103,16 @@ public class DeparementMgrController {
 	 */
 	@RequestMapping("dept_delete.html")
 	public String delDept(Integer deptId){
+		Session session=SecurityUtils.getSubject().getSession();
 		try {
 			matterService.delDept(deptId);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("删除操作失败");
+			session.setAttribute("msg_del", 2);
 			e.printStackTrace();
 		}
+		session.setAttribute("msg_del", 1);
 		return "redirect:department.html";
 	}
 	

@@ -22,7 +22,7 @@
 	</section>
 	<div class="row" style="margin-left: 5px;">
 		<h2 class="page-header" style="margin-left: 50px;"></h2>
-		<div class="col-md-6" style="width: 1680px">
+		<div class="col-md-6" style="width: 1660px">
 			<div class="box box-solid">
 				<div class="box-header with-border">
 					<h3 class="box-title">通讯录模块功能说明</h3>
@@ -113,8 +113,8 @@
 												<button type="button" class="btn btn-info">
 													<a href="#" 
 													onclick="addressUpdate(${addresslist.uId})"
-														data-toggle="modal" data-target="#myModal_update_address">
-														<font color=FFFFFF>修改</font>
+														data-toggle="modal" data-target="#myModal_address">
+														<font color=FFFFFF>修改
 													</a>
 												</button>
 
@@ -131,12 +131,11 @@
 				<!-- /.col -->
 			</div>
 			<!-- /.row -->
-		</div>	
 	</section>
 	<!-- /.content -->
 </div>
 <!-- 修改联系方式弹出框-->
-<div class="modal fade" id="myModal_update_address" tabindex="-1"
+<div class="modal fade" id="myModal_address" tabindex="-1"
 	role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" style="width: 400px" role="document">
 		<div class="modal-content">
@@ -226,10 +225,3 @@
 	
 		
 </script>
-<c:if test="${msg_update ==1 }">
-	<script type="text/javascript">alert("更新成功");</script>
-</c:if>
-<c:if test="${msg_update ==2 }">
-	<script type="text/javascript">alert("更新失败");</script>
-</c:if>
-<c:remove var="msg_update" />

@@ -8,7 +8,7 @@ public class shiroMD5 {
     
 	public static void  main(String[] args) {
         String credentials = "1234";
-        String  usercode="y00005";
+        String  usercode="c00001";
         
         System.out.println(new SimpleHash("MD5", credentials, usercode).toString());
 		/*String emailName="123@126.com";

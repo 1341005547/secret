@@ -49,9 +49,9 @@
 							<li><a data-toggle="modal" data-target="#myModal_email"><i
 									class="fa fa-envelope-o"></i>发件箱</a></li>
 							
-							 <li><a href="#"><i class="fa fa-envelope-o"></i>已读件箱</a></li>
+							<!--  <li><a href="#"><i class="fa fa-envelope-o"></i>已读件箱</a></li>
 							<li><a href="#"><i class="fa fa-envelope-o"></i>未件箱</a></li>
-							
+							 -->
 						</ul>
 					</div>
 					<!-- /.box-body -->
@@ -147,7 +147,7 @@
 							<div class="widget-user-header"
 								style="width: 440px; background-color: orange">
 								<div class="widget-user-image">
-									<img class="img-circle" src="../dist/img/user7-128x128.jpg"
+									<img class="img-circle" src="<%=path %>/static/dist/img/user7-128x128.jpg"
 										alt="User Avatar">
 								</div>
 								<!-- /.widget-user-image -->
