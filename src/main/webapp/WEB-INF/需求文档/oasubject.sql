@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2018-02-06 18:40:19
+Date: 2018-02-07 11:40:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,7 +54,7 @@ CREATE TABLE `announcement` (
   `Announcement_create_time` datetime DEFAULT NULL,
   `Announcement_type` int(11) unsigned zerofill DEFAULT NULL,
   PRIMARY KEY (`Announcement_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of announcement
@@ -272,12 +272,14 @@ CREATE TABLE `dept` (
   `d_id` int(11) NOT NULL AUTO_INCREMENT,
   `d_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`d_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1112 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dept
 -- ----------------------------
 INSERT INTO `dept` VALUES ('1', '销售部');
+INSERT INTO `dept` VALUES ('2', '研发部');
+INSERT INTO `dept` VALUES ('3', '管理部');
 
 -- ----------------------------
 -- Table structure for `dispatch`
@@ -351,7 +353,7 @@ CREATE TABLE `login` (
   `login_password` varchar(100) DEFAULT NULL,
   `u_id` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`login_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login
@@ -1034,7 +1036,7 @@ CREATE TABLE `thelog` (
   `thelog_out_time` datetime DEFAULT NULL,
   `thelog_ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`thelog_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=636 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=657 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of thelog
@@ -1367,6 +1369,27 @@ INSERT INTO `thelog` VALUES ('632', '1', '2018-02-06 16:10:51', null, '172.16.23
 INSERT INTO `thelog` VALUES ('633', '1', '2018-02-06 16:13:20', null, '172.16.23.130');
 INSERT INTO `thelog` VALUES ('634', '1', '2018-02-06 18:37:04', null, '172.16.23.130');
 INSERT INTO `thelog` VALUES ('635', '1', '2018-02-06 18:37:04', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('636', '1', '2018-02-06 18:40:31', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('637', '1', '2018-02-06 19:53:29', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('638', '1', '2018-02-06 19:53:30', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('639', '1', '2018-02-06 20:22:02', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('640', '1', '2018-02-06 20:22:02', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('641', '1', '2018-02-06 20:23:35', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('642', '1', '2018-02-06 20:23:35', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('643', '1', '2018-02-06 20:27:39', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('644', '1', '2018-02-06 20:31:44', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('645', '1', '2018-02-06 20:31:45', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('646', '1', '2018-02-06 20:33:11', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('647', '1', '2018-02-06 20:33:11', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('648', '1', '2018-02-06 20:36:48', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('649', '1', '2018-02-06 20:36:48', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('650', '1', '2018-02-06 20:39:08', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('651', '1', '2018-02-06 20:43:34', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('652', '1', '2018-02-06 20:43:35', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('653', '1', '2018-02-06 20:45:17', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('654', '1', '2018-02-06 20:45:17', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('655', '1', '2018-02-06 20:50:58', null, '172.16.23.130');
+INSERT INTO `thelog` VALUES ('656', '1', '2018-02-06 20:50:58', null, '172.16.23.130');
 
 -- ----------------------------
 -- Table structure for `type_apply`

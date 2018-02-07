@@ -52,9 +52,9 @@
                             <label for="inputPassword3" class="col-sm-2 control-label">部门名称</label>
                             <div class="col-sm-10">
                                 <select name="deptId" class="form-control select2" style="width: 100%;">
-                                    <option value="3">人事部</option>
+                                    <option value="1">销售部</option>
                                     <option value="2">研发部</option>
-                                    <option value="1">管理部</option>
+                                    <option value="3">管理部</option>
                                 </select>
                             </div>
                         </div>

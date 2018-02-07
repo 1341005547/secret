@@ -1,6 +1,7 @@
 package com.web.statistics;
 
 import com.util.Constants;
+import com.entity.Dept;
 import com.entity.User;
 import com.util.StatisticsUtil;
 import org.apache.shiro.SecurityUtils;
@@ -68,7 +69,7 @@ public class BaseControl {
      * 获得百分率
      */
     protected double getRate(Long numerator,Long denominator){
-        if (denominator != null){
+        if (denominator != null && denominator != 0){
             return  numerator/denominator;
         }
         return -1;
@@ -134,20 +135,22 @@ public class BaseControl {
     }
 
 
-    /**
-     * 获得当前用户的部门
-     *
-     * @return
-     */
-    public int getCurrentUserDeptId() {
-        return 1;
-    }
+ 
 
     /**
      * 部门id和部门名称对应关系
      */
     public String getDeptName(Integer deptId) {
         return (String) (getDeptMap().get(String.valueOf(deptId)));
+    }
+    /**
+     * 获得当前用户的部门id
+     */
+    public Integer getCurrentUserDeptId(){
+    	Session session=SecurityUtils.getSubject().getSession();
+    	Dept dept = (Dept) session.getAttribute("dept");
+    	Integer deptId = dept.getdId();
+    	return deptId;
     }
 
 

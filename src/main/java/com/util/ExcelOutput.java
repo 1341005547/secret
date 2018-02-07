@@ -38,11 +38,9 @@ public class ExcelOutput {
         try{
             HSSFWorkbook workbook = new HSSFWorkbook();                     // 创建工作簿对象
             HSSFSheet sheet = workbook.createSheet(title);                  // 创建工作表
-
             // 产生表格标题行
             //          HSSFRow rowm = sheet.createRow(0);
             //          HSSFCell cellTiltle = rowm.createCell(0);
-
             //sheet样式定义【getColumnTopStyle()/getStyle()均为自定义方法 - 在下面  - 可扩展】
             HSSFCellStyle columnTopStyle = this.getColumnTopStyle(workbook);//获取列头样式对象
             HSSFCellStyle style = this.getStyle(workbook);                  //单元格样式对象

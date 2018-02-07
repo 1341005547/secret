@@ -1,10 +1,12 @@
 package com.web.statistics;
 
+import com.entity.Dept;
 import com.entity.statistics.AjaxBar;
 import com.service.StatisticsServiceMonth;
 import com.util.NumberFormatUtil;
 import com.util.StatisticsUtil;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,12 +36,14 @@ public class StatisticsBar_Ajax extends BaseControl {
     @RequestMapping("getCharjsData")
     @ResponseBody
     public Map getCharjsData() {
-        Integer deptId = (Integer) SecurityUtils.getSubject().getSession().getAttribute("deptId");
+    	//Dept dept=(Dept) SecurityUtils.getSubject().getSession().getAttribute("dept");
+    	Integer deptId=(Integer) SecurityUtils.getSubject().getSession().getAttribute("deptId");
+       // Integer deptId =dept.getdId();
         Map map = new HashMap();
         //获得所在部门的总人数
         Long sumDept = statisticsServiceMonth.getEmpNumber(deptId);
-        String time_zones = getLastYearRange();
-        int lastYear = getLastYear();
+        String time_zones = "2018-01-01 - 2018-12-31";   //getLastYearRange();
+        int lastYear = 2018;//getLastYear();
         Double[] verticalAxis = new Double[12];
         for (int i = 1; i <= 12; i++) {
             time_zones = getMonthRange(lastYear, i);

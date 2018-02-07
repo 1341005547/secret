@@ -1,9 +1,11 @@
 package com.web.statistics;
 
+import com.entity.Dept;
 import com.entity.statistics.ViewDateMain;
 import com.service.StatisticsServiceMonth;
 import com.util.StatisticsUtil;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +49,7 @@ public class StatisticsMain extends BaseControl {
         }else{
             deptId = getCurrentUserId();
         }
-        SecurityUtils.getSubject().getSession().setAttribute("deptId",deptId);
+        SecurityUtils.getSubject().getSession().setAttribute("deptId", deptId);
         //获取当月的工作日
         workDay = StatisticsUtil.getCurrentMonthWorkDay(StatisticsUtil.getWhiteList());
         //上个月的时间区间字符串
